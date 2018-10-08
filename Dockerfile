@@ -1,6 +1,6 @@
 FROM maven:3-jdk-8-alpine
 
-WORKDIR /backend-example
+WORKDIR /backend
 
 COPY target/*.jar backend.jar
 

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class Application {
 
     public static void main(String[] args) {
-        Thread.currentThread().setName("backend-example");
+        Thread.currentThread().setName("backend");
         SpringApplication.run(Application.class, args);
     }
 

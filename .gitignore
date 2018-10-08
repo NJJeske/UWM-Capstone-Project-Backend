@@ -39,3 +39,6 @@ native
 #Influxdb
 /.idea/
 !/src/main/resources/aspectjweaver-1.8.10.jar
+
+# Build
+bin/
