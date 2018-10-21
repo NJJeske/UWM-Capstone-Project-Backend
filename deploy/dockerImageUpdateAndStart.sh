@@ -28,5 +28,5 @@ docker login registry.uwm-nm-te-capstone.com:8083 --username $DOCKER_REPO_USER -
 docker pull registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_NAME:latest
 
 #run docker image
-echo "docker run -d -p 8333:8333 --name backend-example registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_NAME:latest"
-docker run -d -p 8333:8333 --name backend-example registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_NAME:latest
+echo "docker run -d -p 8333:8333 --name backend registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_NAME:latest"
+docker run -d -p 8333:8333 --name backend registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_NAME:latest
