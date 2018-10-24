@@ -1,5 +1,8 @@
 package edu.uwm.capstone;
 
+import edu.uwm.capstone.db.project.ProjectDao;
+import edu.uwm.capstone.db.project.ProjectDaoRowMapper;
+import edu.uwm.capstone.model.project.Project;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.flywaydb.core.Flyway;
@@ -102,6 +105,20 @@ public class ApplicationConfig {
     @Bean
     public ProfileDaoRowMapper profileDaoRowMapper() {
         return new ProfileDaoRowMapper();
+    }
+
+    @Bean
+    public ProjectDao projectDao() {
+        ProjectDao projectDao = new ProjectDao();
+        projectDao.setDataSource(dataSource());
+        projectDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        projectDao.setRowMapper(projectDaoRowMapper());
+        return projectDao;
+    }
+
+    @Bean
+    public ProjectDaoRowMapper projectDaoRowMapper() {
+        return new ProjectDaoRowMapper();
     }
 
     public String getDbDriverClassName() {
