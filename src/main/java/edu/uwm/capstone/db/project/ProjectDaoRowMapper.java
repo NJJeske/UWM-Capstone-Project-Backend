@@ -39,7 +39,7 @@ public class ProjectDaoRowMapper extends BaseRowMapper<Project> {
         Map<String, Object> map = new HashMap<>();
         map.put(ID.getColumnName(), object.getId());
         map.put(TITLE.getColumnName(), object.getTitle());
-        map.put(DESCRIPTION.getColumnName(), object.getTitle());
+        map.put(DESCRIPTION.getColumnName(), object.getDescription());
         map.put(START_DATE.getColumnName(), object.getStartDate());
         map.put(END_DATE.getColumnName(), object.getEndDate());
         map.put(CREATED_DATE.getColumnName(), javaTimeFromDate(object.getCreatedDate()));
