@@ -1,5 +1,7 @@
 package edu.uwm.capstone;
 
+import edu.uwm.capstone.db.education.EducationDao;
+import edu.uwm.capstone.db.education.EducationDaoRowMapper;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.flywaydb.core.Flyway;
@@ -97,6 +99,20 @@ public class ApplicationConfig {
         profileDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
         profileDao.setRowMapper(profileDaoRowMapper());
         return profileDao;
+    }
+
+    @Bean
+    public EducationDaoRowMapper educationDaoRowMapper() {
+        return new EducationDaoRowMapper();
+    }
+
+    @Bean
+    public EducationDao educationDao() {
+        EducationDao educationDao = new EducationDao();
+        educationDao.setDataSource(dataSource());
+        educationDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        educationDao.setRowMapper(educationDaoRowMapper());
+        return educationDao;
     }
 
     @Bean
