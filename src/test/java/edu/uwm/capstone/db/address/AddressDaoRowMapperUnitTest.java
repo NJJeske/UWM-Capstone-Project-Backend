@@ -1,12 +1,8 @@
 package edu.uwm.capstone.db.address;
 
 import edu.uwm.capstone.UnitTestConfig;
-import edu.uwm.capstone.db.ProfileDaoRowMapper;
 import edu.uwm.capstone.model.address.Address;
-import edu.uwm.capstone.model.profile.Profile;
-import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType;
-import edu.uwm.capstone.db.address.AddressDaoRowMapper;
 import edu.uwm.capstone.db.address.AddressDaoRowMapper.AddressColumnType;
 import edu.uwm.capstone.util.TestDataUtility;
 import org.junit.Before;

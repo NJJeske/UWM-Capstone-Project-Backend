@@ -5,7 +5,7 @@ INSERT INTO addresses (
   street_2,
   city,
   state,
-  zipcode,
+  zip_code,
   created_date
 ) VALUES (
   :user_id,
@@ -13,7 +13,7 @@ INSERT INTO addresses (
   :street_2,
   :city,
   :state,
-  :zipcode,
+  :zip_code,
   :created_date
 );
 
@@ -24,13 +24,13 @@ SELECT * FROM addresses WHERE id = :id;
 DELETE FROM addresses WHERE id = :id;
 
 --STATEMENT updateAddress
-UPDATE profiles SET
+UPDATE addresses SET
   user_id = :user_id,
   street_1 = :street_1,
   street_2 = :street_2,
   city = :city,
   state = :state,
-  zipcode = :zipcode,
+  zip_code = :zip_code,
   updated_date = :updated_date
 WHERE
   id = :id;

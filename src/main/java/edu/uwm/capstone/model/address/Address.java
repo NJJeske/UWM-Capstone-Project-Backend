@@ -47,7 +47,7 @@ public class Address {
     public void setUpdatedDate(LocalDateTime updatedDate) { this.updatedDate = updatedDate; }
 
     @Override
-    public boolean equals(Object object) { return object instanceof edu.uwm.capstone.model.profile.Profile && (this == object || EqualsBuilder.reflectionEquals(this, object)); }
+    public boolean equals(Object object) { return object instanceof Address && (this == object || EqualsBuilder.reflectionEquals(this, object)); }
 
     @Override
     public int hashCode() {

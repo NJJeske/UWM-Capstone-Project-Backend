@@ -1,5 +1,6 @@
 package edu.uwm.capstone;
 
+import edu.uwm.capstone.db.address.AddressDao;
 import edu.uwm.capstone.db.address.AddressDaoRowMapper;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
@@ -98,6 +99,15 @@ public class ApplicationConfig {
         profileDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
         profileDao.setRowMapper(profileDaoRowMapper());
         return profileDao;
+    }
+
+    @Bean
+    public AddressDao addressDao() {
+        AddressDao addressDao = new AddressDao();
+        addressDao.setDataSource(dataSource());
+        addressDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        addressDao.setRowMapper(addressDaoRowMapper());
+        return addressDao;
     }
 
     @Bean
