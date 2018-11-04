@@ -1,5 +1,7 @@
 package edu.uwm.capstone;
 
+import edu.uwm.capstone.db.address.AddressDao;
+import edu.uwm.capstone.db.address.AddressDaoRowMapper;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.flywaydb.core.Flyway;
@@ -100,9 +102,21 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public AddressDao addressDao() {
+        AddressDao addressDao = new AddressDao();
+        addressDao.setDataSource(dataSource());
+        addressDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        addressDao.setRowMapper(addressDaoRowMapper());
+        return addressDao;
+    }
+
+    @Bean
     public ProfileDaoRowMapper profileDaoRowMapper() {
         return new ProfileDaoRowMapper();
     }
+
+    @Bean
+    public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
 
     public String getDbDriverClassName() {
         return dbDriverClassName;
