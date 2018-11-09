@@ -9,8 +9,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Project {
 
     protected Long id;
-    private String title;
-    private String description;
+    protected Long userID;
+    protected Long positionID;
+    protected Long educationID;
+    protected String title;
+    protected String description;
     protected LocalDateTime startDate;
     protected LocalDateTime endDate;
     protected LocalDateTime createdDate;
@@ -22,6 +25,30 @@ public class Project {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long id) {
+        this.userID = id;
+    }
+
+    public Long getPositionID() {
+        return positionID;
+    }
+
+    public void setPositionID(Long id) {
+        this.positionID = id;
+    }
+
+    public Long getEducationID() {
+        return educationID;
+    }
+
+    public void setEducationID(Long id) {
+        this.educationID = id;
     }
 
     public String getTitle() {

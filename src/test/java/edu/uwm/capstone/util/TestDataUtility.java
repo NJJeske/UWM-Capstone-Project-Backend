@@ -41,6 +41,9 @@ public class TestDataUtility {
     public static Project projectWithTestValues() {
         Project project = new Project();
         // intentionally left blank -- project.setId();
+        project.setUserID(randomLong());
+        project.setPositionID(randomLong());
+        project.setEducationID(randomLong());
         project.setTitle(randomAlphanumeric(randomInt(1, 100)));
         project.setDescription(randomAlphanumeric(randomInt(1, 100)));
         project.setStartDate(randomLocalDateTime());

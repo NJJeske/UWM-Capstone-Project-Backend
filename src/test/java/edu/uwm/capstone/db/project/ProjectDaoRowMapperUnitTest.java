@@ -1,6 +1,7 @@
 package edu.uwm.capstone.db.project;
 
 import edu.uwm.capstone.UnitTestConfig;
+import edu.uwm.capstone.db.ProfileDaoRowMapper;
 import edu.uwm.capstone.model.project.Project;
 import edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType;
 import edu.uwm.capstone.db.project.ProjectDaoRowMapper.ProjectColumnType;
@@ -67,10 +68,13 @@ public class ProjectDaoRowMapperUnitTest {
         Map<String, Object> mapObject = projectDaoRowMapper.mapObject(project);
         assertNotNull(mapObject);
         assertEquals(project.getId(), mapObject.get(BaseColumnType.ID.getColumnName()));
+        assertEquals(project.getUserID(), mapObject.get(ProjectColumnType.USER_ID.getColumnName()));
+        assertEquals(project.getPositionID(), mapObject.get(ProjectColumnType.POSITION_ID.getColumnName()));
+        assertEquals(project.getEducationID(), mapObject.get(ProjectColumnType.EDUCATION_ID.getColumnName()));
         assertEquals(project.getTitle(), mapObject.get(ProjectColumnType.TITLE.getColumnName()));
         assertEquals(project.getDescription(), mapObject.get(ProjectColumnType.DESCRIPTION.getColumnName()));
-        assertEquals(project.getStartDate(), mapObject.get(ProjectColumnType.START_DATE.getColumnName()));
-        assertEquals(project.getEndDate(), mapObject.get(ProjectColumnType.END_DATE.getColumnName()));
+        assertEquals(project.getStartDate(), dateFromJavaTime(mapObject.get(ProjectColumnType.START_DATE.getColumnName())));
+        assertEquals(project.getEndDate(), dateFromJavaTime(mapObject.get(ProjectColumnType.END_DATE.getColumnName())));
         assertEquals(project.getCreatedDate(), dateFromJavaTime(mapObject.get(BaseColumnType.CREATED_DATE.getColumnName())));
         assertEquals(project.getUpdatedDate(), dateFromJavaTime(mapObject.get(BaseColumnType.UPDATED_DATE.getColumnName())));
     }
@@ -89,6 +93,9 @@ public class ProjectDaoRowMapperUnitTest {
 
         // define the behavior of the resultSet that is being mocked
         when(resultSet.getLong(BaseColumnType.ID.getColumnName())).thenReturn(project.getId());
+        when(resultSet.getLong(ProjectColumnType.USER_ID.getColumnName())).thenReturn(project.getUserID());
+        when(resultSet.getLong(ProjectColumnType.POSITION_ID.getColumnName())).thenReturn(project.getPositionID());
+        when(resultSet.getLong(ProjectColumnType.EDUCATION_ID.getColumnName())).thenReturn(project.getEducationID());
         when(resultSet.getString(ProjectColumnType.TITLE.getColumnName())).thenReturn(project.getTitle());
         when(resultSet.getString(ProjectColumnType.DESCRIPTION.getColumnName())).thenReturn(project.getDescription());
         when(resultSet.getObject(ProjectColumnType.START_DATE.getColumnName())).thenReturn(javaTimeFromDate(project.getStartDate()));
@@ -101,6 +108,9 @@ public class ProjectDaoRowMapperUnitTest {
         assertNotNull(verifyProject);
 
         assertEquals(project.getId(), verifyProject.getId());
+        assertEquals(project.getUserID(), verifyProject.getUserID());
+        assertEquals(project.getPositionID(), verifyProject.getPositionID());
+        assertEquals(project.getEducationID(), verifyProject.getEducationID());
         assertEquals(project.getTitle(), verifyProject.getTitle());
         assertEquals(project.getDescription(), verifyProject.getDescription());
         assertEquals(project.getStartDate(), verifyProject.getStartDate());
