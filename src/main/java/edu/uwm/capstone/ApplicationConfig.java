@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.client.RestTemplate;
 
+import edu.uwm.capstone.db.company.CompanyDao;
+import edu.uwm.capstone.db.company.CompanyDaoRowMapper;
 import edu.uwm.capstone.db.ProfileDao;
 import edu.uwm.capstone.db.ProfileDaoRowMapper;
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
@@ -108,6 +110,20 @@ public class ApplicationConfig {
         addressDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
         addressDao.setRowMapper(addressDaoRowMapper());
         return addressDao;
+    }
+
+    @Bean
+    public CompanyDao companyDao() {
+        CompanyDao companyDao = new CompanyDao();
+        companyDao.setDataSource(dataSource());
+        companyDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        companyDao.setRowMapper(companyDaoRowMapper());
+        return companyDao;
+    }
+
+    @Bean
+    public CompanyDaoRowMapper companyDaoRowMapper() {
+        return new CompanyDaoRowMapper();
     }
 
     @Bean

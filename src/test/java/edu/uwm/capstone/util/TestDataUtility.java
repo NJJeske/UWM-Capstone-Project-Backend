@@ -11,6 +11,7 @@ import edu.uwm.capstone.model.address.Address;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.profile.Profile;
+import edu.uwm.capstone.model.company.Company;
 
 public class TestDataUtility {
 
@@ -53,6 +54,22 @@ public class TestDataUtility {
     }
 
     /**
+     * Generate a {@link Company} object that is fully loaded with random values for testing purposes.
+     * @return {@link Company}
+     */
+    public static Company companyWithTestValues(){
+        Company company = new Company();
+        // intentionally left blank -- company.setId();
+        company.setName(randomAlphabetic(randomInt(1, 100)));
+        company.setAddress(randomAlphanumeric(randomInt(1, 100)));
+        company.setPhoneNumber(randomNumeric(randomInt(1, 100)));
+        company.setWebsite(randomAlphanumeric(randomInt(1, 100)));
+        // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- profile.setUpdatedDate(randomLocalDateTime());
+        return company;
+    }
+
+    /**
      * Generate a random {@link Long} using a minimum value of 1L and a maximum value of {@link Long#MAX_VALUE}.
      * @return random {@link Long}
      */
@@ -86,6 +103,15 @@ public class TestDataUtility {
      */
     public static int randomInt(int min, int max) {
         return new Random().ints(min, max).findAny().getAsInt();
+    }
+
+    /**
+     * Generate a {@link String} that contains the provided number of random numeric characters.
+     * @param characterCount Number of characters
+     * @return random {@link String} of alphanumeric characters
+     */
+    public static String randomNumeric(int characterCount) {
+        return RandomStringUtils.randomNumeric(characterCount);
     }
 
     /**
