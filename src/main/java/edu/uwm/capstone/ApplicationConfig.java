@@ -15,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 
 import edu.uwm.capstone.db.ProfileDao;
 import edu.uwm.capstone.db.ProfileDaoRowMapper;
+import edu.uwm.capstone.db.position.PositionDao;
+import edu.uwm.capstone.db.position.PositionDaoRowMapper;
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
 import edu.uwm.capstone.sql.statement.SqlStatementsFileLoader;
 import edu.uwm.capstone.util.Concatenation;
@@ -113,6 +115,20 @@ public class ApplicationConfig {
     @Bean
     public ProfileDaoRowMapper profileDaoRowMapper() {
         return new ProfileDaoRowMapper();
+    }
+
+    @Bean
+    public PositionDao positionDao() {
+        PositionDao positionDao = new PositionDao();
+        positionDao.setDataSource(dataSource());
+        positionDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        positionDao.setRowMapper(positionDaoRowMapper());
+        return positionDao;
+    }
+
+    @Bean
+    public PositionDaoRowMapper positionDaoRowMapper() {
+        return new PositionDaoRowMapper();
     }
 
     @Bean

@@ -10,6 +10,7 @@ import java.util.Random;
 import edu.uwm.capstone.model.address.Address;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import edu.uwm.capstone.model.position.Position;
 import edu.uwm.capstone.model.profile.Profile;
 
 public class TestDataUtility {
@@ -50,6 +51,42 @@ public class TestDataUtility {
         // intentionally left blank -- address.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- address.setUpdatedDate(randomLocalDateTime());
         return address;
+    }
+
+    /**
+     * Generate a {@link Position} object that is fully loaded with random values for testing purposes.
+     * @return {@link Position}
+     */
+    public static Position positionWithTestValues(){
+        Position position = new Position();
+        // intentionally left blank -- company.setId();
+        position.setName(randomAlphabetic(randomInt(1, 100)));
+        position.setDescription(randomAlphanumeric(randomInt(1, 100)));
+        // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- profile.setUpdatedDate(randomLocalDateTime());
+        position.setStartDate(randomLocalDateTime());
+        position.setEndDate(randomLocalDateTime());
+        position.setStartPay(randomDouble(randomDouble(), randomDouble()));
+        position.setEndPay(randomDouble(randomDouble(), randomDouble()));
+        return position;
+    }
+
+    /**
+     * Generate a random {@link Double} using a minimum value of 1L and a maximum value of {@link Double#MAX_VALUE}.
+     * @return random {@link Double}
+     */
+    public static Double randomDouble(){
+        return randomDouble(Double.MIN_VALUE, Double.MAX_VALUE);
+    }
+
+    /**
+     * Generate a random {@link Double} using the provided minimum and maximum values.
+     * @param min {@link Double} minimum value
+     * @param max {@link Double} maximum value
+     * @return random {@link Double}
+     */
+    public static Double randomDouble(Double min, Double max){
+        return new Random().doubles(min, max).findAny().getAsDouble();
     }
 
     /**
