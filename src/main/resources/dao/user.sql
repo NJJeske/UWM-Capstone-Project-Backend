@@ -12,17 +12,17 @@ INSERT INTO users (
   created_date,
   update_date
 ) VALUES (
-  email,
-  password,
-  title,
-  first_name,
-  middle_name,
-  last_name,
-  mobile_phone,
-  home_phone,
-  website,
-  created_date,
-  update_date
+  :email,
+  :password,
+  :title,
+  :first_name,
+  :middle_name,
+  :last_name,
+  :mobile_phone,
+  :home_phone,
+  :website,
+  :created_date,
+  :update_date
 );
 
 --STATEMENT readUser
