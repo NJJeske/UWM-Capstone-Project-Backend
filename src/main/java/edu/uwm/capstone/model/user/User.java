@@ -19,9 +19,7 @@ public class User {
     protected LocalDateTime created_date;
     protected LocalDateTime updated_date;
 
-    public Long getId(){
-        return id;
-    }
+    public Long getId(){ return id; }
 
     public void setId(Long id) {
         this.id = id;

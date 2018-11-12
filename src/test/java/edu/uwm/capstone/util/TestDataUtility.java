@@ -59,7 +59,7 @@ public class TestDataUtility {
      */
     public static User userWithTestValues(){
         User user = new User();
-        // intentionally left blank -- user.setId();
+        user.setId(randomLong());
         user.setEmail(randomAlphanumeric(randomInt(1, 100)));
         user.setPassword(randomAlphanumeric(randomInt(1, 100)));
         user.setTitle(randomAlphanumeric(randomInt(1, 100)));
