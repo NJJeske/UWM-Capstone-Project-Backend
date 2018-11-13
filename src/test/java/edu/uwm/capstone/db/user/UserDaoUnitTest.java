@@ -74,6 +74,7 @@ public class UserDaoUnitTest {
     public void createUserColumnTooLong() {
         // generate a test user value with a column that will exceed the database configuration
         User createUser = TestDataUtility.userWithTestValues();
+        createUser.setFirstName(TestDataUtility.randomAlphabetic(10000));
         userDao.create(createUser);
     }
 
@@ -163,6 +164,7 @@ public class UserDaoUnitTest {
 
         User updateUser = TestDataUtility.userWithTestValues();
         updateUser.setId(createUser.getId());
+        updateUser.setFirstName(TestDataUtility.randomAlphabetic(10000));
         userDao.update(updateUser);
     }
 

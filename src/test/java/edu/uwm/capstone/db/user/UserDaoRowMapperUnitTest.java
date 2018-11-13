@@ -121,7 +121,7 @@ public class UserDaoRowMapperUnitTest {
         when(resultSet.getString(UserColumnType.MIDDLE_NAME.getColumnName())).thenReturn(user.getMiddleName());
         when(resultSet.getString(UserColumnType.LAST_NAME.getColumnName())).thenReturn(user.getLastName());
         when(resultSet.getString(UserColumnType.WEBSITE.getColumnName())).thenReturn(user.getWebsite());
-        when(resultSet.getString(UserColumnType.MOBILE_PHONE.getColumnName())).thenReturn(user.getMiddleName());
+        when(resultSet.getString(UserColumnType.MOBILE_PHONE.getColumnName())).thenReturn(user.getMobilePhone());
         when(resultSet.getString(UserColumnType.HOME_PHONE.getColumnName())).thenReturn(user.getHomePhone());
         when(resultSet.getObject(BaseColumnType.CREATED_DATE.getColumnName())).thenReturn(javaTimeFromDate(user.getCreatedDate()));
         when(resultSet.getObject(BaseColumnType.UPDATED_DATE.getColumnName())).thenReturn(javaTimeFromDate(user.getUpdatedDate()));

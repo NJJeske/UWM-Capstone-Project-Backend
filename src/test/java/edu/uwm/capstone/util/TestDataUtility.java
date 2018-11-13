@@ -59,7 +59,7 @@ public class TestDataUtility {
      */
     public static User userWithTestValues(){
         User user = new User();
-        user.setId(randomLong());
+        // intentionally left blank -- user.setId(randomLong());
         user.setEmail(randomAlphanumeric(randomInt(1, 100)));
         user.setPassword(randomAlphanumeric(randomInt(1, 100)));
         user.setTitle(randomAlphanumeric(randomInt(1, 100)));
@@ -70,8 +70,8 @@ public class TestDataUtility {
         user.setMobilePhone(randomNumeric(randomInt(1, 100)));
         user.setHomePhone(randomNumeric(randomInt(1, 100)));
         user.setWebsite(randomAlphabetic(randomInt(1, 100)));
-        // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
-        // intentionally left blank -- profile.setUpdatedDate(randomLocalDateTime());
+        // intentionally left blank -- user.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- user.setUpdatedDate(randomLocalDateTime());
         return user;
     }
 

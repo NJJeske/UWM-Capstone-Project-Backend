@@ -44,6 +44,7 @@ public class UserDaoRowMapper extends BaseRowMapper<User> {
     @Override
     public Map<String, Object> mapObject(User object) {
         Map<String, Object> map = new HashMap<>();
+        map.put(ID.getColumnName(), object.getId());
         map.put(PASSWORD.getColumnName(), object.getPassword());
         map.put(EMAIL.getColumnName(), object.getEmail());
         map.put(TITLE.getColumnName(), object.getTitle());
@@ -61,6 +62,7 @@ public class UserDaoRowMapper extends BaseRowMapper<User> {
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         User user = new User();
+        user.setId(rs.getLong(ID.getColumnName()));
         user.setPassword(rs.getString(PASSWORD.getColumnName()));
         user.setEmail(rs.getString(EMAIL.getColumnName()));
         user.setTitle(rs.getString(TITLE.getColumnName()));

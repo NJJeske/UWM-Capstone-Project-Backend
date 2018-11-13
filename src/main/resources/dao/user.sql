@@ -10,7 +10,7 @@ INSERT INTO users (
   home_phone,
   website,
   created_date,
-  update_date
+  updated_date
 ) VALUES (
   :email,
   :password,
@@ -22,7 +22,7 @@ INSERT INTO users (
   :home_phone,
   :website,
   :created_date,
-  :update_date
+  :updated_date
 );
 
 --STATEMENT readUser
@@ -45,7 +45,6 @@ UPDATE users SET
   mobile_phone = :mobile_phone,
   home_phone = :home_phone,
   website = :website,
-  created_date = :created_date,
-  update_date = :update_date
+  updated_date = :updated_date
 WHERE
   id = :id;
