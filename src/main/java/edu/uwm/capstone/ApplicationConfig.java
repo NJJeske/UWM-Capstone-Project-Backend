@@ -102,17 +102,17 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public ProfileDaoRowMapper profileDaoRowMapper() {
+        return new ProfileDaoRowMapper();
+    }
+
+    @Bean
     public AddressDao addressDao() {
         AddressDao addressDao = new AddressDao();
         addressDao.setDataSource(dataSource());
         addressDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
         addressDao.setRowMapper(addressDaoRowMapper());
         return addressDao;
-    }
-
-    @Bean
-    public ProfileDaoRowMapper profileDaoRowMapper() {
-        return new ProfileDaoRowMapper();
     }
 
     @Bean
