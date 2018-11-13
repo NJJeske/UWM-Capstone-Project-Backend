@@ -102,8 +102,8 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public EducationDaoRowMapper educationDaoRowMapper() {
-        return new EducationDaoRowMapper();
+    public ProfileDaoRowMapper profileDaoRowMapper() {
+        return new ProfileDaoRowMapper();
     }
 
     @Bean
@@ -116,8 +116,8 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public ProfileDaoRowMapper profileDaoRowMapper() {
-        return new ProfileDaoRowMapper();
+    public EducationDaoRowMapper educationDaoRowMapper() {
+        return new EducationDaoRowMapper();
     }
 
     public String getDbDriverClassName() {
