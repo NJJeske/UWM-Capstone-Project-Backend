@@ -106,6 +106,11 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public ProfileDaoRowMapper profileDaoRowMapper() {
+        return new ProfileDaoRowMapper();
+    }
+
+    @Bean
     public AddressDao addressDao() {
         AddressDao addressDao = new AddressDao();
         addressDao.setDataSource(dataSource());
