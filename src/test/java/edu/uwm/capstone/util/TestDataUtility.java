@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import edu.uwm.capstone.model.address.Address;
+import edu.uwm.capstone.model.contact.Contact;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.profile.Profile;
@@ -50,6 +51,25 @@ public class TestDataUtility {
         // intentionally left blank -- address.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- address.setUpdatedDate(randomLocalDateTime());
         return address;
+    }
+
+    /**
+     * Generate a {@link Contact} object that is fully loaded with random values for testing purposes.
+     * @return {@link Contact}
+     */
+    public static Contact contactWithTestValues() {
+        Contact contact = new Contact();
+        // intentionally left blank -- contact.setId();
+        contact.setCompanyID(randomLong());
+        contact.setPosition(randomAlphabetic(randomInt(1, 100)));
+        contact.setFirstName(randomAlphabetic(randomInt(1, 100)));
+        contact.setLastName(randomAlphabetic(randomInt(1, 100)));
+        contact.setEmail(randomAlphabetic(randomInt(1, 100)));
+        contact.setPhoneNumber(randomAlphabetic(randomInt(1, 100)));
+        contact.setNotes(randomAlphabetic(randomInt(1, 100)));
+        // intentionally left blank -- contact.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- contact.setUpdatedDate(randomLocalDateTime());
+        return contact;
     }
 
     /**

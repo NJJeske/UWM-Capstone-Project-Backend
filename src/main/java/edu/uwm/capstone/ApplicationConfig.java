@@ -2,6 +2,8 @@ package edu.uwm.capstone;
 
 import edu.uwm.capstone.db.address.AddressDao;
 import edu.uwm.capstone.db.address.AddressDaoRowMapper;
+import edu.uwm.capstone.db.contact.ContactDao;
+import edu.uwm.capstone.db.contact.ContactDaoRowMapper;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.flywaydb.core.Flyway;
@@ -117,6 +119,18 @@ public class ApplicationConfig {
 
     @Bean
     public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
+
+    @Bean
+    public ContactDao contactDao() {
+        ContactDao contactDao = new ContactDao();
+        contactDao.setDataSource(dataSource());
+        contactDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        contactDao.setRowMapper(contactDaoRowMapper());
+        return contactDao;
+    }
+
+    @Bean
+    public ContactDaoRowMapper contactDaoRowMapper() { return new ContactDaoRowMapper(); }
 
     public String getDbDriverClassName() {
         return dbDriverClassName;
