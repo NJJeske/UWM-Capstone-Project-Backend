@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import edu.uwm.capstone.model.education.Education;
+import edu.uwm.capstone.model.project.Project;
 import edu.uwm.capstone.model.address.Address;
 import edu.uwm.capstone.model.contact.Contact;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -36,6 +38,44 @@ public class TestDataUtility {
     }
 
     /**
+     * Generate a {@link Education} object that is fully loaded with random values for testing purposes.
+     * @return {@link Education}
+     */
+    public static Education educationWithTestValues() {
+        Education education = new Education();
+        // intentionally left blank -- education.setId();
+        education.setUserID(randomLong());
+        education.setAddressID(randomLong());
+        education.setSchoolName(randomAlphabetic(randomInt(1, 100)));
+        education.setDegree(randomAlphabetic(randomInt(1, 100)));
+        education.setFieldOfStudy(randomAlphabetic(randomInt(1, 100)));
+        education.setStartDate(randomLocalDateTime());
+        education.setEndDate(randomLocalDateTime());
+        // intentionally left blank -- education.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- education.setUpdatedDate(randomLocalDateTime());
+        return education;
+    }
+    
+    /**
+     * Generate a {@link Project} object that is fully loaded with random values for testing purposes.
+     * @return {@link Project}
+     */
+    public static Project projectWithTestValues() {
+        Project project = new Project();
+        // intentionally left blank -- project.setId();
+        project.setUserID(randomLong());
+        project.setPositionID(randomLong());
+        project.setEducationID(randomLong());
+        project.setTitle(randomAlphanumeric(randomInt(1, 100)));
+        project.setDescription(randomAlphanumeric(randomInt(1, 100)));
+        project.setStartDate(randomLocalDateTime());
+        project.setEndDate(randomLocalDateTime());
+        // intentionally left blank -- project.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- project.setUpdatedDate(randomLocalDateTime());
+        return project;
+    }
+    
+    /** 
      * Generate a {@link Address} object that is fully loaded with random values for testing purposes.
      * @return {@link Address}
      */
