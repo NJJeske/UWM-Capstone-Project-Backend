@@ -1,5 +1,8 @@
 package edu.uwm.capstone;
 
+import edu.uwm.capstone.db.project.ProjectDao;
+import edu.uwm.capstone.db.project.ProjectDaoRowMapper;
+import edu.uwm.capstone.model.project.Project;
 import edu.uwm.capstone.db.address.AddressDao;
 import edu.uwm.capstone.db.address.AddressDaoRowMapper;
 import org.apache.tomcat.jdbc.pool.DataSource;
@@ -106,6 +109,20 @@ public class ApplicationConfig {
         return new ProfileDaoRowMapper();
     }
 
+    @Bean
+    public ProjectDao projectDao() {
+        ProjectDao projectDao = new ProjectDao();
+        projectDao.setDataSource(dataSource());
+        projectDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        projectDao.setRowMapper(projectDaoRowMapper());
+        return projectDao;
+    }
+
+    @Bean
+    public ProjectDaoRowMapper projectDaoRowMapper() {
+        return new ProjectDaoRowMapper();
+    }
+    
     @Bean
     public AddressDao addressDao() {
         AddressDao addressDao = new AddressDao();
