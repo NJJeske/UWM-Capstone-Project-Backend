@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Random;
 
 import edu.uwm.capstone.model.education.Education;
+import edu.uwm.capstone.model.project.Project;
+import edu.uwm.capstone.model.address.Address;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.profile.Profile;
@@ -51,6 +53,43 @@ public class TestDataUtility {
         // intentionally left blank -- education.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- education.setUpdatedDate(randomLocalDateTime());
         return education;
+    }
+    
+    /**
+     * Generate a {@link Project} object that is fully loaded with random values for testing purposes.
+     * @return {@link Project}
+     */
+    public static Project projectWithTestValues() {
+        Project project = new Project();
+        // intentionally left blank -- project.setId();
+        project.setUserID(randomLong());
+        project.setPositionID(randomLong());
+        project.setEducationID(randomLong());
+        project.setTitle(randomAlphanumeric(randomInt(1, 100)));
+        project.setDescription(randomAlphanumeric(randomInt(1, 100)));
+        project.setStartDate(randomLocalDateTime());
+        project.setEndDate(randomLocalDateTime());
+        // intentionally left blank -- project.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- project.setUpdatedDate(randomLocalDateTime());
+        return project;
+    }
+    
+    /** 
+     * Generate a {@link Address} object that is fully loaded with random values for testing purposes.
+     * @return {@link Address}
+     */
+    public static Address addressWithTestValues() {
+        Address address = new Address();
+        // intentionally left blank -- address.setId();
+        address.setUserID(randomLong());
+        address.setStreet1(randomAlphabetic(randomInt(1, 100)));
+        address.setStreet2(randomAlphabetic(randomInt(1, 100)));
+        address.setCity(randomAlphabetic(randomInt(1, 100)));
+        address.setState(randomAlphabetic(randomInt(1, 100)));
+        address.setZipcode(randomAlphabetic(randomInt(1, 100)));
+        // intentionally left blank -- address.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- address.setUpdatedDate(randomLocalDateTime());
+        return address;
     }
 
     /**

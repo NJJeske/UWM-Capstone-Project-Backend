@@ -2,6 +2,11 @@ package edu.uwm.capstone;
 
 import edu.uwm.capstone.db.education.EducationDao;
 import edu.uwm.capstone.db.education.EducationDaoRowMapper;
+import edu.uwm.capstone.db.project.ProjectDao;
+import edu.uwm.capstone.db.project.ProjectDaoRowMapper;
+import edu.uwm.capstone.model.project.Project;
+import edu.uwm.capstone.db.address.AddressDao;
+import edu.uwm.capstone.db.address.AddressDaoRowMapper;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.flywaydb.core.Flyway;
@@ -119,6 +124,32 @@ public class ApplicationConfig {
     public EducationDaoRowMapper educationDaoRowMapper() {
         return new EducationDaoRowMapper();
     }
+    
+    @Bean
+    public ProjectDao projectDao() {
+        ProjectDao projectDao = new ProjectDao();
+        projectDao.setDataSource(dataSource());
+        projectDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        projectDao.setRowMapper(projectDaoRowMapper());
+        return projectDao;
+    }
+
+    @Bean
+    public ProjectDaoRowMapper projectDaoRowMapper() {
+        return new ProjectDaoRowMapper();
+    }
+    
+    @Bean
+    public AddressDao addressDao() {
+        AddressDao addressDao = new AddressDao();
+        addressDao.setDataSource(dataSource());
+        addressDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        addressDao.setRowMapper(addressDaoRowMapper());
+        return addressDao;
+    }
+
+    @Bean
+    public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
 
     public String getDbDriverClassName() {
         return dbDriverClassName;
