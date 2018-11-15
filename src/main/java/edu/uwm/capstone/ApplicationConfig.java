@@ -1,5 +1,7 @@
 package edu.uwm.capstone;
 
+import edu.uwm.capstone.db.address.AddressDao;
+import edu.uwm.capstone.db.address.AddressDaoRowMapper;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.flywaydb.core.Flyway;
@@ -11,14 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.client.RestTemplate;
 
-
-import edu.uwm.capstone.db.address.AddressDao;
-import edu.uwm.capstone.db.address.AddressDaoRowMapper;
 import edu.uwm.capstone.db.ProfileDao;
 import edu.uwm.capstone.db.ProfileDaoRowMapper;
-import edu.uwm.capstone.db.user.UserDao;
-import edu.uwm.capstone.db.user.UserDaoRowMapper;
-
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
 import edu.uwm.capstone.sql.statement.SqlStatementsFileLoader;
 import edu.uwm.capstone.util.Concatenation;
@@ -106,6 +102,11 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public ProfileDaoRowMapper profileDaoRowMapper() {
+        return new ProfileDaoRowMapper();
+    }
+
+    @Bean
     public AddressDao addressDao() {
         AddressDao addressDao = new AddressDao();
         addressDao.setDataSource(dataSource());
@@ -115,24 +116,7 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public UserDao userDao() {
-        UserDao userDao = new UserDao();
-        userDao.setDataSource(dataSource());
-        userDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
-        userDao.setRowMapper(UserDaoRowMapper());
-        return userDao;
-    }
-
-    @Bean
-    public ProfileDaoRowMapper profileDaoRowMapper() {
-        return new ProfileDaoRowMapper();
-    }
-
-    @Bean
     public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
-
-    @Bean
-    public UserDaoRowMapper UserDaoRowMapper() { return new UserDaoRowMapper(); }
 
     public String getDbDriverClassName() {
         return dbDriverClassName;
