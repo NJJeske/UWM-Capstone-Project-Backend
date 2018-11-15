@@ -123,6 +123,7 @@ public class ApplicationConfig {
         return new ProjectDaoRowMapper();
     }
     
+    @Bean
     public AddressDao addressDao() {
         AddressDao addressDao = new AddressDao();
         addressDao.setDataSource(dataSource());
