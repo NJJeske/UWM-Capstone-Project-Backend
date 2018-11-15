@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import edu.uwm.capstone.model.education.Education;
 import edu.uwm.capstone.model.project.Project;
 import edu.uwm.capstone.model.address.Address;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -35,6 +36,25 @@ public class TestDataUtility {
         return profile;
     }
 
+    /**
+     * Generate a {@link Education} object that is fully loaded with random values for testing purposes.
+     * @return {@link Education}
+     */
+    public static Education educationWithTestValues() {
+        Education education = new Education();
+        // intentionally left blank -- education.setId();
+        education.setUserID(randomLong());
+        education.setAddressID(randomLong());
+        education.setSchoolName(randomAlphabetic(randomInt(1, 100)));
+        education.setDegree(randomAlphabetic(randomInt(1, 100)));
+        education.setFieldOfStudy(randomAlphabetic(randomInt(1, 100)));
+        education.setStartDate(randomLocalDateTime());
+        education.setEndDate(randomLocalDateTime());
+        // intentionally left blank -- education.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- education.setUpdatedDate(randomLocalDateTime());
+        return education;
+    }
+    
     /**
      * Generate a {@link Project} object that is fully loaded with random values for testing purposes.
      * @return {@link Project}

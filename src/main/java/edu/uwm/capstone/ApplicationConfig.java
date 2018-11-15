@@ -1,5 +1,7 @@
 package edu.uwm.capstone;
 
+import edu.uwm.capstone.db.education.EducationDao;
+import edu.uwm.capstone.db.education.EducationDaoRowMapper;
 import edu.uwm.capstone.db.project.ProjectDao;
 import edu.uwm.capstone.db.project.ProjectDaoRowMapper;
 import edu.uwm.capstone.model.project.Project;
@@ -109,6 +111,20 @@ public class ApplicationConfig {
         return new ProfileDaoRowMapper();
     }
 
+    @Bean
+    public EducationDao educationDao() {
+        EducationDao educationDao = new EducationDao();
+        educationDao.setDataSource(dataSource());
+        educationDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        educationDao.setRowMapper(educationDaoRowMapper());
+        return educationDao;
+    }
+
+    @Bean
+    public EducationDaoRowMapper educationDaoRowMapper() {
+        return new EducationDaoRowMapper();
+    }
+    
     @Bean
     public ProjectDao projectDao() {
         ProjectDao projectDao = new ProjectDao();
