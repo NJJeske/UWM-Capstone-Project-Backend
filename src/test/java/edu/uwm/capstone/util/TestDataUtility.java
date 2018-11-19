@@ -59,15 +59,16 @@ public class TestDataUtility {
      */
     public static Position positionWithTestValues(){
         Position position = new Position();
-        // intentionally left blank -- company.setId();
+        // intentionally left blank -- position.setId();
         position.setName(randomAlphabetic(randomInt(1, 100)));
+        position.setCompanyId(randomLong());
         position.setDescription(randomAlphanumeric(randomInt(1, 100)));
-        // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
-        // intentionally left blank -- profile.setUpdatedDate(randomLocalDateTime());
+        // intentionally left blank -- position.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- position.setUpdatedDate(randomLocalDateTime());
         position.setStartDate(randomLocalDateTime());
         position.setEndDate(randomLocalDateTime());
-        position.setStartPay(randomDouble(randomDouble(), randomDouble()));
-        position.setEndPay(randomDouble(randomDouble(), randomDouble()));
+        position.setStartPay(randomDouble());
+        position.setEndPay(randomDouble());
         return position;
     }
 

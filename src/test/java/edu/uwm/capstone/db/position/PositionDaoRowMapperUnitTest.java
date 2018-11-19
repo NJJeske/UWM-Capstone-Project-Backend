@@ -77,14 +77,14 @@ public class PositionDaoRowMapperUnitTest {
 
         assertEquals(position.getId(), mapObject.get(BaseRowMapper.BaseColumnType.ID.getColumnName()));
         assertEquals(position.getName(), mapObject.get(PositionDaoRowMapper.PositionColumnType.NAME.getColumnName()));
-        assertEquals(position.getCompanyId(), mapObject.get(PositionDaoRowMapper.PositionColumnType.COMPANY_ID));
-        assertEquals(position.getDescription(), mapObject.get(PositionDaoRowMapper.PositionColumnType.DESCRIPTION));
+        assertEquals(position.getCompanyId(), mapObject.get(PositionDaoRowMapper.PositionColumnType.COMPANY_ID.getColumnName()));
+        assertEquals(position.getDescription(), mapObject.get(PositionDaoRowMapper.PositionColumnType.DESCRIPTION.getColumnName()));
         assertEquals(position.getCreatedDate(), dateFromJavaTime(mapObject.get(BaseRowMapper.BaseColumnType.CREATED_DATE.getColumnName())));
         assertEquals(position.getUpdatedDate(), dateFromJavaTime(mapObject.get(BaseRowMapper.BaseColumnType.UPDATED_DATE.getColumnName())));
         assertEquals(position.getStartDate(), dateFromJavaTime(mapObject.get(PositionDaoRowMapper.PositionColumnType.START_DATE.getColumnName())));
         assertEquals(position.getEndDate(), dateFromJavaTime(mapObject.get(PositionDaoRowMapper.PositionColumnType.END_DATE.getColumnName())));
-        assertEquals(position.getStartPay(), mapObject.get(PositionDaoRowMapper.PositionColumnType.START_PAY));
-        assertEquals(position.getEndPay(), mapObject.get(PositionDaoRowMapper.PositionColumnType.END_PAY));
+        assertEquals(position.getStartPay(), mapObject.get(PositionDaoRowMapper.PositionColumnType.START_PAY.getColumnName()));
+        assertEquals(position.getEndPay(), mapObject.get(PositionDaoRowMapper.PositionColumnType.END_PAY.getColumnName()));
     }
 
     /**

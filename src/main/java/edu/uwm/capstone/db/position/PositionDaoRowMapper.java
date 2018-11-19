@@ -7,8 +7,6 @@ import java.util.Map;
 import edu.uwm.capstone.model.position.Position;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import static edu.uwm.capstone.db.position.PositionDaoRowMapper.PositionColumnType.*;
-import static edu.uwm.capstone.db.position.PositionDaoRowMapper.PositionColumnType.CREATED_DATE;
-import static edu.uwm.capstone.db.position.PositionDaoRowMapper.PositionColumnType.UPDATED_DATE;
 import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 
 public class PositionDaoRowMapper extends BaseRowMapper<Position>{
@@ -17,8 +15,6 @@ public class PositionDaoRowMapper extends BaseRowMapper<Position>{
         NAME(),
         COMPANY_ID(),
         DESCRIPTION(),
-        CREATED_DATE(),
-        UPDATED_DATE(),
         START_DATE(),
         END_DATE(),
         START_PAY(),
@@ -43,11 +39,12 @@ public class PositionDaoRowMapper extends BaseRowMapper<Position>{
     @Override
     public Map<String, Object> mapObject(Position object) {
         Map<String, Object> map = new HashMap<>();
+        map.put(ID.getColumnName(), object.getId());
         map.put(NAME.getColumnName(), object.getName());
         map.put(COMPANY_ID.getColumnName(), object.getCompanyId());
         map.put(DESCRIPTION.getColumnName(), object.getDescription());
-        map.put(BaseColumnType.CREATED_DATE.getColumnName(), javaTimeFromDate(object.getCreatedDate()));
-        map.put(BaseColumnType.UPDATED_DATE.getColumnName(), javaTimeFromDate(object.getUpdatedDate()));
+        map.put(CREATED_DATE.getColumnName(), javaTimeFromDate(object.getCreatedDate()));
+        map.put(UPDATED_DATE.getColumnName(), javaTimeFromDate(object.getUpdatedDate()));
         map.put(START_DATE.getColumnName(), javaTimeFromDate(object.getStartDate()));
         map.put(END_DATE.getColumnName(), javaTimeFromDate(object.getEndDate()));
         map.put(START_PAY.getColumnName(), object.getStartPay());
@@ -58,11 +55,12 @@ public class PositionDaoRowMapper extends BaseRowMapper<Position>{
     @Override
     public Position mapRow(ResultSet rs, int rowNum) throws SQLException {
         Position position = new Position();
+        position.setId(rs.getLong(ID.getColumnName()));
         position.setName(rs.getString(NAME.getColumnName()));
         position.setCompanyId(rs.getLong(COMPANY_ID.getColumnName()));
         position.setDescription(rs.getString(DESCRIPTION.getColumnName()));
-        position.setCreatedDate(dateFromJavaTime(rs.getObject(BaseColumnType.CREATED_DATE.getColumnName())));
-        position.setUpdatedDate(dateFromJavaTime(rs.getObject(BaseColumnType.UPDATED_DATE.getColumnName())));
+        position.setCreatedDate(dateFromJavaTime(rs.getObject(CREATED_DATE.getColumnName())));
+        position.setUpdatedDate(dateFromJavaTime(rs.getObject(UPDATED_DATE.getColumnName())));
         position.setStartDate(dateFromJavaTime(rs.getObject(START_DATE.getColumnName())));
         position.setEndDate(dateFromJavaTime(rs.getObject(END_DATE.getColumnName())));
         position.setStartPay(rs.getDouble(START_PAY.getColumnName()));
