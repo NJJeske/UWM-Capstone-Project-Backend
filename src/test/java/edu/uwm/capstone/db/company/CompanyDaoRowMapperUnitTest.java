@@ -112,7 +112,7 @@ public class CompanyDaoRowMapperUnitTest {
         assertEquals(company.getId(), verifyCompany.getId());
         assertEquals(company.getName(), verifyCompany.getName());
         assertEquals(company.getAddress(), verifyCompany.getAddress());
-        assertEquals(company.getPhoneNumber(), verifyCompany.getAddress());
+        assertEquals(company.getPhoneNumber(), verifyCompany.getPhoneNumber());
         assertEquals(company.getWebsite(), verifyCompany.getWebsite());
         assertEquals(company.getCreatedDate(), verifyCompany.getCreatedDate());
         assertEquals(company.getUpdatedDate(), verifyCompany.getUpdatedDate());

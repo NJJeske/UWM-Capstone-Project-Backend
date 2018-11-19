@@ -5,14 +5,14 @@ INSERT INTO companies (
   phone_number,
   website,
   created_date,
-  update_date
+  updated_date
 ) VALUES (
   :name,
   :address,
   :phone_number,
   :website,
   :created_date,
-  :update_date
+  :updated_date
 );
 
 --STATEMENT readCompany
@@ -26,9 +26,7 @@ UPDATE companies SET
   name = :name,
   address = :address,
   phone_number = :phone_number,
-  home_phone = :home_phone,
   website = :website,
-  created_date = :created_date,
-  update_date = :update_date
+  updated_date = :updated_date
 WHERE
   id = :id;
