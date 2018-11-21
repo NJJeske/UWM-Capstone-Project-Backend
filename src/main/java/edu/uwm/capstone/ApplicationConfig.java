@@ -1,14 +1,5 @@
 package edu.uwm.capstone;
 
-import edu.uwm.capstone.db.education.EducationDao;
-import edu.uwm.capstone.db.education.EducationDaoRowMapper;
-import edu.uwm.capstone.db.project.ProjectDao;
-import edu.uwm.capstone.db.project.ProjectDaoRowMapper;
-import edu.uwm.capstone.model.project.Project;
-import edu.uwm.capstone.db.address.AddressDao;
-import edu.uwm.capstone.db.address.AddressDaoRowMapper;
-import edu.uwm.capstone.db.contact.ContactDao;
-import edu.uwm.capstone.db.contact.ContactDaoRowMapper;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.flywaydb.core.Flyway;
@@ -20,8 +11,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.client.RestTemplate;
 
+import edu.uwm.capstone.db.address.AddressDao;
+import edu.uwm.capstone.db.address.AddressDaoRowMapper;
+import edu.uwm.capstone.db.education.EducationDao;
+import edu.uwm.capstone.db.education.EducationDaoRowMapper;
+import edu.uwm.capstone.db.project.ProjectDao;
+import edu.uwm.capstone.db.project.ProjectDaoRowMapper;
+import edu.uwm.capstone.db.contact.ContactDao;
+import edu.uwm.capstone.db.contact.ContactDaoRowMapper;
 import edu.uwm.capstone.db.ProfileDao;
 import edu.uwm.capstone.db.ProfileDaoRowMapper;
+import edu.uwm.capstone.db.position.PositionDao;
+import edu.uwm.capstone.db.position.PositionDaoRowMapper;
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
 import edu.uwm.capstone.sql.statement.SqlStatementsFileLoader;
 import edu.uwm.capstone.util.Concatenation;
@@ -114,6 +115,32 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public AddressDao addressDao() {
+        AddressDao addressDao = new AddressDao();
+        addressDao.setDataSource(dataSource());
+        addressDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        addressDao.setRowMapper(addressDaoRowMapper());
+        return addressDao;
+    }
+
+    @Bean
+    public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
+
+    @Bean
+    public PositionDao positionDao() {
+        PositionDao positionDao = new PositionDao();
+        positionDao.setDataSource(dataSource());
+        positionDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        positionDao.setRowMapper(positionDaoRowMapper());
+        return positionDao;
+    }
+
+    @Bean
+    public PositionDaoRowMapper positionDaoRowMapper() {
+        return new PositionDaoRowMapper();
+    }
+
+    @Bean
     public EducationDao educationDao() {
         EducationDao educationDao = new EducationDao();
         educationDao.setDataSource(dataSource());
@@ -126,7 +153,7 @@ public class ApplicationConfig {
     public EducationDaoRowMapper educationDaoRowMapper() {
         return new EducationDaoRowMapper();
     }
-    
+
     @Bean
     public ProjectDao projectDao() {
         ProjectDao projectDao = new ProjectDao();
@@ -140,18 +167,6 @@ public class ApplicationConfig {
     public ProjectDaoRowMapper projectDaoRowMapper() {
         return new ProjectDaoRowMapper();
     }
-    
-    @Bean
-    public AddressDao addressDao() {
-        AddressDao addressDao = new AddressDao();
-        addressDao.setDataSource(dataSource());
-        addressDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
-        addressDao.setRowMapper(addressDaoRowMapper());
-        return addressDao;
-    }
-
-    @Bean
-    public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
 
     @Bean
     public ContactDao contactDao() {

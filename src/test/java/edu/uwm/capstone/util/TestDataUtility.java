@@ -7,12 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import edu.uwm.capstone.model.education.Education;
-import edu.uwm.capstone.model.project.Project;
-import edu.uwm.capstone.model.address.Address;
-import edu.uwm.capstone.model.contact.Contact;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import edu.uwm.capstone.model.address.Address;
+import edu.uwm.capstone.model.education.Education;
+import edu.uwm.capstone.model.project.Project;
+import edu.uwm.capstone.model.contact.Contact;
+import edu.uwm.capstone.model.position.Position;
 import edu.uwm.capstone.model.profile.Profile;
 
 public class TestDataUtility {
@@ -38,6 +39,43 @@ public class TestDataUtility {
     }
 
     /**
+     * Generate a {@link Address} object that is fully loaded with random values for testing purposes.
+     * @return {@link Address}
+     */
+    public static Address addressWithTestValues() {
+        Address address = new Address();
+        // intentionally left blank -- address.setId();
+        address.setUserID(randomLong());
+        address.setStreet1(randomAlphabetic(randomInt(1, 100)));
+        address.setStreet2(randomAlphabetic(randomInt(1, 100)));
+        address.setCity(randomAlphabetic(randomInt(1, 100)));
+        address.setState(randomAlphabetic(randomInt(1, 100)));
+        address.setZipcode(randomAlphabetic(randomInt(1, 100)));
+        // intentionally left blank -- address.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- address.setUpdatedDate(randomLocalDateTime());
+        return address;
+    }
+
+    /**
+     * Generate a {@link Position} object that is fully loaded with random values for testing purposes.
+     * @return {@link Position}
+     */
+    public static Position positionWithTestValues(){
+        Position position = new Position();
+        // intentionally left blank -- position.setId();
+        position.setName(randomAlphabetic(randomInt(1, 100)));
+        position.setCompanyId(randomLong());
+        position.setDescription(randomAlphanumeric(randomInt(1, 100)));
+        // intentionally left blank -- position.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- position.setUpdatedDate(randomLocalDateTime());
+        position.setStartDate(randomLocalDateTime());
+        position.setEndDate(randomLocalDateTime());
+        position.setStartPay(randomDouble());
+        position.setEndPay(randomDouble());
+        return position;
+    }
+
+    /**
      * Generate a {@link Education} object that is fully loaded with random values for testing purposes.
      * @return {@link Education}
      */
@@ -55,7 +93,7 @@ public class TestDataUtility {
         // intentionally left blank -- education.setUpdatedDate(randomLocalDateTime());
         return education;
     }
-    
+
     /**
      * Generate a {@link Project} object that is fully loaded with random values for testing purposes.
      * @return {@link Project}
@@ -73,24 +111,6 @@ public class TestDataUtility {
         // intentionally left blank -- project.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- project.setUpdatedDate(randomLocalDateTime());
         return project;
-    }
-    
-    /** 
-     * Generate a {@link Address} object that is fully loaded with random values for testing purposes.
-     * @return {@link Address}
-     */
-    public static Address addressWithTestValues() {
-        Address address = new Address();
-        // intentionally left blank -- address.setId();
-        address.setUserID(randomLong());
-        address.setStreet1(randomAlphabetic(randomInt(1, 100)));
-        address.setStreet2(randomAlphabetic(randomInt(1, 100)));
-        address.setCity(randomAlphabetic(randomInt(1, 100)));
-        address.setState(randomAlphabetic(randomInt(1, 100)));
-        address.setZipcode(randomAlphabetic(randomInt(1, 100)));
-        // intentionally left blank -- address.setCreatedDate(randomLocalDateTime());
-        // intentionally left blank -- address.setUpdatedDate(randomLocalDateTime());
-        return address;
     }
 
     /**
@@ -110,6 +130,24 @@ public class TestDataUtility {
         // intentionally left blank -- contact.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- contact.setUpdatedDate(randomLocalDateTime());
         return contact;
+    }
+
+    /**
+     * Generate a random {@link Double} using a minimum value of 1L and a maximum value of {@link Double#MAX_VALUE}.
+     * @return random {@link Double}
+     */
+    public static Double randomDouble(){
+        return randomDouble(Double.MIN_VALUE, Double.MAX_VALUE);
+    }
+
+    /**
+     * Generate a random {@link Double} using the provided minimum and maximum values.
+     * @param min {@link Double} minimum value
+     * @param max {@link Double} maximum value
+     * @return random {@link Double}
+     */
+    public static Double randomDouble(Double min, Double max){
+        return new Random().doubles(min, max).findAny().getAsDouble();
     }
 
     /**
