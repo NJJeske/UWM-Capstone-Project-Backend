@@ -12,7 +12,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import edu.uwm.capstone.model.address.Address;
 import edu.uwm.capstone.model.education.Education;
 import edu.uwm.capstone.model.project.Project;
-import edu.uwm.capstone.model.address.Address;
 import edu.uwm.capstone.model.contact.Contact;
 import edu.uwm.capstone.model.position.Position;
 import edu.uwm.capstone.model.profile.Profile;
