@@ -13,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 
 import edu.uwm.capstone.db.address.AddressDao;
 import edu.uwm.capstone.db.address.AddressDaoRowMapper;
+import edu.uwm.capstone.db.company.CompanyDao;
+import edu.uwm.capstone.db.company.CompanyDaoRowMapper;
 import edu.uwm.capstone.db.education.EducationDao;
 import edu.uwm.capstone.db.education.EducationDaoRowMapper;
 import edu.uwm.capstone.db.project.ProjectDao;
@@ -127,6 +129,20 @@ public class ApplicationConfig {
     public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
 
     @Bean
+    public CompanyDao companyDao() {
+        CompanyDao companyDao = new CompanyDao();
+        companyDao.setDataSource(dataSource());
+        companyDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        companyDao.setRowMapper(companyDaoRowMapper());
+        return companyDao;
+    }
+
+    @Bean
+    public CompanyDaoRowMapper companyDaoRowMapper() {
+        return new CompanyDaoRowMapper();
+    }
+
+    @Bean
     public PositionDao positionDao() {
         PositionDao positionDao = new PositionDao();
         positionDao.setDataSource(dataSource());
@@ -179,10 +195,6 @@ public class ApplicationConfig {
 
     @Bean
     public ContactDaoRowMapper contactDaoRowMapper() { return new ContactDaoRowMapper(); }
-
-    public String getDbDriverClassName() {
-        return dbDriverClassName;
-    }
 
     public void setDbDriverClassName(String dbDriverClassName) {
         this.dbDriverClassName = dbDriverClassName;

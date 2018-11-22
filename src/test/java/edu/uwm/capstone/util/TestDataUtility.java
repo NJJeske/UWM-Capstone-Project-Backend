@@ -10,6 +10,7 @@ import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.address.Address;
+import edu.uwm.capstone.model.company.Company;
 import edu.uwm.capstone.model.education.Education;
 import edu.uwm.capstone.model.project.Project;
 import edu.uwm.capstone.model.contact.Contact;
@@ -17,13 +18,6 @@ import edu.uwm.capstone.model.position.Position;
 import edu.uwm.capstone.model.profile.Profile;
 
 public class TestDataUtility {
-
-    /**
-     * This is a utility class and as such it only has a private constructor.
-     */
-    protected TestDataUtility() {
-    }
-
     /**
      * Generate a {@link Profile} object that is fully loaded with random values for testing purposes.
      * @return {@link Profile}
@@ -54,6 +48,22 @@ public class TestDataUtility {
         // intentionally left blank -- address.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- address.setUpdatedDate(randomLocalDateTime());
         return address;
+    }
+
+    /**
+     * Generate a {@link Company} object that is fully loaded with random values for testing purposes.
+     * @return {@link Company}
+     */
+    public static Company companyWithTestValues(){
+        Company company = new Company();
+        // intentionally left blank -- company.setId();
+        company.setName(randomAlphabetic(randomInt(1, 100)));
+        company.setAddress(randomAlphanumeric(randomInt(1, 100)));
+        company.setPhoneNumber(randomNumeric(randomInt(1, 100)));
+        company.setWebsite(randomAlphanumeric(randomInt(1, 100)));
+        // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- profile.setUpdatedDate(randomLocalDateTime());
+        return company;
     }
 
     /**
@@ -204,6 +214,15 @@ public class TestDataUtility {
         return RandomStringUtils.randomAlphanumeric(characterCount);
     }
 
+    /**
+     * Generate a {@link String} that contains the provided number of random numeric characters.
+     * @param characterCount Number of characters
+     * @return random {@link String} of alphanumeric characters
+     */
+    public static String randomNumeric(int characterCount) {
+        return RandomStringUtils.randomNumeric(characterCount);
+    }
+
     public static LocalDateTime randomLocalDateTime() {
         LocalDateTime start = LocalDateTime.of(1900, randomMonth(), 1, randomInt(0, 23), randomInt(1, 59));
         long days = ChronoUnit.DAYS.between(start, LocalDateTime.now());
@@ -215,5 +234,4 @@ public class TestDataUtility {
         int index = new Random().nextInt(months.size());
         return months.get(index);
     }
-
 }
