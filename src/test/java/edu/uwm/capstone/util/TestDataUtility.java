@@ -9,18 +9,15 @@ import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-import edu.uwm.capstone.model.profile.Profile;
 import edu.uwm.capstone.model.address.Address;
-import edu.uwm.capstone.model.user.User;
+import edu.uwm.capstone.model.company.Company;
+import edu.uwm.capstone.model.education.Education;
+import edu.uwm.capstone.model.project.Project;
+import edu.uwm.capstone.model.contact.Contact;
+import edu.uwm.capstone.model.position.Position;
+import edu.uwm.capstone.model.profile.Profile;
 
 public class TestDataUtility {
-
-    /**
-     * This is a utility class and as such it only has a private constructor.
-     */
-    protected TestDataUtility() {
-    }
-
     /**
      * Generate a {@link Profile} object that is fully loaded with random values for testing purposes.
      * @return {@link Profile}
@@ -54,25 +51,95 @@ public class TestDataUtility {
     }
 
     /**
-     * Generate a {@link User} object that is fully loaded with random values for testing purposes.
-     * @return {@link User}
+     * Generate a {@link Company} object that is fully loaded with random values for testing purposes.
+     * @return {@link Company}
      */
-    public static User userWithTestValues(){
-        User user = new User();
-        // intentionally left blank -- user.setId(randomLong());
-        user.setEmail(randomAlphanumeric(randomInt(1, 100)));
-        user.setPassword(randomAlphanumeric(randomInt(1, 100)));
-        user.setTitle(randomAlphanumeric(randomInt(1, 100)));
-        user.setFirstName(randomAlphabetic(randomInt(1, 100)));
-        user.setLastName(randomAlphabetic(randomInt(1, 100)));
-        user.setMiddleName(randomAlphabetic(randomInt(1, 100)));
-        user.setLastName(randomAlphabetic(randomInt(1, 100)));
-        user.setMobilePhone(randomNumeric(randomInt(1, 100)));
-        user.setHomePhone(randomNumeric(randomInt(1, 100)));
-        user.setWebsite(randomAlphabetic(randomInt(1, 100)));
-        // intentionally left blank -- user.setCreatedDate(randomLocalDateTime());
-        // intentionally left blank -- user.setUpdatedDate(randomLocalDateTime());
-        return user;
+    public static Company companyWithTestValues(){
+        Company company = new Company();
+        // intentionally left blank -- company.setId();
+        company.setName(randomAlphabetic(randomInt(1, 100)));
+        company.setAddress(randomAlphanumeric(randomInt(1, 100)));
+        company.setPhoneNumber(randomNumeric(randomInt(1, 100)));
+        company.setWebsite(randomAlphanumeric(randomInt(1, 100)));
+        // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- profile.setUpdatedDate(randomLocalDateTime());
+        return company;
+    }
+
+    /**
+     * Generate a {@link Position} object that is fully loaded with random values for testing purposes.
+     * @return {@link Position}
+     */
+    public static Position positionWithTestValues(){
+        Position position = new Position();
+        // intentionally left blank -- position.setId();
+        position.setName(randomAlphabetic(randomInt(1, 100)));
+        position.setCompanyId(randomLong());
+        position.setDescription(randomAlphanumeric(randomInt(1, 100)));
+        // intentionally left blank -- position.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- position.setUpdatedDate(randomLocalDateTime());
+        position.setStartDate(randomLocalDateTime());
+        position.setEndDate(randomLocalDateTime());
+        position.setStartPay(randomDouble());
+        position.setEndPay(randomDouble());
+        return position;
+    }
+
+    /**
+     * Generate a {@link Education} object that is fully loaded with random values for testing purposes.
+     * @return {@link Education}
+     */
+    public static Education educationWithTestValues() {
+        Education education = new Education();
+        // intentionally left blank -- education.setId();
+        education.setUserID(randomLong());
+        education.setAddressID(randomLong());
+        education.setSchoolName(randomAlphabetic(randomInt(1, 100)));
+        education.setDegree(randomAlphabetic(randomInt(1, 100)));
+        education.setFieldOfStudy(randomAlphabetic(randomInt(1, 100)));
+        education.setStartDate(randomLocalDateTime());
+        education.setEndDate(randomLocalDateTime());
+        // intentionally left blank -- education.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- education.setUpdatedDate(randomLocalDateTime());
+        return education;
+    }
+
+    /**
+     * Generate a {@link Project} object that is fully loaded with random values for testing purposes.
+     * @return {@link Project}
+     */
+    public static Project projectWithTestValues() {
+        Project project = new Project();
+        // intentionally left blank -- project.setId();
+        project.setUserID(randomLong());
+        project.setPositionID(randomLong());
+        project.setEducationID(randomLong());
+        project.setTitle(randomAlphanumeric(randomInt(1, 100)));
+        project.setDescription(randomAlphanumeric(randomInt(1, 100)));
+        project.setStartDate(randomLocalDateTime());
+        project.setEndDate(randomLocalDateTime());
+        // intentionally left blank -- project.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- project.setUpdatedDate(randomLocalDateTime());
+        return project;
+    }
+
+    /**
+     * Generate a {@link Contact} object that is fully loaded with random values for testing purposes.
+     * @return {@link Contact}
+     */
+    public static Contact contactWithTestValues() {
+        Contact contact = new Contact();
+        // intentionally left blank -- contact.setId();
+        contact.setCompanyID(randomLong());
+        contact.setPosition(randomAlphabetic(randomInt(1, 100)));
+        contact.setFirstName(randomAlphabetic(randomInt(1, 100)));
+        contact.setLastName(randomAlphabetic(randomInt(1, 100)));
+        contact.setEmail(randomAlphabetic(randomInt(1, 100)));
+        contact.setPhoneNumber(randomAlphabetic(randomInt(1, 100)));
+        contact.setNotes(randomAlphabetic(randomInt(1, 100)));
+        // intentionally left blank -- contact.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- contact.setUpdatedDate(randomLocalDateTime());
+        return contact;
     }
 
     /**
@@ -139,21 +206,21 @@ public class TestDataUtility {
     }
 
     /**
-     * Generate a {@link String} that contains the provided number of random numeric characters.
-     * @param characterCount Number of characters
-     * @return random {@link String} of alphanumeric characters
-     */
-    public static String randomNumeric(int characterCount) {
-        return RandomStringUtils.randomNumeric(characterCount);
-    }
-
-    /**
      * Generate a {@link String} that contains the provided number of random alphanumeric characters.
      * @param characterCount Number of characters
      * @return random {@link String} of alphanumeric characters
      */
     public static String randomAlphanumeric(int characterCount) {
         return RandomStringUtils.randomAlphanumeric(characterCount);
+    }
+
+    /**
+     * Generate a {@link String} that contains the provided number of random numeric characters.
+     * @param characterCount Number of characters
+     * @return random {@link String} of alphanumeric characters
+     */
+    public static String randomNumeric(int characterCount) {
+        return RandomStringUtils.randomNumeric(characterCount);
     }
 
     public static LocalDateTime randomLocalDateTime() {
@@ -167,5 +234,4 @@ public class TestDataUtility {
         int index = new Random().nextInt(months.size());
         return months.get(index);
     }
-
 }

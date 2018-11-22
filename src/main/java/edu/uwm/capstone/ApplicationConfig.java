@@ -11,14 +11,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.client.RestTemplate;
 
-
 import edu.uwm.capstone.db.address.AddressDao;
 import edu.uwm.capstone.db.address.AddressDaoRowMapper;
+import edu.uwm.capstone.db.company.CompanyDao;
+import edu.uwm.capstone.db.company.CompanyDaoRowMapper;
+import edu.uwm.capstone.db.education.EducationDao;
+import edu.uwm.capstone.db.education.EducationDaoRowMapper;
+import edu.uwm.capstone.db.project.ProjectDao;
+import edu.uwm.capstone.db.project.ProjectDaoRowMapper;
+import edu.uwm.capstone.db.contact.ContactDao;
+import edu.uwm.capstone.db.contact.ContactDaoRowMapper;
 import edu.uwm.capstone.db.ProfileDao;
 import edu.uwm.capstone.db.ProfileDaoRowMapper;
-import edu.uwm.capstone.db.user.UserDao;
-import edu.uwm.capstone.db.user.UserDaoRowMapper;
-
+import edu.uwm.capstone.db.position.PositionDao;
+import edu.uwm.capstone.db.position.PositionDaoRowMapper;
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
 import edu.uwm.capstone.sql.statement.SqlStatementsFileLoader;
 import edu.uwm.capstone.util.Concatenation;
@@ -106,6 +112,11 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public ProfileDaoRowMapper profileDaoRowMapper() {
+        return new ProfileDaoRowMapper();
+    }
+
+    @Bean
     public AddressDao addressDao() {
         AddressDao addressDao = new AddressDao();
         addressDao.setDataSource(dataSource());
@@ -115,28 +126,75 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public UserDao userDao() {
-        UserDao userDao = new UserDao();
-        userDao.setDataSource(dataSource());
-        userDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
-        userDao.setRowMapper(UserDaoRowMapper());
-        return userDao;
-    }
-
-    @Bean
-    public ProfileDaoRowMapper profileDaoRowMapper() {
-        return new ProfileDaoRowMapper();
-    }
-
-    @Bean
     public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
 
     @Bean
-    public UserDaoRowMapper UserDaoRowMapper() { return new UserDaoRowMapper(); }
-
-    public String getDbDriverClassName() {
-        return dbDriverClassName;
+    public CompanyDao companyDao() {
+        CompanyDao companyDao = new CompanyDao();
+        companyDao.setDataSource(dataSource());
+        companyDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        companyDao.setRowMapper(companyDaoRowMapper());
+        return companyDao;
     }
+
+    @Bean
+    public CompanyDaoRowMapper companyDaoRowMapper() {
+        return new CompanyDaoRowMapper();
+    }
+
+    @Bean
+    public PositionDao positionDao() {
+        PositionDao positionDao = new PositionDao();
+        positionDao.setDataSource(dataSource());
+        positionDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        positionDao.setRowMapper(positionDaoRowMapper());
+        return positionDao;
+    }
+
+    @Bean
+    public PositionDaoRowMapper positionDaoRowMapper() {
+        return new PositionDaoRowMapper();
+    }
+
+    @Bean
+    public EducationDao educationDao() {
+        EducationDao educationDao = new EducationDao();
+        educationDao.setDataSource(dataSource());
+        educationDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        educationDao.setRowMapper(educationDaoRowMapper());
+        return educationDao;
+    }
+
+    @Bean
+    public EducationDaoRowMapper educationDaoRowMapper() {
+        return new EducationDaoRowMapper();
+    }
+
+    @Bean
+    public ProjectDao projectDao() {
+        ProjectDao projectDao = new ProjectDao();
+        projectDao.setDataSource(dataSource());
+        projectDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        projectDao.setRowMapper(projectDaoRowMapper());
+        return projectDao;
+    }
+
+    @Bean
+    public ProjectDaoRowMapper projectDaoRowMapper() {
+        return new ProjectDaoRowMapper();
+    }
+
+    @Bean
+    public ContactDao contactDao() {
+        ContactDao contactDao = new ContactDao();
+        contactDao.setDataSource(dataSource());
+        contactDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        contactDao.setRowMapper(contactDaoRowMapper());
+        return contactDao;
+    }
+
+    @Bean
+    public ContactDaoRowMapper contactDaoRowMapper() { return new ContactDaoRowMapper(); }
 
     public void setDbDriverClassName(String dbDriverClassName) {
         this.dbDriverClassName = dbDriverClassName;
