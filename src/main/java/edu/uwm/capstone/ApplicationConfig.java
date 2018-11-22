@@ -128,6 +128,7 @@ public class ApplicationConfig {
     @Bean
     public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
 
+    @Bean
     public CompanyDao companyDao() {
         CompanyDao companyDao = new CompanyDao();
         companyDao.setDataSource(dataSource());
@@ -194,18 +195,6 @@ public class ApplicationConfig {
 
     @Bean
     public ContactDaoRowMapper contactDaoRowMapper() { return new ContactDaoRowMapper(); }
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void setDbDriverClassName(String dbDriverClassName) {
         this.dbDriverClassName = dbDriverClassName;
