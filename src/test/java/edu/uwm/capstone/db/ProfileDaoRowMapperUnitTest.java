@@ -101,5 +101,4 @@ public class ProfileDaoRowMapperUnitTest {
         assertEquals(profile.getCreatedDate(), verifyProfile.getCreatedDate());
         assertEquals(profile.getUpdatedDate(), verifyProfile.getUpdatedDate());
     }
-
 }

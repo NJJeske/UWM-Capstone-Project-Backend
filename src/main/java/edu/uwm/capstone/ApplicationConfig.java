@@ -1,14 +1,5 @@
 package edu.uwm.capstone;
 
-import edu.uwm.capstone.db.education.EducationDao;
-import edu.uwm.capstone.db.education.EducationDaoRowMapper;
-import edu.uwm.capstone.db.project.ProjectDao;
-import edu.uwm.capstone.db.project.ProjectDaoRowMapper;
-import edu.uwm.capstone.model.project.Project;
-import edu.uwm.capstone.db.address.AddressDao;
-import edu.uwm.capstone.db.address.AddressDaoRowMapper;
-import edu.uwm.capstone.db.contact.ContactDao;
-import edu.uwm.capstone.db.contact.ContactDaoRowMapper;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.flywaydb.core.Flyway;
@@ -20,8 +11,26 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.client.RestTemplate;
 
+import edu.uwm.capstone.db.address.AddressDao;
+import edu.uwm.capstone.db.address.AddressDaoRowMapper;
+import edu.uwm.capstone.db.certification.CertificationDao;
+import edu.uwm.capstone.db.certification.CertificationDaoRowMapper;
+import edu.uwm.capstone.db.company.CompanyDao;
+import edu.uwm.capstone.db.company.CompanyDaoRowMapper;
+import edu.uwm.capstone.db.document.DocumentDao;
+import edu.uwm.capstone.db.document.DocumentDaoRowMapper;
+import edu.uwm.capstone.db.education.EducationDao;
+import edu.uwm.capstone.db.education.EducationDaoRowMapper;
+import edu.uwm.capstone.db.project.ProjectDao;
+import edu.uwm.capstone.db.project.ProjectDaoRowMapper;
+import edu.uwm.capstone.db.contact.ContactDao;
+import edu.uwm.capstone.db.contact.ContactDaoRowMapper;
 import edu.uwm.capstone.db.ProfileDao;
 import edu.uwm.capstone.db.ProfileDaoRowMapper;
+import edu.uwm.capstone.db.position.PositionDao;
+import edu.uwm.capstone.db.position.PositionDaoRowMapper;
+import edu.uwm.capstone.db.user.UserDao;
+import edu.uwm.capstone.db.user.UserDaoRowMapper;
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
 import edu.uwm.capstone.sql.statement.SqlStatementsFileLoader;
 import edu.uwm.capstone.util.Concatenation;
@@ -114,6 +123,73 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public AddressDao addressDao() {
+        AddressDao addressDao = new AddressDao();
+        addressDao.setDataSource(dataSource());
+        addressDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        addressDao.setRowMapper(addressDaoRowMapper());
+        return addressDao;
+    }
+
+    @Bean
+    public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
+
+    @Bean
+    public CertificationDao certificationDao() {
+        CertificationDao certificationDao = new CertificationDao();
+        certificationDao.setDataSource(dataSource());
+        certificationDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        certificationDao.setRowMapper(certificationDaoRowMapper());
+        return certificationDao;
+    }
+
+    @Bean
+    public CertificationDaoRowMapper certificationDaoRowMapper() {
+        return new CertificationDaoRowMapper();
+    }
+
+    @Bean
+    public CompanyDao companyDao() {
+        CompanyDao companyDao = new CompanyDao();
+        companyDao.setDataSource(dataSource());
+        companyDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        companyDao.setRowMapper(companyDaoRowMapper());
+        return companyDao;
+    }
+
+    @Bean
+    public CompanyDaoRowMapper companyDaoRowMapper() {
+        return new CompanyDaoRowMapper();
+    }
+
+    @Bean
+    public DocumentDao documentDao() {
+        DocumentDao documentDao = new DocumentDao();
+        documentDao.setDataSource(dataSource());
+        documentDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        documentDao.setRowMapper(documentDaoRowMapper());
+        return documentDao;
+    }
+
+    @Bean DocumentDaoRowMapper documentDaoRowMapper(){
+        return new DocumentDaoRowMapper();
+    }
+
+    @Bean
+    public PositionDao positionDao() {
+        PositionDao positionDao = new PositionDao();
+        positionDao.setDataSource(dataSource());
+        positionDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        positionDao.setRowMapper(positionDaoRowMapper());
+        return positionDao;
+    }
+
+    @Bean
+    public PositionDaoRowMapper positionDaoRowMapper() {
+        return new PositionDaoRowMapper();
+    }
+
+    @Bean
     public EducationDao educationDao() {
         EducationDao educationDao = new EducationDao();
         educationDao.setDataSource(dataSource());
@@ -126,7 +202,7 @@ public class ApplicationConfig {
     public EducationDaoRowMapper educationDaoRowMapper() {
         return new EducationDaoRowMapper();
     }
-    
+
     @Bean
     public ProjectDao projectDao() {
         ProjectDao projectDao = new ProjectDao();
@@ -140,18 +216,6 @@ public class ApplicationConfig {
     public ProjectDaoRowMapper projectDaoRowMapper() {
         return new ProjectDaoRowMapper();
     }
-    
-    @Bean
-    public AddressDao addressDao() {
-        AddressDao addressDao = new AddressDao();
-        addressDao.setDataSource(dataSource());
-        addressDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
-        addressDao.setRowMapper(addressDaoRowMapper());
-        return addressDao;
-    }
-
-    @Bean
-    public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
 
     @Bean
     public ContactDao contactDao() {
@@ -165,9 +229,17 @@ public class ApplicationConfig {
     @Bean
     public ContactDaoRowMapper contactDaoRowMapper() { return new ContactDaoRowMapper(); }
 
-    public String getDbDriverClassName() {
-        return dbDriverClassName;
+    @Bean
+    public UserDao userDao() {
+        UserDao userDao = new UserDao();
+        userDao.setDataSource(dataSource());
+        userDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        userDao.setRowMapper(UserDaoRowMapper());
+        return userDao;
     }
+
+    @Bean
+    public UserDaoRowMapper UserDaoRowMapper() { return new UserDaoRowMapper(); }
 
     public void setDbDriverClassName(String dbDriverClassName) {
         this.dbDriverClassName = dbDriverClassName;
