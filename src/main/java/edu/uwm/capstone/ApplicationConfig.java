@@ -25,6 +25,8 @@ import edu.uwm.capstone.db.ProfileDao;
 import edu.uwm.capstone.db.ProfileDaoRowMapper;
 import edu.uwm.capstone.db.position.PositionDao;
 import edu.uwm.capstone.db.position.PositionDaoRowMapper;
+import edu.uwm.capstone.db.user.UserDao;
+import edu.uwm.capstone.db.user.UserDaoRowMapper;
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
 import edu.uwm.capstone.sql.statement.SqlStatementsFileLoader;
 import edu.uwm.capstone.util.Concatenation;
@@ -195,6 +197,18 @@ public class ApplicationConfig {
 
     @Bean
     public ContactDaoRowMapper contactDaoRowMapper() { return new ContactDaoRowMapper(); }
+
+    @Bean
+    public UserDao userDao() {
+        UserDao userDao = new UserDao();
+        userDao.setDataSource(dataSource());
+        userDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        userDao.setRowMapper(UserDaoRowMapper());
+        return userDao;
+    }
+
+    @Bean
+    public UserDaoRowMapper UserDaoRowMapper() { return new UserDaoRowMapper(); }
 
     public void setDbDriverClassName(String dbDriverClassName) {
         this.dbDriverClassName = dbDriverClassName;
