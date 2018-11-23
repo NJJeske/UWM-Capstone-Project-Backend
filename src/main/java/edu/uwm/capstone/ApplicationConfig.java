@@ -17,6 +17,8 @@ import edu.uwm.capstone.db.certification.CertificationDao;
 import edu.uwm.capstone.db.certification.CertificationDaoRowMapper;
 import edu.uwm.capstone.db.company.CompanyDao;
 import edu.uwm.capstone.db.company.CompanyDaoRowMapper;
+import edu.uwm.capstone.db.document.DocumentDao;
+import edu.uwm.capstone.db.document.DocumentDaoRowMapper;
 import edu.uwm.capstone.db.education.EducationDao;
 import edu.uwm.capstone.db.education.EducationDaoRowMapper;
 import edu.uwm.capstone.db.project.ProjectDao;
@@ -158,6 +160,19 @@ public class ApplicationConfig {
     @Bean
     public CompanyDaoRowMapper companyDaoRowMapper() {
         return new CompanyDaoRowMapper();
+    }
+
+    @Bean
+    public DocumentDao documentDao() {
+        DocumentDao documentDao = new DocumentDao();
+        documentDao.setDataSource(dataSource());
+        documentDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        documentDao.setRowMapper(documentDaoRowMapper());
+        return documentDao;
+    }
+
+    @Bean DocumentDaoRowMapper documentDaoRowMapper(){
+        return new DocumentDaoRowMapper();
     }
 
     @Bean

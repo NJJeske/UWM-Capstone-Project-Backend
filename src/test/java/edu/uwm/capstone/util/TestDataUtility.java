@@ -12,6 +12,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import edu.uwm.capstone.model.address.Address;
 import edu.uwm.capstone.model.certification.Certification;
 import edu.uwm.capstone.model.company.Company;
+import edu.uwm.capstone.model.document.Document;
 import edu.uwm.capstone.model.education.Education;
 import edu.uwm.capstone.model.project.Project;
 import edu.uwm.capstone.model.contact.Contact;
@@ -85,6 +86,21 @@ public class TestDataUtility {
         // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- profile.setUpdatedDate(randomLocalDateTime());
         return company;
+    }
+
+    /**
+     * Generate a {@link Document} object that is fully loaded with random values for testing purposes.
+     * @return {@link Document}
+     */
+    public static Document documentWithTestValues() {
+        Document document = new Document();
+        // intentionally left blank -- document.setId();
+        document.setUserId(randomLong());
+        // intentionally left blank -- document.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- document.setUpdatedDate(randomLocalDateTime());
+        document.setName(randomAlphabetic(randomInt(1, 100)));
+        document.setPath(randomAlphabetic(randomInt(1, 100)));
+        return document;
     }
 
     /**
