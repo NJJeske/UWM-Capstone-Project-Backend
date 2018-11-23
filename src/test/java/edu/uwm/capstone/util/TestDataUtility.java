@@ -16,6 +16,7 @@ import edu.uwm.capstone.model.project.Project;
 import edu.uwm.capstone.model.contact.Contact;
 import edu.uwm.capstone.model.position.Position;
 import edu.uwm.capstone.model.profile.Profile;
+import edu.uwm.capstone.model.user.User;
 
 public class TestDataUtility {
     /**
@@ -140,6 +141,28 @@ public class TestDataUtility {
         // intentionally left blank -- contact.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- contact.setUpdatedDate(randomLocalDateTime());
         return contact;
+    }
+
+    /**
+     * Generate a {@link User} object that is fully loaded with random values for testing purposes.
+     * @return {@link User}
+     */
+    public static User userWithTestValues(){
+        User user = new User();
+        // intentionally left blank -- user.setId(randomLong());
+        user.setEmail(randomAlphanumeric(randomInt(1, 100)));
+        user.setPassword(randomAlphanumeric(randomInt(1, 100)));
+        user.setTitle(randomAlphanumeric(randomInt(1, 100)));
+        user.setFirstName(randomAlphabetic(randomInt(1, 100)));
+        user.setLastName(randomAlphabetic(randomInt(1, 100)));
+        user.setMiddleName(randomAlphabetic(randomInt(1, 100)));
+        user.setLastName(randomAlphabetic(randomInt(1, 100)));
+        user.setMobilePhone(randomNumeric(randomInt(1, 100)));
+        user.setHomePhone(randomNumeric(randomInt(1, 100)));
+        user.setWebsite(randomAlphabetic(randomInt(1, 100)));
+        // intentionally left blank -- user.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- user.setUpdatedDate(randomLocalDateTime());
+        return user;
     }
 
     /**
