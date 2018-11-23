@@ -10,6 +10,7 @@ import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.address.Address;
+import edu.uwm.capstone.model.certification.Certification;
 import edu.uwm.capstone.model.company.Company;
 import edu.uwm.capstone.model.education.Education;
 import edu.uwm.capstone.model.project.Project;
@@ -49,6 +50,25 @@ public class TestDataUtility {
         // intentionally left blank -- address.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- address.setUpdatedDate(randomLocalDateTime());
         return address;
+    }
+
+    /**
+     * Generate a {@link Certification} object that is fully loaded with random values for testing purposes.
+     * @return {@link Certification}
+     */
+    public static Certification certificationWithTestValues() {
+        Certification certification = new Certification();
+        // intentionally left blank -- certification.setId();
+        certification.setUserId(randomLong());
+        // intentionally left blank -- certification.setCreatedDate(randomLocalDateTime());
+        // intentionally left blank -- certification.setUpdatedDate(randomLocalDateTime());
+        certification.setName(randomAlphabetic(randomInt(1, 100)));
+        certification.setAuthority(randomAlphabetic(randomInt(1, 100)));
+        certification.setLicenseNumber(randomAlphabetic(randomInt(1, 100)));
+        // intentionally left blank -- certification.setAcquiredDate(randomLocalDateTime());
+        // intentionally left blank -- certification.setExpiredDate(randomLocalDateTime());
+        certification.setWebsite(randomAlphanumeric(randomInt(1, 100)));
+        return certification;
     }
 
     /**

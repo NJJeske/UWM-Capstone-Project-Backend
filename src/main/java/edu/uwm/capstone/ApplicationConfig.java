@@ -13,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 
 import edu.uwm.capstone.db.address.AddressDao;
 import edu.uwm.capstone.db.address.AddressDaoRowMapper;
+import edu.uwm.capstone.db.certification.CertificationDao;
+import edu.uwm.capstone.db.certification.CertificationDaoRowMapper;
 import edu.uwm.capstone.db.company.CompanyDao;
 import edu.uwm.capstone.db.company.CompanyDaoRowMapper;
 import edu.uwm.capstone.db.education.EducationDao;
@@ -129,6 +131,20 @@ public class ApplicationConfig {
 
     @Bean
     public AddressDaoRowMapper addressDaoRowMapper() { return new AddressDaoRowMapper(); }
+
+    @Bean
+    public CertificationDao certificationDao() {
+        CertificationDao certificationDao = new CertificationDao();
+        certificationDao.setDataSource(dataSource());
+        certificationDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        certificationDao.setRowMapper(certificationDaoRowMapper());
+        return certificationDao;
+    }
+
+    @Bean
+    public CertificationDaoRowMapper certificationDaoRowMapper() {
+        return new CertificationDaoRowMapper();
+    }
 
     @Bean
     public CompanyDao companyDao() {
