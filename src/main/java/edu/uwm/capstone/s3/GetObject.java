@@ -12,17 +12,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+// supply the name of an S3 bucket and object to download from it.
+// order of the arguments should be <bucketname> <filename>
 public class GetObject {
     public static void main(String[] args)
     {
-        final String USAGE = "\n" +
-                "To run this example, supply the name of an S3 bucket and object to\n" +
-                "download from it.\n" +
-                "\n" +
-                "Ex: GetObject <bucketname> <filename>\n";
-
         if (args.length < 2) {
-            System.out.println(USAGE);
             System.exit(1);
         }
 
@@ -57,6 +52,6 @@ public class GetObject {
             System.err.println(e.getMessage());
             System.exit(1);
         }
-        System.out.println("Done!");
+        System.out.println("Successfully downloaded " + key_name + " from bucket " + bucket_name);
     }
 }

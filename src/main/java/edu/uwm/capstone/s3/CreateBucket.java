@@ -8,6 +8,8 @@ import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.Bucket;
 import java.util.List;
 
+// The main method in this class will try and create a new bucket using the argument provided.
+// argument should be <bucketname>
 public class CreateBucket {
     public static Bucket getBucket(String bucket_name) {
 
@@ -34,7 +36,7 @@ public class CreateBucket {
                 .build();
 
         Bucket b = null;
-        if (s3.doesBucketExist(bucket_name)) {
+        if (s3.doesBucketExistV2(bucket_name)) {
             System.out.format("Bucket %s already exists.\n", bucket_name);
             b = getBucket(bucket_name);
         } else {
@@ -49,26 +51,16 @@ public class CreateBucket {
 
     public static void main(String[] args)
     {
-        final String USAGE = "\n" +
-                "CreateBucket - create an S3 bucket\n\n" +
-                "Usage: CreateBucket <bucketname>\n\n" +
-                "Where:\n" +
-                "  bucketname - the name of the bucket to create.\n\n" +
-                "The bucket name must be unique, or an error will result.\n";
-
         if (args.length < 1) {
-            System.out.println(USAGE);
             System.exit(1);
         }
-
         String bucket_name = args[0];
-
         System.out.format("\nCreating S3 bucket: %s\n", bucket_name);
         Bucket b = createBucket(bucket_name);
         if (b == null) {
             System.out.println("Error creating bucket!\n");
         } else {
-            System.out.println("Done!\n");
+            System.out.println("Successfully created new bucket " + bucket_name + "\n");
         }
     }
 }

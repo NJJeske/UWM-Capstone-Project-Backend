@@ -1,27 +1,19 @@
 package edu.uwm.capstone.s3;
 
-import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.DeleteObjectsRequest;
 import java.util.Arrays;
 
+// supply the name of an S3 bucket and at least one object name (key) to delete.
+// order of the arguments should be <bucketname> <objectname1> [objectname2, ...]
 public class DeleteObjects {
     public static void main(String[] args)
     {
-
-        final String USAGE = "\n" +
-                "To run this example, supply the name of an S3 bucket and at least\n" +
-                "one object name (key) to delete.\n" +
-                "\n" +
-                "Ex: DeleteObjects <bucketname> <objectname1> [objectname2, ...]\n";
-
         if (args.length < 2) {
-            System.out.println(USAGE);
             System.exit(1);
         }
 
@@ -46,6 +38,6 @@ public class DeleteObjects {
             System.err.println(e.getErrorMessage());
             System.exit(1);
         }
-        System.out.println("Done!");
+        System.out.println("Successfully deleted the specified objects from the bucket " + bucket_name);
     }
 }

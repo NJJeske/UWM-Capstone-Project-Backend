@@ -12,29 +12,22 @@ import com.amazonaws.services.s3.model.S3VersionSummary;
 import com.amazonaws.services.s3.model.VersionListing;
 import java.util.Iterator;
 
+// Supply the name of an S3 bucket to delete
+// argument should be <bucketname>
 public class DeleteBucket {
     public static void main(String[] args)
     {
-        final String USAGE = "\n" +
-                "To run this example, supply the name of an S3 bucket\n" +
-                "\n" +
-                "Ex: DeleteBucket <bucketname>\n";
-
         if (args.length < 1) {
-            System.out.println(USAGE);
             System.exit(1);
         }
-
         String bucket_name = args[0];
-
-        System.out.println("Deleting S3 bucket: " + bucket_name);
         BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAIAR6QLI6XLWJ4FWQ", "lHELWR4eRGlS0J9kPNS3S8AFYRouA+Jc1Mo2R+Qk");
         final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .build();
 
         try {
-            System.out.println(" - removing objects from bucket");
+            //Remove objects from the specified bucket
             ObjectListing object_listing = s3.listObjects(bucket_name);
             while (true) {
                 for (Iterator<?> iterator =
@@ -50,9 +43,9 @@ public class DeleteBucket {
                 } else {
                     break;
                 }
-            };
+            }
 
-            System.out.println(" - removing versions from bucket");
+            //Remove versions from the bucket
             VersionListing version_listing = s3.listVersions(
                     new ListVersionsRequest().withBucketName(bucket_name));
             while (true) {
@@ -72,12 +65,12 @@ public class DeleteBucket {
                 }
             }
 
-            System.out.println(" OK, bucket ready to delete!");
+            //Delete the bucket after removing objects and versions
             s3.deleteBucket(bucket_name);
         } catch (AmazonServiceException e) {
             System.err.println(e.getErrorMessage());
             System.exit(1);
         }
-        System.out.println("Done!");
+        System.out.println("Successfully deleted bucket: " + bucket_name);
     }
 }

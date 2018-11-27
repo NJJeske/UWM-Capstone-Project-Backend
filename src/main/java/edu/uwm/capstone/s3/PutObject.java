@@ -8,20 +8,14 @@ import com.amazonaws.AmazonServiceException;
 import java.io.File;
 import java.nio.file.Paths;
 
+// supply the name of an S3 bucket and a file to add
+// order of the arguments <bucketname> <filepath>
 public class PutObject {
     public static void main(String[] args)
     {
-        final String USAGE = "\n" +
-                "To run this example, supply the name of an S3 bucket and a file to\n" +
-                "upload to it.\n" +
-                "\n" +
-                "Ex: PutObject <bucketname> <filename>\n";
-
         if (args.length < 2) {
-            System.out.println(USAGE);
             System.exit(1);
         }
-
         String bucket_name = args[0];
         String file_path = args[1];
         String key_name = Paths.get(file_path).getFileName().toString();
@@ -39,6 +33,6 @@ public class PutObject {
             System.err.println(e.getErrorMessage());
             System.exit(1);
         }
-        System.out.println("Done!");
+        System.out.println("Successfully added " +key_name + " from path " + file_path + " to the bucket " + bucket_name);
     }
 }

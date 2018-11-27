@@ -1,24 +1,16 @@
 package edu.uwm.capstone.s3;
 
-import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.AmazonServiceException;
 
+// We may not need this class for the project
 public class CopyObject {
     public static void main(String[] args)
     {
-        final String USAGE = "\n" +
-                "To run this example, supply the name (key) of an S3 object, the bucket name\n" +
-                "that it's contained within, and the bucket to copy it to.\n" +
-                "\n" +
-                "Ex: CopyObject <objectname> <frombucket> <tobucket>\n";
-
         if (args.length < 3) {
-            System.out.println(USAGE);
             System.exit(1);
         }
 
@@ -40,6 +32,6 @@ public class CopyObject {
             System.err.println(e.getErrorMessage());
             System.exit(1);
         }
-        System.out.println("Done!");
+        System.out.println("Successfully moved " + object_key + " from " + from_bucket + " to " + to_bucket);
     }
 }
