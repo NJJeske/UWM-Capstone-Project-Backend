@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import edu.uwm.capstone.db.education.EducationDao;
-import edu.uwm.capstone.model.education.Education;
 import io.swagger.annotations.ApiOperation;
 
 @RestController

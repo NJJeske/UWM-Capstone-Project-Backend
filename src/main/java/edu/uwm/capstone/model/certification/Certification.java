@@ -7,14 +7,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Certification {
     protected Long id;
-    protected Long user_id;
-    protected LocalDateTime created_date;
-    protected LocalDateTime updated_date;
+    protected Long userId;
+    protected LocalDateTime createDate;
+    protected LocalDateTime updatedDate;
     private String name;
     private String authority;
-    private String license_number;
-    private LocalDateTime acquired_date;
-    private LocalDateTime expired_date;
+    private String licenseNumber;
+    private LocalDateTime acquiredDate;
+    private LocalDateTime expiredDate;
     private String website;
 
     public Long getId(){ return id; }
@@ -23,19 +23,19 @@ public class Certification {
         this.id = id;
     }
 
-    public Long getUserId(){ return user_id; }
+    public Long getUserId(){ return userId; }
 
-    public void setUserId(Long user_id){ this.user_id = user_id; }
+    public void setUserId(Long user_id){ this.userId = user_id; }
 
     public LocalDateTime getCreatedDate() {
-        return created_date;
+        return createDate;
     }
 
-    public void setCreatedDate(LocalDateTime created_date) { this.created_date = created_date; }
+    public void setCreatedDate(LocalDateTime created_date) { this.createDate = created_date; }
 
-    public LocalDateTime getUpdatedDate() { return updated_date; }
+    public LocalDateTime getUpdatedDate() { return updatedDate; }
 
-    public void setUpdatedDate(LocalDateTime updated_date) { this.updated_date = updated_date; }
+    public void setUpdatedDate(LocalDateTime updated_date) { this.updatedDate = updated_date; }
 
     public String getName(){
         return name;
@@ -54,24 +54,24 @@ public class Certification {
     }
 
     public String getLicenseNumber(){
-        return license_number;
+        return licenseNumber;
     }
 
     public void setLicenseNumber(String license_number){
-        this.license_number = license_number;
+        this.licenseNumber = license_number;
     }
 
     public LocalDateTime getAcquiredDate() {
-        return acquired_date;
+        return acquiredDate;
     }
 
-    public void setAcquiredDate(LocalDateTime acquired_date) { this.acquired_date = acquired_date; }
+    public void setAcquiredDate(LocalDateTime acquired_date) { this.acquiredDate = acquired_date; }
 
     public LocalDateTime getExpiredDate() {
-        return expired_date;
+        return expiredDate;
     }
 
-    public void setExpiredDate(LocalDateTime expired_date) { this.expired_date = expired_date; }
+    public void setExpiredDate(LocalDateTime expired_date) { this.expiredDate = expired_date; }
 
     public String getWebsite(){
         return website;
