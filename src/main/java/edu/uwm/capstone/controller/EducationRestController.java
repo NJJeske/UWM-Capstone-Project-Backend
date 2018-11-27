@@ -15,27 +15,26 @@ public class EducationRestController {
     private EducationDao service;
 
     // Get
-    @GetMapping("/education/{id}")
+    @RequestMapping(value = "/education/{id}", method = RequestMethod.GET)
     public Education retrieveEducation(@PathVariable long id) {
         return service.read(id);
     }
 
     // Post
-    @PostMapping("/education")
-    public void createEducation(@RequestBody Education education) {
-        service.create(education);
+    @RequestMapping(value = "/education", method = RequestMethod.POST)
+    public Education createEducation(@RequestBody Education education) {
+        return service.create(education);
     }
 
     // Delete
-    @DeleteMapping("/education/{id}")
-    public void deleteEducation(@RequestBody long id) {
+    @RequestMapping(value = "/education/{id}", method = RequestMethod.DELETE)
+    public void deleteEducation(@PathVariable long id) {
         service.delete(id);
     }
 
     // Put
-    @PutMapping("/education")
+    @RequestMapping(value = "/education", method = RequestMethod.PUT)
     public void updateEducation(@RequestBody Education education) {
         service.update(education);
     }
-
 }
