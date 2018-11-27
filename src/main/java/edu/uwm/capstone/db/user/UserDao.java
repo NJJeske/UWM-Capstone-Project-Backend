@@ -58,20 +58,6 @@ public class UserDao extends BaseDao<User> {
             return null;
         }
     }
-    
-    /**
-     * Retrieve a {@link User} object by its {@link User#id}.
-     * @param String email
-     * @return {@link User}
-     */
-    public User read_by_email(String email) {
-    	LOG.trace("Reading user {}", email);
-    	try {
-    		return (User) this.jdbcTemplate.queryForObject(sql("readUser"), new MapSqlParameterSource("email", email), rowMapper);
-    	} catch (EmptyResultDataAccessException e) {
-    		return null;
-    	}
-    }
 
     /**
      * Update the provided {@link User} object.
@@ -106,17 +92,4 @@ public class UserDao extends BaseDao<User> {
             throw new RuntimeException("Failed attempt to update user " + id + " affected " + result + " rows");
         }
     }
-    
-    /**
-     * Delete a {@link User} object by its {@link User#email}.
-     * @param String email
-     */
-    public void delete_by_email(String email) {
-        LOG.trace("Deleting user {}", email);
-        int result = this.jdbcTemplate.update(sql("deleteUser"), new MapSqlParameterSource("email", email));
-        if (result != 1) {
-            throw new RuntimeException("Failed attempt to update user " + email + " affected " + result + " rows");
-        }
-    }
-
 }
