@@ -1,5 +1,7 @@
 package edu.uwm.capstone.s3;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -26,7 +28,10 @@ public class DeleteBucket {
         String bucket_name = args[0];
 
         System.out.println("Deleting S3 bucket: " + bucket_name);
-        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAIAR6QLI6XLWJ4FWQ", "lHELWR4eRGlS0J9kPNS3S8AFYRouA+Jc1Mo2R+Qk");
+        final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
 
         try {
             System.out.println(" - removing objects from bucket");

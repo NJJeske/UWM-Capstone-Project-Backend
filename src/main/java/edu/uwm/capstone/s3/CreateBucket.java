@@ -1,5 +1,7 @@
 package edu.uwm.capstone.s3;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
@@ -8,7 +10,12 @@ import java.util.List;
 
 public class CreateBucket {
     public static Bucket getBucket(String bucket_name) {
-        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+
+        BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAIAR6QLI6XLWJ4FWQ", "lHELWR4eRGlS0J9kPNS3S8AFYRouA+Jc1Mo2R+Qk");
+        final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
+
         Bucket named_bucket = null;
         List<Bucket> buckets = s3.listBuckets();
         for (Bucket b : buckets) {
@@ -20,7 +27,12 @@ public class CreateBucket {
     }
 
     public static Bucket createBucket(String bucket_name) {
-        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+
+        BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAIAR6QLI6XLWJ4FWQ", "lHELWR4eRGlS0J9kPNS3S8AFYRouA+Jc1Mo2R+Qk");
+        final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
+
         Bucket b = null;
         if (s3.doesBucketExist(bucket_name)) {
             System.out.format("Bucket %s already exists.\n", bucket_name);

@@ -1,5 +1,9 @@
 package edu.uwm.capstone.s3;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -9,6 +13,7 @@ import java.util.Arrays;
 public class DeleteObjects {
     public static void main(String[] args)
     {
+
         final String USAGE = "\n" +
                 "To run this example, supply the name of an S3 bucket and at least\n" +
                 "one object name (key) to delete.\n" +
@@ -28,7 +33,11 @@ public class DeleteObjects {
             System.out.println(" * " + k);
         }
 
-        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAIAR6QLI6XLWJ4FWQ", "lHELWR4eRGlS0J9kPNS3S8AFYRouA+Jc1Mo2R+Qk");
+        final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
+
         try {
             DeleteObjectsRequest dor = new DeleteObjectsRequest(bucket_name)
                     .withKeys(object_keys);

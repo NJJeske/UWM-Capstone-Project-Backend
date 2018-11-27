@@ -1,5 +1,7 @@
 package edu.uwm.capstone.s3;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.AmazonServiceException;
@@ -25,7 +27,12 @@ public class PutObject {
         String key_name = Paths.get(file_path).getFileName().toString();
 
         System.out.format("Uploading %s to S3 bucket %s...\n", file_path, bucket_name);
-        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+
+        BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAIAR6QLI6XLWJ4FWQ", "lHELWR4eRGlS0J9kPNS3S8AFYRouA+Jc1Mo2R+Qk");
+        final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
+
         try {
             s3.putObject(bucket_name, key_name, new File(file_path));
         } catch (AmazonServiceException e) {

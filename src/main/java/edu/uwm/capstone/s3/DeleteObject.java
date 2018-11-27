@@ -1,5 +1,7 @@
 package edu.uwm.capstone.s3;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.AmazonServiceException;
@@ -23,7 +25,12 @@ public class DeleteObject {
 
         System.out.format("Deleting object %s from S3 bucket: %s\n", object_key,
                 bucket_name);
-        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+
+        BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAIAR6QLI6XLWJ4FWQ", "lHELWR4eRGlS0J9kPNS3S8AFYRouA+Jc1Mo2R+Qk");
+        final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
+
         try {
             s3.deleteObject(bucket_name, object_key);
         } catch (AmazonServiceException e) {
