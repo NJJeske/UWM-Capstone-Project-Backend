@@ -9,10 +9,10 @@ public class Company {
     protected Long id;
     private String name;
     private String address;
-    private String phone_number;
+    private String phoneNumber;
     private String website;
-    protected LocalDateTime created_date;
-    protected LocalDateTime updated_date;
+    protected LocalDateTime createdDate;
+    protected LocalDateTime updatedDate;
 
     public Long getId(){
         return id;
@@ -30,23 +30,23 @@ public class Company {
 
     public void setAddress(String address) { this.address = address;}
 
-    public String getPhoneNumber() {return phone_number; }
+    public String getPhoneNumber() {return phoneNumber; }
 
-    public void setPhoneNumber(String phone_number) { this.phone_number = phone_number;}
+    public void setPhoneNumber(String phone_number) { this.phoneNumber = phone_number;}
 
     public String getWebsite() {return website; }
 
     public void setWebsite(String website) { this.website = website;}
 
     public LocalDateTime getCreatedDate() {
-        return created_date;
+        return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime created_date) { this.created_date = created_date; }
+    public void setCreatedDate(LocalDateTime created_date) { this.createdDate = created_date; }
 
-    public LocalDateTime getUpdatedDate() { return updated_date; }
+    public LocalDateTime getUpdatedDate() { return updatedDate; }
 
-    public void setUpdatedDate(LocalDateTime updated_date) { this.updated_date = updated_date; }
+    public void setUpdatedDate(LocalDateTime updated_date) { this.updatedDate = updated_date; }
 
     @Override
     public boolean equals(Object object) {
