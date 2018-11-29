@@ -1,4 +1,6 @@
 package edu.uwm.capstone.controller;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import edu.uwm.capstone.db.user.UserDao;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +14,14 @@ public class UserRestController {
 	   
 	   /**
 	    * This endpoint is used to retrieve a user object by
-	    * their id.
-	    * @param long id
+	    * their email address.
+	    * @param String email
 	    * @return User
 	    */
-	    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-	    public User retrieveUser(@PathVariable long id) {
-	        return service.read(id);
+	    @RequestMapping(value = "/user/{email}", method = RequestMethod.GET)
+	    public User retrieveUser(@PathVariable String email) {
+	    	email.replaceAll("%40", "@");
+	        return service.read_by_email(email);
 	    }
 	   
 	   /**
@@ -33,13 +36,14 @@ public class UserRestController {
 	   
 	   /**
 	    * This endpoint is used to delete a user object from a
-	    * a table given an id.
-	    * @param long id
+	    * a table given an email address.
+	    * @param String email
 	    * @return void
 	    */
-	    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	    public void deleteUser(@PathVariable long id) {
-	        service.delete(id);
+	    @RequestMapping(value = "/user", method = RequestMethod.DELETE)
+	    public void deleteUser(@RequestBody Map<String, String> body) {
+	    	String email = body.get("email");
+	        service.delete_by_email(email);
 	    }
 	   
 	   /**

@@ -1,5 +1,8 @@
 package edu.uwm.capstone.controller;
 import edu.uwm.capstone.model.project.Project;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import edu.uwm.capstone.db.project.ProjectDao;
@@ -16,8 +19,19 @@ public class ProjectRestController {
 	* @return Project
 	*/
     @RequestMapping(value = "/project/{id}", method = RequestMethod.GET)
-    public Project retrieveProject(@PathVariable long id) {
+    public Project retrieveOne(@PathVariable long id) {
         return service.read(id);
+    }
+    
+    /**
+ 	* This endpoint is used to retrieve a project object by
+	* its id.
+	* @param long id
+	* @return Project
+	*/
+    @RequestMapping(value = "/project/readmany/{userid}", method = RequestMethod.GET)
+    public List<Project> retrieveMany(@PathVariable long userid) {
+        return service.readMany(userid);
     }
     
     /**
