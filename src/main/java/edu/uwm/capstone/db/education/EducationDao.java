@@ -1,6 +1,8 @@
 package edu.uwm.capstone.db.education;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +58,20 @@ public class EducationDao extends BaseDao<Education> {
         LOG.trace("Reading education {}", id);
         try {
             return (Education) this.jdbcTemplate.queryForObject(sql("readEducation"), new MapSqlParameterSource("id", id), rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    
+    /**
+     * Retrieve a list of {@link Education} objects by the {@link User#id} associated with it.
+     * @param userid long
+     * @return List<Map<String, Object>>
+     */
+    public List<Map<String, Object>> readMany(long userid) {
+        LOG.trace("Reading educations for user {}", userid);
+        try {
+            return this.jdbcTemplate.queryForList(sql("readManyEducations"), new MapSqlParameterSource("user_id", userid));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

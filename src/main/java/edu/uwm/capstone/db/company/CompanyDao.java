@@ -1,7 +1,13 @@
 package edu.uwm.capstone.db.company;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+
+import edu.uwm.capstone.db.education.User;
 import edu.uwm.capstone.model.company.Company;
+import edu.uwm.capstone.model.education.Education;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -54,6 +60,20 @@ public class CompanyDao extends BaseDao<Company> {
         LOG.trace("Reading company {}", id);
         try {
             return (Company) this.jdbcTemplate.queryForObject(sql("readCompany"), new MapSqlParameterSource("id", id), rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    
+    /**
+     * Retrieve a list of {@link Company} objects by the {@link User#id} associated with it.
+     * @param userid long
+     * @return List<Map<String, Object>>
+     */
+    public List<Map<String, Object>> readMany(long userid) {
+        LOG.trace("Reading companies for user {}", userid);
+        try {
+            return this.jdbcTemplate.queryForList(sql("readManyCompanies"), new MapSqlParameterSource("user_id", userid));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

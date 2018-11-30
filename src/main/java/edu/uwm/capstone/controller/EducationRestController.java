@@ -1,6 +1,10 @@
 package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.model.education.Education;
+
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +21,12 @@ public class EducationRestController {
     @RequestMapping(value = "/education/{id}", method = RequestMethod.GET)
     public Education retrieveEducation(@PathVariable long id) {
         return service.read(id);
+    }
+    
+    // Get many
+    @RequestMapping(value="/education/retrievemany/{userid}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveManyEducation(@PathVariable long userid) {
+        return service.readMany(userid);
     }
 
     // Post

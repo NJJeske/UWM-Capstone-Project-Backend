@@ -24,6 +24,9 @@ INSERT INTO certifications (
 --STATEMENT readCertification
 SELECT * FROM certifications WHERE id = :id;
 
+--STATEMENT readManyCertifications
+SELECT * FROM certifications WHERE user_id = :user_id;
+
 --STATEMENT deleteCertification
 DELETE FROM certifications WHERE id = :id;
 
