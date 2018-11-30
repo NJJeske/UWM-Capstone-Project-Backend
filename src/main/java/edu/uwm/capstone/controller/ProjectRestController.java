@@ -2,6 +2,7 @@ package edu.uwm.capstone.controller;
 import edu.uwm.capstone.model.project.Project;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class ProjectRestController {
 	* @return Project
 	*/
     @RequestMapping(value = "/project/readmany/{userid}", method = RequestMethod.GET)
-    public List<Project> retrieveMany(@PathVariable long userid) {
+    public List<Map<String, Object>> retrieveMany(@PathVariable long userid) {
         return service.readMany(userid);
     }
     
