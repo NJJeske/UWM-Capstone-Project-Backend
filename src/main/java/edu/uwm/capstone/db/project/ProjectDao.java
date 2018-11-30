@@ -2,6 +2,7 @@ package edu.uwm.capstone.db.project;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import edu.uwm.capstone.model.project.Project;
 import org.slf4j.Logger;
@@ -67,10 +68,10 @@ public class ProjectDao extends BaseDao<Project> {
      * @param id long
      * @return {@link Project}
      */
-    public List<Project> readMany(long userid) {
-        LOG.trace("Reading project {}", userid);
+    public List<Map<String, Object>> readMany(long userid) {
+        LOG.trace("Reading projects {}", userid);
         try {
-            return (List<Project>) this.jdbcTemplate.queryForObject(sql("readManyProject"), new MapSqlParameterSource("user_id", userid), rowMapper);
+            return this.jdbcTemplate.queryForList(sql("readManyProjects"), new MapSqlParameterSource("user_id", userid));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
