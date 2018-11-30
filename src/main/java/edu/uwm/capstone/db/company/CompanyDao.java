@@ -4,10 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import edu.uwm.capstone.db.education.User;
 import edu.uwm.capstone.model.company.Company;
-import edu.uwm.capstone.model.education.Education;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;

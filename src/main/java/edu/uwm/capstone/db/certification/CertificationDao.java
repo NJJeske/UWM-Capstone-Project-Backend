@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import edu.uwm.capstone.db.company.User;
 import edu.uwm.capstone.model.certification.Certification;
 import edu.uwm.capstone.model.company.Company;
 
