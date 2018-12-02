@@ -28,9 +28,6 @@ INSERT INTO users (
 --STATEMENT readUser
 SELECT * FROM users WHERE id = :id;
 
---STATEMENT readUserByFirstAndLast
-SELECT * FROM users WHERE first_name = :first_name AND last_name = :last_name;
-
 --STATEMENT deleteUser
 DELETE FROM users WHERE id = :id;
 
