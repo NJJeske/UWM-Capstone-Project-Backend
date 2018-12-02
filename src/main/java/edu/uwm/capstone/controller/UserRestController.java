@@ -21,6 +21,9 @@ public class UserRestController {
 	    @RequestMapping(value = "/user/{email}", method = RequestMethod.GET)
 	    public User retrieveUser(@PathVariable String email) {
 	    	email.replaceAll("%40", "@");
+	    	if (!email.contains(".com")) {
+	    		email += ".com";
+	    	}
 	        return service.read_by_email(email);
 	    }
 	   

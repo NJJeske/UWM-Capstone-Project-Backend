@@ -31,9 +31,6 @@ SELECT * FROM users WHERE id = :id;
 --STATEMENT readUserByEmail
 SELECT * FROM users WHERE email = :email;
 
---STATEMENT readUserByFirstAndLast
-SELECT * FROM users WHERE first_name = :first_name AND last_name = :last_name;
-
 --STATEMENT deleteUser
 DELETE FROM users WHERE id = :id;
 

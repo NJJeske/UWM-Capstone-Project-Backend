@@ -67,7 +67,7 @@ public class UserDao extends BaseDao<User> {
     public User read_by_email(String email) {
         LOG.trace("Reading user {}", email);
         try {
-            return (User) this.jdbcTemplate.queryForObject(sql("readUserByEmail"), new MapSqlParameterSource("email", "matthewflejter@aol.com"), rowMapper);
+            return (User) this.jdbcTemplate.queryForObject(sql("readUserByEmail"), new MapSqlParameterSource("email", email), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
