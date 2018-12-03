@@ -25,7 +25,7 @@ public class CompanyRestController {
     
     // Get many
     @RequestMapping(value="/company/retrievemany/{userid}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyCompany(@PathVariable long userid) {
+    public List<Map<String, Object>> retrieveManyCompanies(@PathVariable long userid) {
         return service.readMany(userid);
     }
 

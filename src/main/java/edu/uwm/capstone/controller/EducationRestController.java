@@ -25,7 +25,7 @@ public class EducationRestController {
     
     // Get many
     @RequestMapping(value="/education/retrievemany/{userid}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyEducation(@PathVariable long userid) {
+    public List<Map<String, Object>> retrieveManyEducations(@PathVariable long userid) {
         return service.readMany(userid);
     }
 

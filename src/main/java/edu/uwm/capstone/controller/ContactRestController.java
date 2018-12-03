@@ -2,6 +2,10 @@ package edu.uwm.capstone.controller;
 
 
 import edu.uwm.capstone.model.contact.Contact;
+
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import edu.uwm.capstone.db.contact.ContactDao;
@@ -22,6 +26,17 @@ public class ContactRestController {
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
     public Contact retrieveContact(@PathVariable long id) {
         return service.read(id);
+    }
+    
+    /**
+ 	* This endpoint is used to retrieve a contact object by
+	* its id.
+	* @param long userid
+	* @return Contact
+	*/
+    @RequestMapping(value = "/contact/retrievemany/{userid}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveManyContacts(@PathVariable long userid) {
+        return service.readMany(userid);
     }
 
     /**

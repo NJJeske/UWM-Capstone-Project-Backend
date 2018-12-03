@@ -1,6 +1,10 @@
 package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.model.address.Address;
+
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import edu.uwm.capstone.db.address.AddressDao;
@@ -21,6 +25,17 @@ public class AddressRestController {
     @RequestMapping(value = "/address/{id}", method = RequestMethod.GET)
     public Address retrieveAddress(@PathVariable long id) {
         return service.read(id);
+    }
+    
+    /**
+ 	* This endpoint is used to retrieve a project object by
+	* its id.
+	* @param long userid
+	* @return List<Map<String, Object>>
+	*/
+    @RequestMapping(value = "/address/retrievemany/{userid}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveManyAddresses(@PathVariable long userid) {
+        return service.readMany(userid);
     }
 
     /**

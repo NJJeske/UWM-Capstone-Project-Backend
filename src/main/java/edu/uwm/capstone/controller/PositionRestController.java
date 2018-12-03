@@ -3,6 +3,9 @@ package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.model.position.Position;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +27,17 @@ public class PositionRestController {
     @RequestMapping(value = "/position/{id}", method = RequestMethod.GET)
     public Position retrievePosition(@PathVariable long id) {
         return service.read(id);
+    }
+    
+    /**
+ 	* This endpoint is used to retrieve a position object by
+	* its id.
+	* @param long id
+	* @return Position
+	*/
+    @RequestMapping(value = "/position/retrievemany/{userid}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveManyPositions(@PathVariable long userid) {
+        return service.readMany(userid);
     }
 
     /**

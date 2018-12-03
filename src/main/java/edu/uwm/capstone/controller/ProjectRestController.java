@@ -28,9 +28,9 @@ public class ProjectRestController {
  	* This endpoint is used to retrieve a project object by
 	* its id.
 	* @param long id
-	* @return Project
+	* @return List<Map<String, Project>>
 	*/
-    @RequestMapping(value = "/project/readmany/{userid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/project/retrievemany/{userid}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveMany(@PathVariable long userid) {
         return service.readMany(userid);
     }

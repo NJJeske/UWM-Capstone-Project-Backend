@@ -25,7 +25,7 @@ public class CertificationRestController {
     
     // Get many
     @RequestMapping(value="/certification/retrievemany/{userid}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyCertification(@PathVariable long userid) {
+    public List<Map<String, Object>> retrieveManyCertifications(@PathVariable long userid) {
         return service.readMany(userid);
     }
 

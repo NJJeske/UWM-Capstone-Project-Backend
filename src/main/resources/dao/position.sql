@@ -24,6 +24,9 @@ INSERT INTO positions (
 --STATEMENT readPosition
 SELECT * FROM positions WHERE id = :id;
 
+--STATEMENT readManyPositions
+SELECT * FROM positions WHERE user_id = :user_id;
+
 --STATEMENT deletePosition
 DELETE FROM positions WHERE id = :id;
 
