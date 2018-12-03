@@ -10,14 +10,14 @@ public class User {
     private String email;
     private String password;
     private String title;
-    private String first_name;
-    private String middle_name;
-    private String last_name;
-    private String mobile_phone;
-    private String home_phone;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String mobilePhone;
+    private String homePhone;
     private String website;
-    protected LocalDateTime created_date;
-    protected LocalDateTime updated_date;
+    protected LocalDateTime createdDate;
+    protected LocalDateTime updatedDate;
 
     public Long getId(){ return id; }
 
@@ -50,43 +50,43 @@ public class User {
     }
 
     public String getFirstName(){
-        return first_name;
+        return firstName;
     }
 
     public void setFirstName(String first_name){
-        this.first_name = first_name;
+        this.firstName = first_name;
     }
 
     public String getMiddleName(){
-        return middle_name;
+        return middleName;
     }
 
     public void setMiddleName(String middle_name){
-        this.middle_name = middle_name;
+        this.middleName = middle_name;
     }
 
     public String getLastName(){
-        return last_name;
+        return lastName;
     }
 
     public void setLastName(String last_name){
-        this.last_name = last_name;
+        this.lastName = last_name;
     }
 
     public String getMobilePhone(){
-        return mobile_phone;
+        return mobilePhone;
     }
 
     public void setMobilePhone(String mobile_phone){
-        this.mobile_phone = mobile_phone;
+        this.mobilePhone = mobile_phone;
     }
 
     public String getHomePhone(){
-        return home_phone;
+        return homePhone;
     }
 
     public void setHomePhone(String home_phone){
-        this.home_phone = home_phone;
+        this.homePhone = home_phone;
     }
 
     public String getWebsite(){
@@ -98,14 +98,14 @@ public class User {
     }
 
     public LocalDateTime getCreatedDate() {
-        return created_date;
+        return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime created_date) { this.created_date = created_date; }
+    public void setCreatedDate(LocalDateTime created_date) { this.createdDate = created_date; }
 
-    public LocalDateTime getUpdatedDate() { return updated_date; }
+    public LocalDateTime getUpdatedDate() { return updatedDate; }
 
-    public void setUpdatedDate(LocalDateTime updated_date) { this.updated_date = updated_date; }
+    public void setUpdatedDate(LocalDateTime updated_date) { this.updatedDate = updated_date; }
 
     @Override
     public boolean equals(Object object) {

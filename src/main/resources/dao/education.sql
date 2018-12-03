@@ -22,6 +22,9 @@ INSERT INTO educations (
 --STATEMENT readEducation
 SELECT * FROM educations WHERE id = :id;
 
+--STATEMENT readManyEducations
+SELECT * FROM educations WHERE user_id = :user_id;
+
 --STATEMENT deleteEducation
 DELETE FROM educations WHERE id = :id;
 

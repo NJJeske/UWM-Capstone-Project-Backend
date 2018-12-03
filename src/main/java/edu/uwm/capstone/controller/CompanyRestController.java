@@ -1,6 +1,10 @@
 package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.model.company.Company;
+
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +21,12 @@ public class CompanyRestController {
     @RequestMapping(value = "/company/{id}", method = RequestMethod.GET)
     public Company retrieveCompany(@PathVariable long id) {
         return service.read(id);
+    }
+    
+    // Get many
+    @RequestMapping(value="/company/retrievemany/{userid}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveManyCompanies(@PathVariable long userid) {
+        return service.readMany(userid);
     }
 
     // Post

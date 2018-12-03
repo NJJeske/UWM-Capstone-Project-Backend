@@ -22,6 +22,9 @@ INSERT INTO contacts (
 --STATEMENT readContact
 SELECT * FROM contacts WHERE id = :id;
 
+--STATEMENT readManyContacts
+SELECT * FROM contacts WHERE user_id = :user_id;
+
 --STATEMENT deleteContact
 DELETE FROM contacts WHERE id = :id;
 
