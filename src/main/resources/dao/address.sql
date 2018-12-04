@@ -20,6 +20,9 @@ INSERT INTO addresses (
 --STATEMENT readAddress
 SELECT * FROM addresses WHERE id = :id;
 
+--STATEMENT readManyAddresses
+SELECT * FROM addresses WHERE user_id = :user_id;
+
 --STATEMENT deleteAddress
 DELETE FROM addresses WHERE id = :id;
 

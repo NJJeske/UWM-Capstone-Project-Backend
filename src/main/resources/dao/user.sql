@@ -28,11 +28,14 @@ INSERT INTO users (
 --STATEMENT readUser
 SELECT * FROM users WHERE id = :id;
 
---STATEMENT readUserByFirstAndLast
-SELECT * FROM users WHERE first_name = :first_name AND last_name = :last_name;
+--STATEMENT readUserByEmail
+SELECT * FROM users WHERE email = :email;
 
 --STATEMENT deleteUser
 DELETE FROM users WHERE id = :id;
+
+--STATEMENT deleteUserByEmail
+DELETE FROM users WHERE email = :email;
 
 --STATEMENT updateUser
 UPDATE users SET

@@ -18,6 +18,9 @@ INSERT INTO companies (
 --STATEMENT readCompany
 SELECT * FROM companies WHERE id = :id;
 
+--STATEMENT readManyCompanies
+SELECT * FROM companies WHERE user_id = :user_id;
+
 --STATEMENT deleteCompany
 DELETE FROM companies WHERE id = :id;
 

@@ -1,6 +1,7 @@
 package edu.uwm.capstone.db.contact;
 
 import edu.uwm.capstone.model.contact.Contact;
+import edu.uwm.capstone.model.project.Project;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 public class ContactDao extends BaseDao<Contact> {
 
@@ -56,6 +59,20 @@ public class ContactDao extends BaseDao<Contact> {
         LOG.trace("Reading contact {}", id);
         try {
             return (Contact) this.jdbcTemplate.queryForObject(sql("readContact"), new MapSqlParameterSource("id", id), rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    
+    /**
+     * Retrieve a list of {@link Contact} objects by the {@link User#id} associated with it.
+     * @param long userid
+     * @return List<Map<String, Object>>
+     */
+    public List<Map<String, Object>> readMany(long userid) {
+        LOG.trace("Reading contacts for user {}", userid);
+        try {
+            return this.jdbcTemplate.queryForList(sql("readManyContacts"), new MapSqlParameterSource("user_id", userid));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

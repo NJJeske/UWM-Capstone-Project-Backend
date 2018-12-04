@@ -22,6 +22,9 @@ INSERT INTO projects (
 --STATEMENT readProject
 SELECT * FROM projects WHERE id = :id;
 
+--STATEMENT readManyProjects
+SELECT * FROM projects WHERE user_id = :user_id;
+
 --STATEMENT deleteProject
 DELETE FROM projects WHERE id = :id;
 
