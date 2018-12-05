@@ -1,9 +1,6 @@
 package edu.uwm.capstone.controller;
 
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.*;
 
@@ -19,17 +16,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class S3RestController {
-    BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAIAR6QLI6XLWJ4FWQ", "lHELWR4eRGlS0J9kPNS3S8AFYRouA+Jc1Mo2R+Qk");
 
     @Autowired
-    final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-            .withCredentials(new AWSStaticCredentialsProvider(credentials))
-            .build();
+    private AmazonS3 s3;
 
     // Create bucket if user has not uploaded a file before, using the email as bucket name
     @RequestMapping(value = "/createBucket/{email}", method = RequestMethod.PUT)
     public void createBucket(@PathVariable String email){
-        if (this.s3.doesBucketExistV2(email) == false) {
+        if (!this.s3.doesBucketExistV2(email)) {
             try {
                 this.s3.createBucket(email);
             } catch (AmazonS3Exception e) {
@@ -59,7 +53,12 @@ public class S3RestController {
         List<S3ObjectSummary> objects = result.getObjectSummaries();
         String listOfFiles = "";
         for (S3ObjectSummary os: objects) {
-            listOfFiles += os.getKey() + "|";
+            if (listOfFiles.length() == 0){
+                listOfFiles += os.getKey();
+            }
+            else{
+                listOfFiles +=  "|" + os.getKey();
+            }
         }
         return listOfFiles;
     }
@@ -92,9 +91,6 @@ public class S3RestController {
             fos.close();
         } catch (AmazonServiceException e) {
             System.err.println(e.getErrorMessage());
-            System.exit(1);
-        } catch (FileNotFoundException e) {
-            System.err.println(e.getMessage());
             System.exit(1);
         } catch (IOException e) {
             System.err.println(e.getMessage());
