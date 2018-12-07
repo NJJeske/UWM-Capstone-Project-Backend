@@ -21,8 +21,8 @@ public class S3RestController {
     private AmazonS3 s3;
 
     // Create bucket if user has not uploaded a file before, using the email as bucket name
-    @RequestMapping(value = "/createBucket/{email}", method = RequestMethod.PUT)
-    public void createBucket(@PathVariable String email){
+    @RequestMapping(value = "/createBucket", method = RequestMethod.PUT)
+    public void createBucket(@RequestBody String email){
         if (!this.s3.doesBucketExistV2(email)) {
             try {
                 this.s3.createBucket(email);
@@ -33,8 +33,8 @@ public class S3RestController {
     }
 
     // Upload file from file path
-    @RequestMapping(value = "/uploadFile/{email}", method = RequestMethod.PUT)
-    public void uploadFile(@RequestBody String filePath, @PathVariable String email) {
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.PUT)
+    public void uploadFile(@RequestBody String filePath, @RequestBody String email) {
         String fileName = Paths.get(filePath).getFileName().toString();
 
         try {
@@ -47,8 +47,8 @@ public class S3RestController {
     }
 
     // List the objects delimited by '|'
-    @RequestMapping(value = "/listFiles/{email}", method = RequestMethod.GET)
-    public String listFiles(@PathVariable String email){
+    @RequestMapping(value = "/listFiles", method = RequestMethod.GET)
+    public String listFiles(@RequestBody String email){
         ListObjectsV2Result result = s3.listObjectsV2(email);
         List<S3ObjectSummary> objects = result.getObjectSummaries();
         String listOfFiles = "";
@@ -64,8 +64,8 @@ public class S3RestController {
     }
 
     // Delete file from provided path
-    @RequestMapping(value = "/deleteFile/{email}", method = RequestMethod.DELETE)
-    public void deleteFile(@RequestBody String filePath, @PathVariable String email){
+    @RequestMapping(value = "/deleteFile", method = RequestMethod.DELETE)
+    public void deleteFile(@RequestBody String filePath, @RequestBody String email){
         String fileName = Paths.get(filePath).getFileName().toString();
         try {
             s3.deleteObject(email, fileName);
@@ -76,8 +76,8 @@ public class S3RestController {
     }
 
     // Download file with specified name
-    @RequestMapping(value = "/getFile/{email}", method = RequestMethod.GET)
-    public void getFile(@RequestBody String fileName, @PathVariable String email){
+    @RequestMapping(value = "/getFile", method = RequestMethod.GET)
+    public void getFile(@RequestBody String fileName, @RequestBody String email){
         try {
             S3Object o = s3.getObject(email, fileName);
             S3ObjectInputStream s3is = o.getObjectContent();
