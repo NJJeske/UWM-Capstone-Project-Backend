@@ -36,11 +36,26 @@ import edu.uwm.capstone.sql.statement.SqlStatementsFileLoader;
 import edu.uwm.capstone.util.Concatenation;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import com.auth0.spring.security.api.JwtWebSecurityConfigurer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import java.util.Arrays;
 
 @Configuration
 @ConfigurationProperties(prefix = "service")
+@EnableWebSecurity
 @EnableSwagger2
-public class ApplicationConfig {
+public class ApplicationConfig extends WebSecurityConfigurerAdapter{
+
+    //@Value(value = "https://uwm-capstone.auth0")
+    private String apiAudience = "https://uwm-capstone.auth0/";
+    //@Value(value = "https://uwm-capstone.auth0.com/")
+    private String issuer = "https://uwm-capstone.auth0.com/";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationConfig.class);
 
@@ -55,6 +70,31 @@ public class ApplicationConfig {
     protected boolean dbPoolLogabandoned;
     protected long dbPoolMaxage;
     protected String sqlStatementsResourceLocation;
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8333"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "DELETE", "PUT"));
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedHeader("Authorization");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
+    @Override
+    // All requests to our API must be accompanied by a bearer token, otherwise 401 unauthorized
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors();
+        JwtWebSecurityConfigurer
+                .forRS256(apiAudience, issuer)
+                .configure(http)
+                .authorizeRequests()
+                .antMatchers("/certification/**", "/education/**", "/company/**", "/position/**", "/project/**","/user/**","/address/**","/contact/**")
+                //.anyRequest()
+                .authenticated();
+    }
 
     @Bean
     RestTemplate restTemplate() {

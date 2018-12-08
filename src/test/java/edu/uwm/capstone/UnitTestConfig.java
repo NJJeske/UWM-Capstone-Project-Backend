@@ -10,8 +10,10 @@ import org.springframework.context.annotation.*;
 
 import springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper;
 import springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider;
+import org.springframework.core.annotation.Order;
 
 @Configuration
+@Order(1000)
 @ConfigurationProperties(prefix = "service")
 @EnableAutoConfiguration
 @PropertySources({ @PropertySource("classpath:application.properties"), @PropertySource("classpath:test.properties") })
