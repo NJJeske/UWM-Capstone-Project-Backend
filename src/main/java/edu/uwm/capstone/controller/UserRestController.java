@@ -42,7 +42,7 @@ public class UserRestController {
 			String email = AuthHelper.getEmailFromAccessToken(token);
 			User u = new User();
 			u.setEmail(email);
-	        return service.create(user);
+	        return service.create(u);
 	    }
 	   
 	   /**
