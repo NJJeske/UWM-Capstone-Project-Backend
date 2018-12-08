@@ -16,8 +16,6 @@ import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Null;
-
 @RestController
 public class S3RestController {
 
@@ -66,7 +64,7 @@ public class S3RestController {
      * @param filePath {String}
      * @param userId {Long}
      */
-    @RequestMapping(value = "/document/{id}")
+    @RequestMapping(value = "/document/{id}", method = RequestMethod.PUT)
     public void updateDocument(@RequestBody String filePath, @RequestBody Long userId, @PathVariable long id){
         String fileName = Paths.get(filePath).getFileName().toString();
         String email = user.read(userId).getEmail();
@@ -98,7 +96,7 @@ public class S3RestController {
      * @return Document
      */
     @RequestMapping(value = "document/{id}", method = RequestMethod.GET)
-    public Document getFile(@RequestBody Long userId, @PathVariable long id){
+    public Document getFile(@RequestHeader Long userId, @PathVariable long id){
         String email = user.read(userId).getEmail();
         String fileName = service.read(id).getName();
 
@@ -129,7 +127,7 @@ public class S3RestController {
      * @return List<Map<String, Object>>
      */
     @RequestMapping(value = "/document/retrievemany", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveFiles(@RequestBody long userId){
+    public List<Map<String, Object>> retrieveFiles(@RequestHeader long userId){
         return service.readMany(userId);
     }
 
@@ -139,7 +137,7 @@ public class S3RestController {
      * @param id {Long}
      */
     @RequestMapping(value = "/document/{id}", method = RequestMethod.DELETE)
-    public void deleteFile(@RequestBody Long userId, @PathVariable long id){
+    public void deleteFile(@RequestHeader Long userId, @PathVariable long id){
         String email = user.read(userId).getEmail();
         String fileName = service.read(id).getName();
             try {
