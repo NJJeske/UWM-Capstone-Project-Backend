@@ -1,18 +1,22 @@
 package edu.uwm.capstone.controller;
 
+import edu.uwm.capstone.model.document.Document;
+import edu.uwm.capstone.db.document.DocumentDao;
+import edu.uwm.capstone.db.user.UserDao;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.*;
-
-import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Map;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.io.File;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Null;
 
 @RestController
 public class S3RestController {
@@ -20,9 +24,24 @@ public class S3RestController {
     @Autowired
     private AmazonS3 s3;
 
-    // Create bucket if user has not uploaded a file before, using the email as bucket name
-    @RequestMapping(value = "/createBucket", method = RequestMethod.PUT)
-    public void createBucket(@RequestBody String email){
+    @Autowired
+    private DocumentDao service;
+
+    @Autowired
+    private UserDao user;
+
+    /**
+     * This endpoint is used to create a document object and store
+     * the document in s3 using local filePath and userId to get email for bucket name.
+     * @param filePath {String}
+     * @param userId {Long}
+     */
+    @RequestMapping(value = "/document", method = RequestMethod.POST)
+    public void uploadFile(@RequestBody String filePath, @RequestBody Long userId) {
+        String fileName = Paths.get(filePath).getFileName().toString();
+        String email = user.read(userId).getEmail();
+        Document document = new Document();
+
         if (!this.s3.doesBucketExistV2(email)) {
             try {
                 this.s3.createBucket(email);
@@ -30,12 +49,6 @@ public class S3RestController {
                 System.err.println(e.getErrorMessage());
             }
         }
-    }
-
-    // Upload file from file path
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.PUT)
-    public void uploadFile(@RequestBody String filePath, @RequestBody String email) {
-        String fileName = Paths.get(filePath).getFileName().toString();
 
         try {
             s3.putObject(email, fileName, new File(filePath));
@@ -44,40 +57,51 @@ public class S3RestController {
             System.err.println(e.getErrorMessage());
             System.exit(1);
         }
+        service.create(document);
     }
 
-    // List the objects delimited by '|'
-    @RequestMapping(value = "/listFiles", method = RequestMethod.GET)
-    public String listFiles(@RequestBody String email){
-        ListObjectsV2Result result = s3.listObjectsV2(email);
-        List<S3ObjectSummary> objects = result.getObjectSummaries();
-        String listOfFiles = "";
-        for (S3ObjectSummary os: objects) {
-            if (listOfFiles.length() == 0){
-                listOfFiles += os.getKey();
+    /**
+     * This endpoint is used to update a document object if the document
+     * already exists in the bucket from email gotten from userID else create the document
+     * @param filePath {String}
+     * @param userId {Long}
+     */
+    @RequestMapping(value = "/document/{id}")
+    public void updateDocument(@RequestBody String filePath, @RequestBody Long userId, @PathVariable long id){
+        String fileName = Paths.get(filePath).getFileName().toString();
+        String email = user.read(userId).getEmail();
+        Document document = service.read(id);
+
+
+        try {
+            S3Object o = s3.getObject(email, fileName);
+            if(o != null) {
+                s3.putObject(email, fileName, new File(filePath));
+                service.update(document);
             }
             else{
-                listOfFiles +=  "|" + os.getKey();
+                s3.putObject(email, fileName, new File(filePath));
+                service.create(document);
             }
-        }
-        return listOfFiles;
-    }
 
-    // Delete file from provided path
-    @RequestMapping(value = "/deleteFile", method = RequestMethod.DELETE)
-    public void deleteFile(@RequestBody String filePath, @RequestBody String email){
-        String fileName = Paths.get(filePath).getFileName().toString();
-        try {
-            s3.deleteObject(email, fileName);
-        } catch (AmazonServiceException e) {
+        } catch (
+                AmazonServiceException e) {
             System.err.println(e.getErrorMessage());
             System.exit(1);
         }
     }
 
-    // Download file with specified name
-    @RequestMapping(value = "/getFile", method = RequestMethod.GET)
-    public void getFile(@RequestBody String fileName, @RequestBody String email){
+    /**
+     * This endpoint is used to get a document object and download the corresponding document from s3
+     * @param userId {Long}
+     * @param id {Long}
+     * @return Document
+     */
+    @RequestMapping(value = "document/{id}", method = RequestMethod.GET)
+    public Document getFile(@RequestBody Long userId, @PathVariable long id){
+        String email = user.read(userId).getEmail();
+        String fileName = service.read(id).getName();
+
         try {
             S3Object o = s3.getObject(email, fileName);
             S3ObjectInputStream s3is = o.getObjectContent();
@@ -96,17 +120,34 @@ public class S3RestController {
             System.err.println(e.getMessage());
             System.exit(1);
         }
+        return service.read(id);
     }
 
-    // Helper function in order to get bucket using email
-    public Bucket getBucket(String bucketName) {
-        Bucket namedBucket = null;
-        List<Bucket> buckets = s3.listBuckets();
-        for (Bucket b : buckets) {
-            if (b.getName().equals(bucketName)) {
-                namedBucket = b;
-            }
+    /**
+     * This endpoint is used to get a list of all document objects with userId
+     * @param userId {Long}
+     * @return List<Map<String, Object>>
+     */
+    @RequestMapping(value = "/document/retrievemany", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveFiles(@RequestBody long userId){
+        return service.readMany(userId);
+    }
+
+    /**
+     * This endpoint is used to delete document object with id from db and s3
+     * @param userId {Long}
+     * @param id {Long}
+     */
+    @RequestMapping(value = "/document/{id}", method = RequestMethod.DELETE)
+    public void deleteFile(@RequestBody Long userId, @PathVariable long id){
+        String email = user.read(userId).getEmail();
+        String fileName = service.read(id).getName();
+            try {
+            s3.deleteObject(email, fileName);
+        } catch (AmazonServiceException e) {
+            System.err.println(e.getErrorMessage());
+            System.exit(1);
         }
-        return namedBucket;
+        service.delete(id);
     }
 }

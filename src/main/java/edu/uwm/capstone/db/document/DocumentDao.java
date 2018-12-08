@@ -1,7 +1,11 @@
 package edu.uwm.capstone.db.document;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+
 import edu.uwm.capstone.model.document.Document;
+import edu.uwm.capstone.model.education.Education;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -54,6 +58,20 @@ public class DocumentDao extends BaseDao<Document> {
         LOG.trace("Reading Document {}", id);
         try {
             return (Document) this.jdbcTemplate.queryForObject(sql("readDocument"), new MapSqlParameterSource("id", id), rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieve a list of {@link Document} objects by the {@link Document#id} associated with it.
+     * @param userid long
+     * @return List<Map<String, Object>>
+     */
+    public List<Map<String, Object>> readMany(long userid) {
+        LOG.trace("Reading documents for user {}", userid);
+        try {
+            return this.jdbcTemplate.queryForList(sql("readManyDocuemnts"), new MapSqlParameterSource("user_id", userid));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

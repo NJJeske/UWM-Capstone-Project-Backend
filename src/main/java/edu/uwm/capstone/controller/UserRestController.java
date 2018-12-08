@@ -17,7 +17,7 @@ public class UserRestController {
 	   /**
 	    * This endpoint is used to retrieve a user object by
 	    * their email address.
-	    * @param String email
+	    * @param token {String}
 	    * @return User
 	    */
 	    @RequestMapping(value = "/user", method = RequestMethod.GET)
@@ -31,8 +31,7 @@ public class UserRestController {
 
 	   /**
 	    * This endpoint is used to create a new user object.
-	    * @param User user
-	    * @return void
+	    * @param user {User}
 	    */
 	    @RequestMapping(value = "/user", method = RequestMethod.POST)
 	    public User createUser(@RequestBody User user) {
@@ -42,8 +41,7 @@ public class UserRestController {
 	   /**
 	    * This endpoint is used to delete a user object from a
 	    * a table given an email address.
-	    * @param String email
-	    * @return void
+	    * @param {Map<String, String} body
 	    */
 	    @RequestMapping(value = "/user", method = RequestMethod.DELETE)
 	    public void deleteUser(@RequestBody Map<String, String> body) {
@@ -53,8 +51,7 @@ public class UserRestController {
 	   
 	   /**
 	    * This endpoint is used to update a user object
-	    * @param User user
-	    * @return void
+	    * @param user {User}
 	    */
 	    @RequestMapping(value = "/user", method = RequestMethod.PUT)
 	    public void updateUser(@RequestBody User user) {

@@ -16,7 +16,7 @@ public class ProjectRestController {
     /**
  	* This endpoint is used to retrieve a project object by
 	* its id.
-	* @param long id
+	* @param id {Long}
 	* @return Project
 	*/
     @RequestMapping(value = "/project/{id}", method = RequestMethod.GET)
@@ -27,17 +27,17 @@ public class ProjectRestController {
     /**
  	* This endpoint is used to retrieve a project object by
 	* its id.
-	* @param long id
+	* @param userId {Long}
 	* @return List<Map<String, Project>>
 	*/
-    @RequestMapping(value = "/project/retrievemany/{userid}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveMany(@PathVariable long userid) {
-        return service.readMany(userid);
+    @RequestMapping(value = "/project/retrievemany/{userId}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveMany(@PathVariable long userId) {
+        return service.readMany(userId);
     }
     
     /**
 	* This endpoint is used to create a project object.
-	* @param Project project
+	* @param project {Project}
 	* @return Project
 	*/
     @RequestMapping(value = "/project", method = RequestMethod.POST)
@@ -48,8 +48,7 @@ public class ProjectRestController {
     /**
 	* This endpoint is used to delete a project object by
 	* its id.
-	* @param long id
-	* @return void
+	* @param id {Long}
 	*/
     @RequestMapping(value = "/project/{id}", method = RequestMethod.DELETE)
     public void deleteProject(@PathVariable long id) {
@@ -58,8 +57,7 @@ public class ProjectRestController {
     
     /**
 	* This endpoint is used to update a project object.
-	* @param Project project
-	* @return void
+	* @param project {Project}
 	*/
     @RequestMapping(value = "/project", method = RequestMethod.PUT)
     public void updateProject(@RequestBody Project project) {
