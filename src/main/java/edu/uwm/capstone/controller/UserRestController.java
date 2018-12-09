@@ -34,8 +34,14 @@ public class UserRestController {
 	    * @param user {User}
 	    */
 	    @RequestMapping(value = "/user", method = RequestMethod.POST)
-	    public User createUser(@RequestBody User user) {
-	        return service.create(user);
+	    public User createUser(@RequestHeader(value="Authorization") String token) {
+			if(token.contains("Bearer ")) {
+	    		token = token.replace("Bearer", "");
+			}
+			String email = AuthHelper.getEmailFromAccessToken(token);
+			User u = new User();
+			u.setEmail(email);
+	        return service.create(u);
 	    }
 	   
 	   /**
