@@ -16,6 +16,9 @@ INSERT INTO documents (
 --STATEMENT readDocument
 SELECT * FROM documents WHERE id = :id;
 
+--STATEMENT readManyEducations
+SELECT * FROM documents WHERE user_id = :user_id;
+
 --STATEMENT deleteDocument
 DELETE FROM documents WHERE id = :id;
 

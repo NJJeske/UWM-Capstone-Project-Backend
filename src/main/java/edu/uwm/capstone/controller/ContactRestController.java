@@ -20,7 +20,7 @@ public class ContactRestController {
     /**
  	* This endpoint is used to retrieve a contact object by
 	* its id.
-	* @param long id
+	* @param id {Long}
 	* @return Contact
 	*/
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
@@ -31,17 +31,17 @@ public class ContactRestController {
     /**
  	* This endpoint is used to retrieve a contact object by
 	* its id.
-	* @param long userid
+	* @param userId {Long}
 	* @return Contact
 	*/
-    @RequestMapping(value = "/contact/retrievemany/{userid}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyContacts(@PathVariable long userid) {
-        return service.readMany(userid);
+    @RequestMapping(value = "/contact/retrievemany/{userId}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveManyContacts(@PathVariable long userId) {
+        return service.readMany(userId);
     }
 
     /**
 	* This endpoint is used to create a contact object.
-	* @param Contact contact
+	* @param contact {Contact}
 	* @return Contact
 	*/
     @RequestMapping(value = "/contact", method = RequestMethod.POST)
@@ -52,8 +52,7 @@ public class ContactRestController {
     /**
 	* This endpoint is used to delete a contact object by
 	* its id.
-	* @param long id
-	* @return void
+	* @param id {Long}
 	*/
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.DELETE)
     public void deleteContact(@PathVariable long id) {
@@ -62,8 +61,7 @@ public class ContactRestController {
 
     /**
 	* This endpoint is used to update a contact object.
-	* @param Contact contact
-	* @return void
+	* @param contact {Contact}
 	*/
     @RequestMapping(value = "/contact", method = RequestMethod.PUT)
     public void updateContact(@RequestBody Contact contact) {

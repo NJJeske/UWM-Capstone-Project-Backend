@@ -19,7 +19,7 @@ public class AddressRestController {
     /**
  	* This endpoint is used to retrieve a address object by
 	* its id.
-	* @param long id
+	* @param id {Long}
 	* @return Address
 	*/
     @RequestMapping(value = "/address/{id}", method = RequestMethod.GET)
@@ -30,17 +30,17 @@ public class AddressRestController {
     /**
  	* This endpoint is used to retrieve a project object by
 	* its id.
-	* @param long userid
+	* @param userId {Long}
 	* @return List<Map<String, Object>>
 	*/
-    @RequestMapping(value = "/address/retrievemany/{userid}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyAddresses(@PathVariable long userid) {
-        return service.readMany(userid);
+    @RequestMapping(value = "/address/retrievemany/{userId}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveManyAddresses(@PathVariable long userId) {
+        return service.readMany(userId);
     }
 
     /**
 	* This endpoint is used to create a address object.
-	* @param Address address
+	* @param address {Address}
 	* @return Address
 	*/
     @RequestMapping(value = "/address", method = RequestMethod.POST)
@@ -51,8 +51,7 @@ public class AddressRestController {
     /**
 	* This endpoint is used to delete a address object by
 	* its id.
-	* @param long id
-	* @return void
+	* @param id {Long}
 	*/
     @RequestMapping(value = "/address/{id}", method = RequestMethod.DELETE)
     public void deleteAddress(@PathVariable long id) {
@@ -61,8 +60,7 @@ public class AddressRestController {
 
     /**
 	* This endpoint is used to update a address object.
-	* @param Address address
-	* @return void
+	* @param address {Address}
 	*/
     @RequestMapping(value = "/address", method = RequestMethod.PUT)
     public void updateAddress(@RequestBody Address address) {

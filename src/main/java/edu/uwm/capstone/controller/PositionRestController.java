@@ -21,7 +21,7 @@ public class PositionRestController {
     /**
  	* This endpoint is used to retrieve a position object by
 	* its id.
-	* @param long id
+	* @param id {Long}
 	* @return Position
 	*/
     @RequestMapping(value = "/position/{id}", method = RequestMethod.GET)
@@ -32,17 +32,17 @@ public class PositionRestController {
     /**
  	* This endpoint is used to retrieve a position object by
 	* its id.
-	* @param long id
+	* @param userId {Long}
 	* @return Position
 	*/
-    @RequestMapping(value = "/position/retrievemany/{userid}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyPositions(@PathVariable long userid) {
-        return service.readMany(userid);
+    @RequestMapping(value = "/position/retrievemany/{userId}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveManyPositions(@PathVariable long userId) {
+        return service.readMany(userId);
     }
 
     /**
 	* This endpoint is used to create a position object.
-	* @param Position position
+	* @param position {Position}
 	* @return Position
 	*/
     @RequestMapping(value = "/position", method = RequestMethod.POST)
@@ -53,8 +53,7 @@ public class PositionRestController {
     /**
 	* This endpoint is used to delete a position object by
 	* its id.
-	* @param long id
-	* @return void
+	* @param id {Long}
 	*/
     @RequestMapping(value = "/position/{id}", method = RequestMethod.DELETE)
     public void deletePosition(@PathVariable long id) {
@@ -63,8 +62,7 @@ public class PositionRestController {
 
     /**
 	* This endpoint is used to update a position object.
-	* @param Position position
-	* @return void
+	* @param position {Position}
 	*/
     @RequestMapping(value = "/position", method = RequestMethod.PUT)
     public void updatePosition(@RequestBody Position position) {
