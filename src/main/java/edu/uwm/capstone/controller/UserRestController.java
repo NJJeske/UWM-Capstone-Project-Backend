@@ -25,7 +25,7 @@ public class UserRestController {
 	    		token = token.replace("Bearer ", "");
 			}
 			String email = AuthHelper.getEmailFromAccessToken(token);
-	        return service.read_by_email(email);
+	        return service.readByEmail(email);
 	    }
 
 	   /**
