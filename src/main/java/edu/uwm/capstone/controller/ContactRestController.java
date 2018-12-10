@@ -25,10 +25,10 @@ public class ContactRestController {
     }
     
     /**
- 	* This endpoint is used to retrieve a contact object by
-	* its id.
+ 	* This endpoint is used to retrieve a list of contact objects by
+	* its userId.
 	* @param userId {Long}
-	* @return Contact
+	* @return List<Map<String, Object>>
 	*/
     @RequestMapping(value = "/contact/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveManyContacts(@PathVariable long userId) {

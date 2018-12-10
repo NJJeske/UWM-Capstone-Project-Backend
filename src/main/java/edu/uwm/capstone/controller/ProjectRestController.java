@@ -25,8 +25,8 @@ public class ProjectRestController {
     }
     
     /**
- 	* This endpoint is used to retrieve a project object by
-	* its id.
+ 	* This endpoint is used to retrieve a list of project objects by
+	* its userId.
 	* @param userId {Long}
 	* @return List<Map<String, Project>>
 	*/

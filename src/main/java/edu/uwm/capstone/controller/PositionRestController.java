@@ -30,10 +30,10 @@ public class PositionRestController {
     }
     
     /**
- 	* This endpoint is used to retrieve a position object by
+ 	* This endpoint is used to retrieve a list of position objects by
 	* its id.
 	* @param userId {Long}
-	* @return Position
+	* @return List<Map<String, Object>>
 	*/
     @RequestMapping(value = "/position/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveManyPositions(@PathVariable long userId) {

@@ -13,31 +13,52 @@ public class CompanyRestController {
     @Autowired
     private CompanyDao service;
 
-    // Get
+    /**
+     * This endpoint is used to retrieve a company object by
+     * its id.
+     * @param id {Long}
+     * @return company
+     */
     @RequestMapping(value = "/company/{id}", method = RequestMethod.GET)
     public Company retrieveCompany(@PathVariable long id) {
         return service.read(id);
     }
-    
-    // Get many
+
+    /**
+     * This endpoint is used to retrieve a list of company objects by
+     * its userId.
+     * @param userId {Long}
+     * @return List<Map<String, Object>>
+     */
     @RequestMapping(value="/company/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveManyCompanies(@PathVariable long userId) {
         return service.readMany(userId);
     }
 
-    // Post
+    /**
+     * This endpoint is used to create a company object.
+     * @param company {Company}
+     * @return Company
+     */
     @RequestMapping(value = "/company", method = RequestMethod.POST)
     public Company createCompany(@RequestBody Company company) {
         return service.create(company);
     }
 
-    // Delete
+    /**
+     * This endpoint is used to delete a company object by
+     * its id.
+     * @param id {Long}
+     */
     @RequestMapping(value = "/company/{id}", method = RequestMethod.DELETE)
     public void deleteCompany(@PathVariable long id) {
         service.delete(id);
     }
 
-    // Put
+    /**
+     * This endpoint is used to update a company object.
+     * @param company {Company}
+     */
     @RequestMapping(value = "/company", method = RequestMethod.PUT)
     public void updateCompany(@RequestBody Company company) {
         service.update(company);

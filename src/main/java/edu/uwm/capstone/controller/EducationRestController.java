@@ -13,31 +13,52 @@ public class EducationRestController {
     @Autowired
     private EducationDao service;
 
-    // Get
+    /**
+     * This endpoint is used to retrieve a education object by
+     * its id.
+     * @param id {Long}
+     * @return Education
+     */
     @RequestMapping(value = "/education/{id}", method = RequestMethod.GET)
     public Education retrieveEducation(@PathVariable long id) {
         return service.read(id);
     }
-    
-    // Get many
+
+    /**
+     * This endpoint is used to retrieve a list of education objects by
+     * its userId.
+     * @param userId {Long}
+     * @return List<Map<String, Object>>
+     */
     @RequestMapping(value="/education/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveManyEducations(@PathVariable long userId) {
         return service.readMany(userId);
     }
 
-    // Post
+    /**
+     * This endpoint is used to create an education object.
+     * @param education {Education}
+     * @return Education
+     */
     @RequestMapping(value = "/education", method = RequestMethod.POST)
     public Education createEducation(@RequestBody Education education) {
         return service.create(education);
     }
 
-    // Delete
+    /**
+     * This endpoint is used to delete an education object by
+     * its id.
+     * @param id {Long}
+     */
     @RequestMapping(value = "/education/{id}", method = RequestMethod.DELETE)
     public void deleteEducation(@PathVariable long id) {
         service.delete(id);
     }
 
-    // Put
+    /**
+     * This endpoint is used to update a contact object.
+     * @param education {Education}
+     */
     @RequestMapping(value = "/education", method = RequestMethod.PUT)
     public void updateEducation(@RequestBody Education education) {
         service.update(education);
