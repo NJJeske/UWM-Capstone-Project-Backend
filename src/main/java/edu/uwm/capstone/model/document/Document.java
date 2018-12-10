@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Document {
     protected Long id;
-    protected Long user_id;
+    protected Long user_ID;
     protected LocalDateTime created_date;
     protected LocalDateTime updated_date;
     private String name;
@@ -19,9 +19,9 @@ public class Document {
         this.id = id;
     }
 
-    public Long getUserId(){ return user_id; }
+    public Long getUserId(){ return user_ID; }
 
-    public void setUserId(Long user_id){ this.user_id = user_id; }
+    public void setUserId(Long user_id){ this.user_ID = user_id; }
 
     public LocalDateTime getCreatedDate() {
         return created_date;

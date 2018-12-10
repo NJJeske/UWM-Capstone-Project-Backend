@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Position {
     protected Long id;
     private String name;
-    protected Long company_id;
+    protected Long company_ID;
     private String description;
     protected LocalDateTime created_date;
     protected LocalDateTime updated_date;
@@ -30,9 +30,9 @@ public class Position {
 
     public void setName(String name) { this.name = name;}
 
-    public Long getCompanyId(){ return company_id; }
+    public Long getCompanyId(){ return company_ID; }
 
-    public void setCompanyId(Long company_id) { this.company_id = company_id; }
+    public void setCompanyId(Long company_id) { this.company_ID = company_id; }
 
     public String getDescription() {return description; }
 
