@@ -33,7 +33,6 @@ import edu.uwm.capstone.db.user.UserDao;
 import edu.uwm.capstone.db.user.UserDaoRowMapper;
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
 import edu.uwm.capstone.sql.statement.SqlStatementsFileLoader;
-import edu.uwm.capstone.util.Concatenation;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import com.auth0.spring.security.api.JwtWebSecurityConfigurer;
@@ -99,11 +98,6 @@ public class ApplicationConfig extends WebSecurityConfigurerAdapter{
     @Bean
     RestTemplate restTemplate() {
         return new RestTemplate();
-    }
-
-    @Bean
-    Concatenation concatenation() {
-        return new Concatenation();
     }
 
     @Bean
