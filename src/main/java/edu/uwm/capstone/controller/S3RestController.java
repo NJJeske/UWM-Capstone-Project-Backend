@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.io.File;
-
+import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +39,9 @@ public class S3RestController {
         String fileName = Paths.get(filePath).getFileName().toString();
         String email = user.read(userId).getEmail();
         Document document = new Document();
+        document.setName(fileName);
+        document.setPath(filePath);
+        document.setUpdatedDate(LocalDateTime.now());
 
         if (!this.s3.doesBucketExistV2(email)) {
             try {
@@ -63,13 +66,16 @@ public class S3RestController {
      * already exists in the bucket from email gotten from userID else create the document
      * @param filePath {String}
      * @param userId {Long}
+     * @param id {Long}
      */
     @RequestMapping(value = "/document/{id}", method = RequestMethod.PUT)
     public void updateDocument(@RequestBody String filePath, @RequestBody Long userId, @PathVariable long id){
         String fileName = Paths.get(filePath).getFileName().toString();
         String email = user.read(userId).getEmail();
         Document document = service.read(id);
-
+        document.setName(fileName);
+        document.setPath(filePath);
+        document.setUpdatedDate(LocalDateTime.now());
 
         try {
             S3Object o = s3.getObject(email, fileName);
@@ -96,7 +102,7 @@ public class S3RestController {
      * @return Document
      */
     @RequestMapping(value = "document/{id}", method = RequestMethod.GET)
-    public Document getFile(@RequestHeader Long userId, @PathVariable long id){
+    public Document getFile(@RequestBody Long userId, @PathVariable long id){
         String email = user.read(userId).getEmail();
         String fileName = service.read(id).getName();
 
@@ -126,8 +132,8 @@ public class S3RestController {
      * @param userId {Long}
      * @return List<Map<String, Object>>
      */
-    @RequestMapping(value = "/document/retrievemany", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveFiles(@RequestHeader long userId){
+    @RequestMapping(value = "/document/retrievemany/{userId}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveFiles(@PathVariable long userId){
         return service.readMany(userId);
     }
 
@@ -137,7 +143,7 @@ public class S3RestController {
      * @param id {Long}
      */
     @RequestMapping(value = "/document/{id}", method = RequestMethod.DELETE)
-    public void deleteFile(@RequestHeader Long userId, @PathVariable long id){
+    public void deleteFile(@RequestBody Long userId, @PathVariable long id){
         String email = user.read(userId).getEmail();
         String fileName = service.read(id).getName();
             try {

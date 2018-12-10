@@ -1,14 +1,11 @@
 package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.model.address.Address;
-
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import edu.uwm.capstone.db.address.AddressDao;
-import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class AddressRestController {
