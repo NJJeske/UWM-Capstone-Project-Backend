@@ -23,7 +23,7 @@ public class UserRestController {
 	    @RequestMapping(value = "/user", method = RequestMethod.GET)
 	    public User retrieveUser(@RequestHeader(value="Authorization") String token) {
 	    	if(token.contains("Bearer ")) {
-	    		token = token.replace("Bearer", "");
+	    		token = token.replace("Bearer ", "");
 			}
 			String email = AuthHelper.getEmailFromAccessToken(token);
 	        return service.read_by_email(email);
