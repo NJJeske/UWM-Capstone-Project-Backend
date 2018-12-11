@@ -20,30 +20,59 @@ public class EducationRestController {
     // Get
     @RequestMapping(value = "/education/{id}", method = RequestMethod.GET)
     public Education retrieveEducation(@PathVariable long id) {
-        return service.read(id);
+        try {
+            return service.read(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
     
     // Get many
     @RequestMapping(value="/education/retrievemany/{userid}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveManyEducations(@PathVariable long userid) {
-        return service.readMany(userid);
+        System.out.println("retrieveManyEducations with userID:" + userid);
+        try {
+            return service.readMany(userid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     // Post
     @RequestMapping(value = "/education", method = RequestMethod.POST)
     public Education createEducation(@RequestBody Education education) {
-        return service.create(education);
+        System.out.println("createEducation:" + education);
+        try {
+            return service.create(education);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     // Delete
     @RequestMapping(value = "/education/{id}", method = RequestMethod.DELETE)
     public void deleteEducation(@PathVariable long id) {
-        service.delete(id);
+        System.out.println("deleteEducation with id: " + id);
+        try {
+            service.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     // Put
     @RequestMapping(value = "/education", method = RequestMethod.PUT)
     public void updateEducation(@RequestBody Education education) {
-        service.update(education);
+        System.out.println("updateEducation: " + education);
+        try {
+            service.update(education);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

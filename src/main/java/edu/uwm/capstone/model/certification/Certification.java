@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Certification {
     protected Long id;
-    protected Long userId;
+    protected Long userID;
     protected LocalDateTime createDate;
     protected LocalDateTime updatedDate;
     private String name;
@@ -23,9 +23,9 @@ public class Certification {
         this.id = id;
     }
 
-    public Long getUserId(){ return userId; }
+    public Long getUserID(){ return userID; }
 
-    public void setUserId(Long user_id){ this.userId = user_id; }
+    public void setUserID(Long user_id){ this.userID = user_id; }
 
     public LocalDateTime getCreatedDate() {
         return createDate;

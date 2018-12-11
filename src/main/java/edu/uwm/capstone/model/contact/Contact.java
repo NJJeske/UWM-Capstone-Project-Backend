@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 public class Contact {
     protected Long id;
+    protected Long userID;
     protected Long companyID;
     protected String position;
     protected String firstName;
@@ -20,6 +21,9 @@ public class Contact {
 
     public Long getId() { return this.id; }
     public void setId(Long id) { this.id = id; }
+
+    public Long getUserID() { return this.userID; }
+    public void setUserID(Long userID) { this.userID = userID; }
 
     public Long getCompanyID() { return this.companyID; }
     public void setCompanyID(Long companyID) { this.companyID = companyID;}

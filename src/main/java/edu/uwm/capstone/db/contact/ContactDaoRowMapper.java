@@ -16,6 +16,7 @@ import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.UPDATED_DATE
 public class ContactDaoRowMapper extends BaseRowMapper<Contact> {
 
     public enum ContactColumnType {
+        USER_ID(),
         COMPANY_ID(),
         POSITION(),
         FIRST_NAME(),
@@ -44,6 +45,7 @@ public class ContactDaoRowMapper extends BaseRowMapper<Contact> {
     public Map<String, Object> mapObject(Contact object) {
         Map<String, Object> map = new HashMap<>();
         map.put(ID.getColumnName(), object.getId());
+        map.put(USER_ID.getColumnName(), object.getUserID());
         map.put(COMPANY_ID.getColumnName(), object.getCompanyID());
         map.put(POSITION.getColumnName(), object.getPosition());
         map.put(FIRST_NAME.getColumnName(), object.getFirstName());
@@ -60,6 +62,7 @@ public class ContactDaoRowMapper extends BaseRowMapper<Contact> {
     public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
         Contact contact = new Contact();
         contact.setId(rs.getLong(ID.getColumnName()));
+        contact.setUserID(rs.getLong(USER_ID.getColumnName()));
         contact.setCompanyID(rs.getLong(COMPANY_ID.getColumnName()));
         contact.setPosition(rs.getString(POSITION.getColumnName()));
         contact.setFirstName(rs.getString(FIRST_NAME.getColumnName()));

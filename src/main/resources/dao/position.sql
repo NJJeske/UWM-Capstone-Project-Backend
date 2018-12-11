@@ -1,5 +1,6 @@
 --STATEMENT createPosition
 INSERT INTO positions (
+  user_id,
   name,
   company_id,
   description,
@@ -10,6 +11,7 @@ INSERT INTO positions (
   start_pay,
   end_pay
 ) VALUES (
+  :user_id,
   :name,
   :company_id,
   :description,
@@ -32,6 +34,7 @@ DELETE FROM positions WHERE id = :id;
 
 --STATEMENT updatePosition
 UPDATE positions SET
+  user_id = :user_id,
   name = :name,
   company_id = :company_id,
   description = :description,

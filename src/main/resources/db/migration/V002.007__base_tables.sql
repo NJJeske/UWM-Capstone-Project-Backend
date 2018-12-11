@@ -3,7 +3,7 @@ CREATE TABLE certifications(
   user_id BIGINT(20) NOT NULL,
   created_date BIGINT(20) NOT NULL,
   updated_date BIGINT(20) DEFAULT NULL,
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(255) DEFAULT NULL,
   authority VARCHAR(255) DEFAULT NULL,
   license_number VARCHAR(255) DEFAULT NULL,
   acquired_date BIGINT(20) DEFAULT NULL,

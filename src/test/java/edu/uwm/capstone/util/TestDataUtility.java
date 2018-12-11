@@ -60,7 +60,7 @@ public class TestDataUtility {
     public static Certification certificationWithTestValues() {
         Certification certification = new Certification();
         // intentionally left blank -- certification.setId();
-        certification.setUserId(randomLong());
+        certification.setUserID(randomLong());
         // intentionally left blank -- certification.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- certification.setUpdatedDate(randomLocalDateTime());
         certification.setName(randomAlphabetic(randomInt(1, 100)));
@@ -79,6 +79,7 @@ public class TestDataUtility {
     public static Company companyWithTestValues(){
         Company company = new Company();
         // intentionally left blank -- company.setId();
+        company.setUserID(randomLong());
         company.setName(randomAlphabetic(randomInt(1, 100)));
         company.setAddress(randomAlphanumeric(randomInt(1, 100)));
         company.setPhoneNumber(randomNumeric(randomInt(1, 100)));
@@ -110,6 +111,7 @@ public class TestDataUtility {
     public static Position positionWithTestValues(){
         Position position = new Position();
         // intentionally left blank -- position.setId();
+        position.setUserID(randomLong());
         position.setName(randomAlphabetic(randomInt(1, 100)));
         position.setCompanyId(randomLong());
         position.setDescription(randomAlphanumeric(randomInt(1, 100)));
@@ -167,6 +169,7 @@ public class TestDataUtility {
     public static Contact contactWithTestValues() {
         Contact contact = new Contact();
         // intentionally left blank -- contact.setId();
+        contact.setUserID(randomLong());
         contact.setCompanyID(randomLong());
         contact.setPosition(randomAlphabetic(randomInt(1, 100)));
         contact.setFirstName(randomAlphabetic(randomInt(1, 100)));

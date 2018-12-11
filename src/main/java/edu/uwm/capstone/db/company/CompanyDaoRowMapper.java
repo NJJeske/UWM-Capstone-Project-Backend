@@ -13,6 +13,7 @@ import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 public class CompanyDaoRowMapper extends BaseRowMapper<Company> {
 
     public enum CompanyColumnType {
+        USER_ID(),
         NAME(),
         ADDRESS(),
         PHONE_NUMBER(),
@@ -38,6 +39,7 @@ public class CompanyDaoRowMapper extends BaseRowMapper<Company> {
     public Map<String, Object> mapObject(Company object) {
         Map<String, Object> map = new HashMap<>();
         map.put(ID.getColumnName(), object.getId());
+        map.put(USER_ID.getColumnName(), object.getUserID());
         map.put(NAME.getColumnName(), object.getName());
         map.put(ADDRESS.getColumnName(), object.getAddress());
         map.put(PHONE_NUMBER.getColumnName(), object.getPhoneNumber());
@@ -51,6 +53,7 @@ public class CompanyDaoRowMapper extends BaseRowMapper<Company> {
     public Company mapRow(ResultSet rs, int rowNum) throws SQLException {
         Company company = new Company();
         company.setId(rs.getLong(ID.getColumnName()));
+        company.setUserID(rs.getLong(USER_ID.getColumnName()));
         company.setName(rs.getString(NAME.getColumnName()));
         company.setAddress(rs.getString(ADDRESS.getColumnName()));
         company.setPhoneNumber(rs.getString(PHONE_NUMBER.getColumnName()));

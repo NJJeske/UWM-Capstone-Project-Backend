@@ -68,6 +68,7 @@ public class ContactDaoRowMapperUnitTest {
         assertNotNull(mapObject);
 
         assertEquals(contact.getId(), mapObject.get(BaseRowMapper.BaseColumnType.ID.getColumnName()));
+        assertEquals(contact.getUserID(), mapObject.get(USER_ID.getColumnName()));
         assertEquals(contact.getCompanyID(), mapObject.get(COMPANY_ID.getColumnName()));
         assertEquals(contact.getPosition(), mapObject.get(POSITION.getColumnName()));
         assertEquals(contact.getFirstName(), mapObject.get(FIRST_NAME.getColumnName()));
@@ -93,6 +94,7 @@ public class ContactDaoRowMapperUnitTest {
 
         // define the behavior of the resultSet that is being mocked
         when(resultSet.getLong(BaseRowMapper.BaseColumnType.ID.getColumnName())).thenReturn(contact.getId());
+        when(resultSet.getLong(USER_ID.getColumnName())).thenReturn(contact.getUserID());
         when(resultSet.getLong(COMPANY_ID.getColumnName())).thenReturn(contact.getCompanyID());
         when(resultSet.getString(POSITION.getColumnName())).thenReturn(contact.getPosition());
         when(resultSet.getString(FIRST_NAME.getColumnName())).thenReturn(contact.getFirstName());
@@ -108,6 +110,7 @@ public class ContactDaoRowMapperUnitTest {
         assertNotNull(verifyContact);
 
         assertEquals(contact.getId(), verifyContact.getId());
+        assertEquals(contact.getUserID(), verifyContact.getUserID());
         assertEquals(contact.getCompanyID(), verifyContact.getCompanyID());
         assertEquals(contact.getPosition(), verifyContact.getPosition());
         assertEquals(contact.getFirstName(), verifyContact.getFirstName());

@@ -1,5 +1,6 @@
 package edu.uwm.capstone.db.position;
 
+import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -33,6 +34,7 @@ public class PositionDaoUnitTest {
         assertNotNull(positionDao);
         assertNotNull(positionDao.sql("createPosition"));
         assertNotNull(positionDao.sql("readPosition"));
+        assertNotNull(positionDao.sql("readManyPositions"));
         assertNotNull(positionDao.sql("updatePosition"));
         assertNotNull(positionDao.sql("deletePosition"));
     }
@@ -90,6 +92,32 @@ public class PositionDaoUnitTest {
         assertNotNull(readPosition);
         assertEquals(createPosition.getId(), readPosition.getId());
         assertEquals(createPosition, readPosition);
+    }
+
+    /**
+     * Verify that {@link PositionDao#readMany} is working correctly.
+     */
+    @Test
+    public void readMany() {
+        Long userID = new Long(12345);
+        Position position = TestDataUtility.positionWithTestValues();
+        position.setUserID(userID);
+        positionDao.create(position);
+        assertNotNull(position.getId());
+
+        Position position2 = TestDataUtility.positionWithTestValues();
+        position2.setUserID(userID);
+        positionDao.create(position2);
+        assertNotNull(position2.getId());
+
+        Position position3 = TestDataUtility.positionWithTestValues();
+        position3.setUserID(new Long(6789));
+        positionDao.create(position3);
+        assertNotEquals(userID, position3.getUserID());
+
+        List list = positionDao.readMany(userID);
+        assertNotNull(list);
+        assertEquals(list.size(), 2);
     }
 
     /**
