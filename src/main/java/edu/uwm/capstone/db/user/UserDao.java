@@ -61,10 +61,10 @@ public class UserDao extends BaseDao<User> {
     
     /**
      * Retrieve a {@link User} object by its {@link User#email}.
-     * @param String email
+     * @param email String
      * @return {@link User}
      */
-    public User read_by_email(String email) {
+    public User readByEmail(String email) {
         LOG.trace("Reading user {}", email);
         try {
             return (User) this.jdbcTemplate.queryForObject(sql("readUserByEmail"), new MapSqlParameterSource("email", email), rowMapper);
@@ -109,7 +109,7 @@ public class UserDao extends BaseDao<User> {
     
     /**
      * Delete a {@link User} object by its {@link User#email}.
-     * @param String email
+     * @param email String
      */
     public void delete_by_email(String email) {
         LOG.trace("Deleting user {}", email);

@@ -8,8 +8,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import edu.uwm.capstone.util.Concatenation;
-
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -24,13 +22,9 @@ public class ApplicationConfigComponentTest {
     @Autowired
     RestTemplate restTemplate;
 
-    @Autowired
-    Concatenation concatenation;
-
     @Test
     public void verify() throws Exception {
         assertNotNull("RestTemplate", restTemplate);
-        assertNotNull("Concatenation", concatenation);
     }
 
 }

@@ -1,10 +1,10 @@
 package edu.uwm.capstone.controller;
-import java.util.Map;
 
+import edu.uwm.capstone.model.user.User;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import edu.uwm.capstone.db.user.UserDao;
 import org.springframework.web.bind.annotation.*;
-import edu.uwm.capstone.model.user.User;
 import edu.uwm.capstone.helper.AuthHelper;
 
 @RestController
@@ -12,7 +12,6 @@ public class UserRestController {
 	
 	   @Autowired
 	   private UserDao service;
-
 
 	   /**
 	    * This endpoint is used to retrieve a user object by
@@ -26,12 +25,12 @@ public class UserRestController {
 	    		token = token.replace("Bearer ", "");
 			}
 			String email = AuthHelper.getEmailFromAccessToken(token);
-	        return service.read_by_email(email);
+	        return service.readByEmail(email);
 	    }
 
 	   /**
 	    * This endpoint is used to create a new user object.
-	    * @param user {User}
+	    * @param token {String}
 	    */
 	    @RequestMapping(value = "/user", method = RequestMethod.POST)
 	    public User createUser(@RequestHeader(value="Authorization") String token) {
