@@ -12,6 +12,7 @@ import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 public class PositionDaoRowMapper extends BaseRowMapper<Position>{
 
     public enum PositionColumnType {
+        USER_ID(),
         NAME(),
         COMPANY_ID(),
         DESCRIPTION(),
@@ -40,6 +41,7 @@ public class PositionDaoRowMapper extends BaseRowMapper<Position>{
     public Map<String, Object> mapObject(Position object) {
         Map<String, Object> map = new HashMap<>();
         map.put(ID.getColumnName(), object.getId());
+        map.put(USER_ID.getColumnName(), object.getUserID());
         map.put(NAME.getColumnName(), object.getName());
         map.put(COMPANY_ID.getColumnName(), object.getCompanyId());
         map.put(DESCRIPTION.getColumnName(), object.getDescription());
@@ -56,6 +58,7 @@ public class PositionDaoRowMapper extends BaseRowMapper<Position>{
     public Position mapRow(ResultSet rs, int rowNum) throws SQLException {
         Position position = new Position();
         position.setId(rs.getLong(ID.getColumnName()));
+        position.setUserID(rs.getLong(USER_ID.getColumnName()));
         position.setName(rs.getString(NAME.getColumnName()));
         position.setCompanyId(rs.getLong(COMPANY_ID.getColumnName()));
         position.setDescription(rs.getString(DESCRIPTION.getColumnName()));

@@ -26,7 +26,12 @@ public class PositionRestController {
 	*/
     @RequestMapping(value = "/position/{id}", method = RequestMethod.GET)
     public Position retrievePosition(@PathVariable long id) {
-        return service.read(id);
+        try {
+            return service.read(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
     
     /**
@@ -37,7 +42,12 @@ public class PositionRestController {
 	*/
     @RequestMapping(value = "/position/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveManyPositions(@PathVariable long userId) {
-        return service.readMany(userId);
+        try {
+            return service.readMany(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -47,7 +57,12 @@ public class PositionRestController {
 	*/
     @RequestMapping(value = "/position", method = RequestMethod.POST)
     public Position createPosition(@RequestBody Position position) {
-        return service.create(position);
+        try {
+            return service.create(position);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -57,7 +72,12 @@ public class PositionRestController {
 	*/
     @RequestMapping(value = "/position/{id}", method = RequestMethod.DELETE)
     public void deletePosition(@PathVariable long id) {
-        service.delete(id);
+        try {
+            service.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -66,6 +86,11 @@ public class PositionRestController {
 	*/
     @RequestMapping(value = "/position", method = RequestMethod.PUT)
     public void updatePosition(@RequestBody Position position) {
-        service.update(position);
+        try {
+            service.update(position);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

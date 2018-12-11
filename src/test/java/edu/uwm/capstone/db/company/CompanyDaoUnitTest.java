@@ -1,5 +1,6 @@
 package edu.uwm.capstone.db.company;
 
+import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -31,6 +32,7 @@ public class CompanyDaoUnitTest {
         assertNotNull(companyDao);
         assertNotNull(companyDao.sql("createCompany"));
         assertNotNull(companyDao.sql("readCompany"));
+        assertNotNull(companyDao.sql("readManyCompanies"));
         assertNotNull(companyDao.sql("updateCompany"));
         assertNotNull(companyDao.sql("deleteCompany"));
     }
@@ -88,6 +90,32 @@ public class CompanyDaoUnitTest {
         assertNotNull(readCompany);
         assertEquals(createCompany.getId(), readCompany.getId());
         assertEquals(createCompany, readCompany);
+    }
+
+    /**
+     * Verify that {@link CompanyDao#readMany} is working correctly.
+     */
+    @Test
+    public void readMany() {
+        Long userID = new Long(12345);
+        Company company = TestDataUtility.companyWithTestValues();
+        company.setUserID(userID);
+        companyDao.create(company);
+        assertNotNull(company.getId());
+
+        Company company2 = TestDataUtility.companyWithTestValues();
+        company2.setUserID(userID);
+        companyDao.create(company2);
+        assertNotNull(company2.getId());
+
+        Company company3 = TestDataUtility.companyWithTestValues();
+        company3.setUserID(new Long(6789));
+        companyDao.create(company3);
+        assertNotEquals(userID, company3.getUserID());
+
+        List list = companyDao.readMany(userID);
+        assertNotNull(list);
+        assertEquals(list.size(), 2);
     }
 
     /**

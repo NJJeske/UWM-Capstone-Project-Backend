@@ -7,15 +7,16 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Position {
     protected Long id;
+    protected Long userID;
     private String name;
-    protected Long company_id;
+    protected Long companyID;
     private String description;
-    protected LocalDateTime created_date;
-    protected LocalDateTime updated_date;
-    protected LocalDateTime start_date;
-    protected LocalDateTime end_date;
-    private Double start_pay;
-    private Double end_pay;
+    protected LocalDateTime createdDate;
+    protected LocalDateTime updatedDate;
+    protected LocalDateTime startDate;
+    protected LocalDateTime endDate;
+    private Double startPay;
+    private Double endPay;
 
 
     public Long getId(){
@@ -26,45 +27,48 @@ public class Position {
         this.id = id;
     }
 
+    public Long getUserID() { return this.userID; }
+    public void setUserID(Long userID) { this.userID = userID; }
+
     public String getName() {return name; }
 
     public void setName(String name) { this.name = name;}
 
-    public Long getCompanyId(){ return company_id; }
+    public Long getCompanyId(){ return companyID; }
 
-    public void setCompanyId(Long company_id) { this.company_id = company_id; }
+    public void setCompanyId(Long company_id) { this.companyID = company_id; }
 
     public String getDescription() {return description; }
 
     public void setDescription(String description) { this.description = description;}
 
     public LocalDateTime getCreatedDate() {
-        return created_date;
+        return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime created_date) { this.created_date = created_date; }
+    public void setCreatedDate(LocalDateTime created_date) { this.createdDate = created_date; }
 
-    public LocalDateTime getUpdatedDate() { return updated_date; }
+    public LocalDateTime getUpdatedDate() { return updatedDate; }
 
-    public void setUpdatedDate(LocalDateTime updated_date) { this.updated_date = updated_date; }
+    public void setUpdatedDate(LocalDateTime updated_date) { this.updatedDate = updated_date; }
 
     public LocalDateTime getStartDate() {
-        return start_date;
+        return startDate;
     }
 
-    public void setStartDate(LocalDateTime start_date) { this.start_date = start_date; }
+    public void setStartDate(LocalDateTime start_date) { this.startDate = start_date; }
 
-    public LocalDateTime getEndDate() { return end_date; }
+    public LocalDateTime getEndDate() { return endDate; }
 
-    public void setEndDate(LocalDateTime end_date) { this.end_date = end_date; }
+    public void setEndDate(LocalDateTime end_date) { this.endDate = end_date; }
 
-    public Double getStartPay() { return start_pay; }
+    public Double getStartPay() { return startPay; }
 
-    public void setStartPay(Double start_pay){ this.start_pay = start_pay; }
+    public void setStartPay(Double start_pay){ this.startPay = start_pay; }
 
-    public Double getEndPay() { return end_pay; }
+    public Double getEndPay() { return endPay; }
 
-    public void setEndPay(Double end_pay){ this.end_pay = end_pay; }
+    public void setEndPay(Double end_pay){ this.endPay = end_pay; }
 
     @Override
     public boolean equals(Object object) {

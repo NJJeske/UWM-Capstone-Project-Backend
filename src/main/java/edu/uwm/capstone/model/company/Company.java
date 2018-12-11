@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Company {
     protected Long id;
+    protected Long userID;
     private String name;
     private String address;
     private String phoneNumber;
@@ -21,6 +22,10 @@ public class Company {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Long getUserID() { return this.userID; }
+
+    public void setUserID(Long userID) { this.userID = userID; }
 
     public String getName() {return name; }
 

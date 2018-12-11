@@ -59,7 +59,7 @@ public class CertificationDaoRowMapperUnitTest {
         // generate a certification object with test values
         Certification certification = TestDataUtility.certificationWithTestValues();
         certification.setId(TestDataUtility.randomLong());
-        certification.setUserId(TestDataUtility.randomLong());
+        certification.setUserID(TestDataUtility.randomLong());
         certification.setCreatedDate(randomLocalDateTime());
         certification.setUpdatedDate(randomLocalDateTime());
         certification.setName(TestDataUtility.randomAlphabetic(randomInt(1, 100)));
@@ -74,7 +74,7 @@ public class CertificationDaoRowMapperUnitTest {
         assertNotNull(mapObject);
 
         assertEquals(certification.getId(), mapObject.get(BaseRowMapper.BaseColumnType.ID.getColumnName()));
-        assertEquals(certification.getUserId(), mapObject.get(CertificationDaoRowMapper.CertificationColumnType.USER_ID.getColumnName()));
+        assertEquals(certification.getUserID(), mapObject.get(CertificationDaoRowMapper.CertificationColumnType.USER_ID.getColumnName()));
         assertEquals(certification.getCreatedDate(), dateFromJavaTime(mapObject.get(BaseRowMapper.BaseColumnType.CREATED_DATE.getColumnName())));
         assertEquals(certification.getUpdatedDate(), dateFromJavaTime(mapObject.get(BaseRowMapper.BaseColumnType.UPDATED_DATE.getColumnName())));
         assertEquals(certification.getName(), mapObject.get(CertificationDaoRowMapper.CertificationColumnType.NAME.getColumnName()));
@@ -101,7 +101,7 @@ public class CertificationDaoRowMapperUnitTest {
 
         // define the behavior of the resultSet that is being mocked
         when(resultSet.getLong(BaseRowMapper.BaseColumnType.ID.getColumnName())).thenReturn(certification.getId());
-        when(resultSet.getLong(CertificationDaoRowMapper.CertificationColumnType.USER_ID.getColumnName())).thenReturn(certification.getUserId());
+        when(resultSet.getLong(CertificationDaoRowMapper.CertificationColumnType.USER_ID.getColumnName())).thenReturn(certification.getUserID());
         when(resultSet.getString(CertificationDaoRowMapper.CertificationColumnType.NAME.getColumnName())).thenReturn(certification.getName());
         when(resultSet.getString(CertificationDaoRowMapper.CertificationColumnType.AUTHORITY.getColumnName())).thenReturn(certification.getAuthority());
         when(resultSet.getString(CertificationDaoRowMapper.CertificationColumnType.LICENSE_NUMBER.getColumnName())).thenReturn(certification.getLicenseNumber());
@@ -116,7 +116,7 @@ public class CertificationDaoRowMapperUnitTest {
         assertNotNull(verifyCertification);
 
         assertEquals(certification.getId(), verifyCertification.getId());
-        assertEquals(certification.getUserId(), verifyCertification.getUserId());
+        assertEquals(certification.getUserID(), verifyCertification.getUserID());
         assertEquals(certification.getCreatedDate(), verifyCertification.getCreatedDate());
         assertEquals(certification.getUpdatedDate(), verifyCertification.getUpdatedDate());
         assertEquals(certification.getName(), verifyCertification.getName());

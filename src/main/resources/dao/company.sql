@@ -1,5 +1,6 @@
 --STATEMENT createCompany
 INSERT INTO companies (
+  user_id,
   name,
   address,
   phone_number,
@@ -7,6 +8,7 @@ INSERT INTO companies (
   created_date,
   updated_date
 ) VALUES (
+  :user_id,
   :name,
   :address,
   :phone_number,
@@ -26,6 +28,7 @@ DELETE FROM companies WHERE id = :id;
 
 --STATEMENT updateCompany
 UPDATE companies SET
+  user_id = :user_id,
   name = :name,
   address = :address,
   phone_number = :phone_number,
