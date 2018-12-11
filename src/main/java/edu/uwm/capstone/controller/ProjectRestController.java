@@ -21,7 +21,12 @@ public class ProjectRestController {
 	*/
     @RequestMapping(value = "/project/{id}", method = RequestMethod.GET)
     public Project retrieveOne(@PathVariable long id) {
-        return service.read(id);
+        try {
+            return service.read(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
     
     /**
@@ -32,7 +37,12 @@ public class ProjectRestController {
 	*/
     @RequestMapping(value = "/project/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveMany(@PathVariable long userId) {
-        return service.readMany(userId);
+        try {
+            return service.readMany(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
     
     /**
@@ -42,7 +52,12 @@ public class ProjectRestController {
 	*/
     @RequestMapping(value = "/project", method = RequestMethod.POST)
     public Project createProject(@RequestBody Project project) {
-        return service.create(project);
+        try {
+            return service.create(project);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
     
     /**
@@ -52,7 +67,12 @@ public class ProjectRestController {
 	*/
     @RequestMapping(value = "/project/{id}", method = RequestMethod.DELETE)
     public void deleteProject(@PathVariable long id) {
-        service.delete(id);
+        try {
+            service.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
     
     /**
@@ -61,7 +81,12 @@ public class ProjectRestController {
 	*/
     @RequestMapping(value = "/project", method = RequestMethod.PUT)
     public void updateProject(@RequestBody Project project) {
-        service.update(project);
+        try {
+            service.update(project);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }
 

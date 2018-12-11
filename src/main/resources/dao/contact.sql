@@ -1,5 +1,6 @@
 --STATEMENT createContact
 INSERT INTO contacts (
+  user_id,
   company_id,
   position,
   first_name,
@@ -9,6 +10,7 @@ INSERT INTO contacts (
   notes,
   created_date
 ) VALUES (
+  :user_id,
   :company_id,
   :position,
   :first_name,
@@ -30,6 +32,7 @@ DELETE FROM contacts WHERE id = :id;
 
 --STATEMENT updateContact
 UPDATE contacts SET
+  user_id = :user_id,
   company_id = :company_id,
   position = :position,
   first_name = :first_name,

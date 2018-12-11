@@ -76,6 +76,7 @@ public class PositionDaoRowMapperUnitTest {
         assertNotNull(mapObject);
 
         assertEquals(position.getId(), mapObject.get(BaseRowMapper.BaseColumnType.ID.getColumnName()));
+        assertEquals(position.getUserID(), mapObject.get(PositionDaoRowMapper.PositionColumnType.USER_ID.getColumnName()));
         assertEquals(position.getName(), mapObject.get(PositionDaoRowMapper.PositionColumnType.NAME.getColumnName()));
         assertEquals(position.getCompanyId(), mapObject.get(PositionDaoRowMapper.PositionColumnType.COMPANY_ID.getColumnName()));
         assertEquals(position.getDescription(), mapObject.get(PositionDaoRowMapper.PositionColumnType.DESCRIPTION.getColumnName()));
@@ -108,6 +109,7 @@ public class PositionDaoRowMapperUnitTest {
 
         // define the behavior of the resultSet that is being mocked
         when(resultSet.getLong(BaseRowMapper.BaseColumnType.ID.getColumnName())).thenReturn(position.getId());
+        when(resultSet.getLong(PositionDaoRowMapper.PositionColumnType.USER_ID.getColumnName())).thenReturn(position.getUserID());
         when(resultSet.getString(PositionDaoRowMapper.PositionColumnType.NAME.getColumnName())).thenReturn(position.getName());
         when(resultSet.getLong(PositionDaoRowMapper.PositionColumnType.COMPANY_ID.getColumnName())).thenReturn(position.getCompanyId());
         when(resultSet.getString(PositionDaoRowMapper.PositionColumnType.DESCRIPTION.getColumnName())).thenReturn(position.getDescription());
@@ -123,6 +125,7 @@ public class PositionDaoRowMapperUnitTest {
         assertNotNull(verifyPosition);
 
         assertEquals(position.getId(), verifyPosition.getId());
+        assertEquals(position.getUserID(), verifyPosition.getUserID());
         assertEquals(position.getName(), verifyPosition.getName());
         assertEquals(position.getCompanyId(), verifyPosition.getCompanyId());
         assertEquals(position.getDescription(), verifyPosition.getDescription());

@@ -42,7 +42,7 @@ public class CertificationDaoRowMapper extends BaseRowMapper<Certification>{
     public Map<String, Object> mapObject(Certification object) {
         Map<String, Object> map = new HashMap<>();
         map.put(ID.getColumnName(), object.getId());
-        map.put(USER_ID.getColumnName(), object.getUserId());
+        map.put(USER_ID.getColumnName(), object.getUserID());
         map.put(NAME.getColumnName(), object.getName());
         map.put(BaseColumnType.CREATED_DATE.getColumnName(), javaTimeFromDate(object.getCreatedDate()));
         map.put(BaseColumnType.UPDATED_DATE.getColumnName(), javaTimeFromDate(object.getUpdatedDate()));
@@ -58,7 +58,7 @@ public class CertificationDaoRowMapper extends BaseRowMapper<Certification>{
     public Certification mapRow(ResultSet rs, int rowNum) throws SQLException {
         Certification certification = new Certification();
         certification.setId(rs.getLong(ID.getColumnName()));
-        certification.setUserId(rs.getLong(USER_ID.getColumnName()));
+        certification.setUserID(rs.getLong(USER_ID.getColumnName()));
         certification.setName(rs.getString(NAME.getColumnName()));
         certification.setCreatedDate(dateFromJavaTime(rs.getObject(BaseColumnType.CREATED_DATE.getColumnName())));
         certification.setUpdatedDate(dateFromJavaTime(rs.getObject(BaseColumnType.UPDATED_DATE.getColumnName())));

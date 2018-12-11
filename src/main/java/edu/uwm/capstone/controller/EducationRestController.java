@@ -1,11 +1,15 @@
 package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.model.education.Education;
+
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import edu.uwm.capstone.db.education.EducationDao;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class EducationRestController {
@@ -13,54 +17,62 @@ public class EducationRestController {
     @Autowired
     private EducationDao service;
 
-    /**
-     * This endpoint is used to retrieve a education object by
-     * its id.
-     * @param id {Long}
-     * @return Education
-     */
+    // Get
     @RequestMapping(value = "/education/{id}", method = RequestMethod.GET)
     public Education retrieveEducation(@PathVariable long id) {
-        return service.read(id);
+        try {
+            return service.read(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+    
+    // Get many
+    @RequestMapping(value="/education/retrievemany/{userid}", method = RequestMethod.GET)
+    public List<Map<String, Object>> retrieveManyEducations(@PathVariable long userid) {
+        System.out.println("retrieveManyEducations with userID:" + userid);
+        try {
+            return service.readMany(userid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
-    /**
-     * This endpoint is used to retrieve a list of education objects by
-     * its userId.
-     * @param userId {Long}
-     * @return List<Map<String, Object>>
-     */
-    @RequestMapping(value="/education/retrievemany/{userId}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyEducations(@PathVariable long userId) {
-        return service.readMany(userId);
-    }
-
-    /**
-     * This endpoint is used to create an education object.
-     * @param education {Education}
-     * @return Education
-     */
+    // Post
     @RequestMapping(value = "/education", method = RequestMethod.POST)
     public Education createEducation(@RequestBody Education education) {
-        return service.create(education);
+        System.out.println("createEducation:" + education);
+        try {
+            return service.create(education);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
-    /**
-     * This endpoint is used to delete an education object by
-     * its id.
-     * @param id {Long}
-     */
+    // Delete
     @RequestMapping(value = "/education/{id}", method = RequestMethod.DELETE)
     public void deleteEducation(@PathVariable long id) {
-        service.delete(id);
+        System.out.println("deleteEducation with id: " + id);
+        try {
+            service.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
-    /**
-     * This endpoint is used to update a contact object.
-     * @param education {Education}
-     */
+    // Put
     @RequestMapping(value = "/education", method = RequestMethod.PUT)
     public void updateEducation(@RequestBody Education education) {
-        service.update(education);
+        System.out.println("updateEducation: " + education);
+        try {
+            service.update(education);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -31,6 +32,7 @@ public class ContactDaoUnitTest {
         assertNotNull(contactDao);
         assertNotNull(contactDao.sql("createContact"));
         assertNotNull(contactDao.sql("readContact"));
+        assertNotNull(contactDao.sql("readManyContacts"));
         assertNotNull(contactDao.sql("updateContact"));
         assertNotNull(contactDao.sql("deleteContact"));
     }
@@ -88,6 +90,32 @@ public class ContactDaoUnitTest {
         assertNotNull(readContact);
         assertEquals(createContact.getId(), readContact.getId());
         assertEquals(createContact, readContact);
+    }
+
+    /**
+     * Verify that {@link ContactDao#readMany} is working correctly.
+     */
+    @Test
+    public void readMany() {
+        Long userID = new Long(12345);
+        Contact createContact = TestDataUtility.contactWithTestValues();
+        createContact.setUserID(userID);
+        contactDao.create(createContact);
+        assertNotNull(createContact.getId());
+
+        Contact contact2 = TestDataUtility.contactWithTestValues();
+        contact2.setUserID(userID);
+        contactDao.create(contact2);
+        assertNotNull(contact2.getId());
+
+        Contact contact3 = TestDataUtility.contactWithTestValues();
+        contact3.setUserID(new Long(6789));
+        contactDao.create(contact3);
+        assertNotEquals(userID, contact3.getUserID());
+
+        List list = contactDao.readMany(userID);
+        assertNotNull(list);
+        assertEquals(list.size(), 2);
     }
 
     /**

@@ -23,9 +23,9 @@ public class Certification {
         this.id = id;
     }
 
-    public Long getUserId(){ return userID; }
+    public Long getUserID(){ return userID; }
 
-    public void setUserId(Long user_id){ this.userID = user_id; }
+    public void setUserID(Long user_id){ this.userID = user_id; }
 
     public LocalDateTime getCreatedDate() {
         return createDate;
