@@ -21,7 +21,12 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company/{id}", method = RequestMethod.GET)
     public Company retrieveCompany(@PathVariable long id) {
-        return service.read(id);
+        try {
+            return service.read(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -31,8 +36,13 @@ public class CompanyRestController {
      * @return List<Map<String, Object>>
      */
     @RequestMapping(value="/company/retrievemany/{userId}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyCompanies(@PathVariable long userId) {
-        return service.readMany(userId);
+    public List<Company> retrieveManyCompanies(@PathVariable long userId) {
+        try {
+            return service.readMany(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -42,7 +52,12 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company", method = RequestMethod.POST)
     public Company createCompany(@RequestBody Company company) {
-        return service.create(company);
+        try {
+            return service.create(company);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -52,7 +67,12 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company/{id}", method = RequestMethod.DELETE)
     public void deleteCompany(@PathVariable long id) {
-        service.delete(id);
+        try {
+            service.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -61,6 +81,11 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company", method = RequestMethod.PUT)
     public void updateCompany(@RequestBody Company company) {
-        service.update(company);
+        try {
+            service.update(company);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

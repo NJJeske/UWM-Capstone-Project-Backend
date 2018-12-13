@@ -20,7 +20,6 @@ public class CertificationRestController {
     // Get
     @RequestMapping(value = "/certification/{id}", method = RequestMethod.GET)
     public Certification retrieveCertification(@PathVariable long id) {
-        System.out.println("retrieveCertification");
         try {
             return service.read(id);
         } catch (Exception e) {
@@ -31,8 +30,7 @@ public class CertificationRestController {
     
     // Get many
     @RequestMapping(value="/certification/retrievemany/{userid}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyCertifications(@PathVariable long userid) {
-        System.out.println("retrieveManyCertifications");
+    public List<Certification> retrieveManyCertifications(@PathVariable long userid) {
         try {
             return service.readMany(userid);
         } catch (Exception e) {
@@ -44,7 +42,6 @@ public class CertificationRestController {
     // Post
     @RequestMapping(value = "/certification", method = RequestMethod.POST)
     public Certification createCertification(@RequestBody Certification certification) {
-        System.out.println("createCertification: " + certification.toString());
         try {
             return service.create(certification);
         } catch (Exception e) {
@@ -56,7 +53,6 @@ public class CertificationRestController {
     // Delete
     @RequestMapping(value = "/certification/{id}", method = RequestMethod.DELETE)
     public void deleteEducation(@PathVariable long id) {
-        System.out.println("deleteEducation");
         try {
             service.delete(id);
         } catch (Exception e) {
@@ -68,7 +64,6 @@ public class CertificationRestController {
     // Put
     @RequestMapping(value = "/certification", method = RequestMethod.PUT)
     public void updateCertification(@RequestBody Certification certification) {
-        System.out.println("updateCertification");
         try {
             service.update(certification);
         } catch (Exception e) {

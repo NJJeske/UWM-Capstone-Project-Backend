@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.uwm.capstone.model.project.Project;
+import edu.uwm.capstone.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -68,10 +69,10 @@ public class ProjectDao extends BaseDao<Project> {
      * @param userid long
      * @return List<Map<String, Project>>
      */
-    public List<Map<String, Object>> readMany(long userid) {
-        LOG.trace("Reading projects for {}", userid);
+    public List<Project> readMany(long userid) {
+        LOG.trace("Reading projects for user {}", userid);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyProjects"), new MapSqlParameterSource("user_id", userid));
+            return this.jdbcTemplate.query(sql("readManyProjects"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

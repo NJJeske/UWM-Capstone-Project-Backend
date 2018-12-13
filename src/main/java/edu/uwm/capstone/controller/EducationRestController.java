@@ -30,8 +30,7 @@ public class EducationRestController {
     
     // Get many
     @RequestMapping(value="/education/retrievemany/{userid}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyEducations(@PathVariable long userid) {
-        System.out.println("retrieveManyEducations with userID:" + userid);
+    public List<Education> retrieveManyEducations(@PathVariable long userid) {
         try {
             return service.readMany(userid);
         } catch (Exception e) {
@@ -43,7 +42,6 @@ public class EducationRestController {
     // Post
     @RequestMapping(value = "/education", method = RequestMethod.POST)
     public Education createEducation(@RequestBody Education education) {
-        System.out.println("createEducation:" + education);
         try {
             return service.create(education);
         } catch (Exception e) {
@@ -55,7 +53,6 @@ public class EducationRestController {
     // Delete
     @RequestMapping(value = "/education/{id}", method = RequestMethod.DELETE)
     public void deleteEducation(@PathVariable long id) {
-        System.out.println("deleteEducation with id: " + id);
         try {
             service.delete(id);
         } catch (Exception e) {
@@ -67,7 +64,6 @@ public class EducationRestController {
     // Put
     @RequestMapping(value = "/education", method = RequestMethod.PUT)
     public void updateEducation(@RequestBody Education education) {
-        System.out.println("updateEducation: " + education);
         try {
             service.update(education);
         } catch (Exception e) {

@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import edu.uwm.capstone.model.contact.Contact;
 import edu.uwm.capstone.model.position.Position;
+import edu.uwm.capstone.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -65,13 +65,13 @@ public class PositionDao extends BaseDao<Position> {
     
     /**
      * Retrieve a list of {@link Position} objects by the {@link User#id} associated with it.
-     * @param long userid
+     * @param userid long
      * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> readMany(long userid) {
+    public List<Position> readMany(long userid) {
         LOG.trace("Reading positions for user {}", userid);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyPositions"), new MapSqlParameterSource("user_id", userid));
+            return this.jdbcTemplate.query(sql("readManyPositions"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

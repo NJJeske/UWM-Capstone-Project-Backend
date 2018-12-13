@@ -1,6 +1,7 @@
 package edu.uwm.capstone.db.address;
 
 import edu.uwm.capstone.model.address.Address;
+import edu.uwm.capstone.model.user.User;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import org.slf4j.Logger;
@@ -64,13 +65,13 @@ public class AddressDao extends BaseDao<Address> {
     
     /**
      * Retrieve a list of {@link Address} objects by the {@link User#id} associated with it.
-     * @param id long
+     * @param userid long
      * @return List<Map<String, Address>>
      */
-    public List<Map<String, Object>> readMany(long userid) {
+    public List<Address> readMany(long userid) {
         LOG.trace("Reading addresses for user {}", userid);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyAddresses"), new MapSqlParameterSource("user_id", userid));
+            return this.jdbcTemplate.query(sql("readManyAddresses"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

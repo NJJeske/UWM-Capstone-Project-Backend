@@ -133,7 +133,7 @@ public class S3RestController {
      * @return List<Map<String, Object>>
      */
     @RequestMapping(value = "/document/retrievemany/{userId}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveFiles(@PathVariable long userId){
+    public List<Document> retrieveFiles(@PathVariable long userId){
         return service.readMany(userId);
     }
 

@@ -36,7 +36,7 @@ public class ProjectRestController {
 	* @return List<Map<String, Project>>
 	*/
     @RequestMapping(value = "/project/retrievemany/{userId}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveMany(@PathVariable long userId) {
+    public List<Project> retrieveMany(@PathVariable long userId) {
         try {
             return service.readMany(userId);
         } catch (Exception e) {

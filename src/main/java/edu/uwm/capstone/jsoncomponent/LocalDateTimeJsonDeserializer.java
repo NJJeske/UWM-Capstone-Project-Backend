@@ -9,6 +9,7 @@ import org.springframework.boot.jackson.JsonComponent;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 @JsonComponent
@@ -19,6 +20,6 @@ public class LocalDateTimeJsonDeserializer extends JsonDeserializer<LocalDateTim
     @Override
     public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         LocalDate localDate = LocalDate.parse(jsonParser.getText(), formatter);
-        return LocalDateTime.of(localDate, LocalDateTime.now().toLocalTime());
+        return LocalDateTime.of(localDate, LocalTime.MIDNIGHT);
     }
 }

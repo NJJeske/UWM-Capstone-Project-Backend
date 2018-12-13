@@ -1,7 +1,9 @@
 package edu.uwm.capstone.db;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import edu.uwm.capstone.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -56,6 +58,20 @@ public class ProfileDao extends BaseDao<Profile> {
         LOG.trace("Reading profile {}", id);
         try {
             return (Profile) this.jdbcTemplate.queryForObject(sql("readProfile"), new MapSqlParameterSource("id", id), rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieve a list of {@link Profile} objects by the {@link User#id} associated with it.
+     * @param userid long
+     * @return List<Map<String, Object>>
+     */
+    public List<Profile> readMany(long userid) {
+        LOG.trace("Reading positions for user {}", userid);
+        try {
+            return this.jdbcTemplate.query(sql("readManyProfiles"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
