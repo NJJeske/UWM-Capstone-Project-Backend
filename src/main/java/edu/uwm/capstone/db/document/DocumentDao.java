@@ -69,10 +69,10 @@ public class DocumentDao extends BaseDao<Document> {
      * @param userId long
      * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> readMany(long userId) {
-        LOG.trace("Reading documents for user {}", userId);
+    public List<Document> readMany(long userid) {
+        LOG.trace("Reading documents for user {}", userid);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyDocuemnts"), new MapSqlParameterSource("user_id", userId));
+            return this.jdbcTemplate.query(sql("readManyDocuemnts"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             LOG.trace("Exception: {}", e);
             return null;

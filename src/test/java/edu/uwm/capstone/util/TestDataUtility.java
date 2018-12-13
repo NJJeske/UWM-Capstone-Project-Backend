@@ -2,6 +2,7 @@ package edu.uwm.capstone.util;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
@@ -286,7 +287,7 @@ public class TestDataUtility {
     }
 
     public static LocalDateTime randomLocalDateTime() {
-        LocalDateTime start = LocalDateTime.of(1900, randomMonth(), 1, randomInt(0, 23), randomInt(1, 59));
+        LocalDateTime start = LocalDateTime.of(randomInt(1900, LocalDateTime.now().getYear()), randomMonth(), randomInt(1,28), randomInt(0, 23), randomInt(1, 59));
         long days = ChronoUnit.DAYS.between(start, LocalDateTime.now());
         return start.plusDays(new Random().nextInt((int) days + 1));
     }
@@ -295,5 +296,9 @@ public class TestDataUtility {
         List<Month> months = Arrays.asList(Month.values());
         int index = new Random().nextInt(months.size());
         return months.get(index);
+    }
+
+    public static DateTimeFormatter dateTimeFormatter() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd");
     }
 }

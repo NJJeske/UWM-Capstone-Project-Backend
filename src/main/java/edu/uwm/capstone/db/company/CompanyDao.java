@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.uwm.capstone.model.company.Company;
+import edu.uwm.capstone.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -68,10 +69,10 @@ public class CompanyDao extends BaseDao<Company> {
      * @param userId long
      * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> readMany(long userId) {
-        LOG.trace("Reading companies for user {}", userId);
+    public List<Company> readMany(long userid) {
+        LOG.trace("Reading companies for user {}", userid);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyCompanies"), new MapSqlParameterSource("user_id", userId));
+            return this.jdbcTemplate.query(sql("readManyCompanies"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             LOG.trace("Exception: {}", e);
             return null;

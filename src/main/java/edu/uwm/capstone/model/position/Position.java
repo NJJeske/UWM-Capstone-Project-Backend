@@ -1,6 +1,10 @@
 package edu.uwm.capstone.model.position;
 
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import edu.uwm.capstone.jsoncomponent.LocalDateTimeJsonDeserializer;
+import edu.uwm.capstone.jsoncomponent.LocalDateTimeJsonSerializer;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -11,9 +15,17 @@ public class Position {
     private String name;
     protected Long companyID;
     private String description;
+    @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
     protected LocalDateTime createdDate;
+    @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
     protected LocalDateTime updatedDate;
+    @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
     protected LocalDateTime startDate;
+    @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
     protected LocalDateTime endDate;
     private Double startPay;
     private Double endPay;

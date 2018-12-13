@@ -1,5 +1,9 @@
 package edu.uwm.capstone.model.address;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import edu.uwm.capstone.jsoncomponent.LocalDateTimeJsonDeserializer;
+import edu.uwm.capstone.jsoncomponent.LocalDateTimeJsonSerializer;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -14,7 +18,11 @@ public class Address {
     protected String city;
     protected String state;
     protected String zipcode;
+    @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
     protected LocalDateTime createdDate;
+    @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
     protected LocalDateTime updatedDate;
 
     public Long getId() { return id; }

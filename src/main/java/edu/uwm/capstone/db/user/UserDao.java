@@ -1,6 +1,7 @@
 package edu.uwm.capstone.db.user;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import edu.uwm.capstone.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -119,5 +120,9 @@ public class UserDao extends BaseDao<User> {
         if (result != 1) {
             throw new RuntimeException("Failed attempt to update user " + email + " affected " + result + " rows");
         }
+    }
+
+    public List<User> readMany(long userid) {
+        throw new RuntimeException("Can't retreive many users.");
     }
 }

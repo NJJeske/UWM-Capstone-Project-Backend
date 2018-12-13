@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
 
+import java.util.List;
+
 public abstract class BaseDao<T> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseDao.class);
@@ -20,6 +22,8 @@ public abstract class BaseDao<T> {
     public abstract T create(T object);
 
     public abstract T read(long id);
+
+    public abstract List<T> readMany(long userid);
 
     public abstract void update(T object);
 

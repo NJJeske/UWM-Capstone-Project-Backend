@@ -21,7 +21,12 @@ public class ContactRestController {
 	*/
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
     public Contact retrieveContact(@PathVariable long id) {
-        return contactService.read(id);
+        try {
+            return contactService.read(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
     
     /**
@@ -31,8 +36,13 @@ public class ContactRestController {
 	* @return List<Map<String, Object>>
 	*/
     @RequestMapping(value = "/contact/retrievemany/{userId}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyContacts(@PathVariable long userId) {
-        return contactService.readMany(userId);
+    public List<Contact> retrieveManyContacts(@PathVariable long userId) {
+        try {
+            return contactService.readMany(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -42,7 +52,12 @@ public class ContactRestController {
 	*/
     @RequestMapping(value = "/contact", method = RequestMethod.POST)
     public Contact createContact(@RequestBody Contact contact) {
-        return contactService.create(contact);
+        try {
+            return contactService.create(contact);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -52,7 +67,12 @@ public class ContactRestController {
 	*/
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.DELETE)
     public void deleteContact(@PathVariable long id) {
-        contactService.delete(id);
+        try {
+            contactService.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -61,6 +81,11 @@ public class ContactRestController {
 	*/
     @RequestMapping(value = "/contact", method = RequestMethod.PUT)
     public void updateContact(@RequestBody Contact contact) {
-        contactService.update(contact);
+        try {
+            contactService.update(contact);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

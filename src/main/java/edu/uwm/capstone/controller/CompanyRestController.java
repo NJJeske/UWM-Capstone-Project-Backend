@@ -21,7 +21,12 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company/{id}", method = RequestMethod.GET)
     public Company retrieveCompany(@PathVariable long id) {
-        return companyService.read(id);
+        try {
+            return companyService.read(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -31,8 +36,13 @@ public class CompanyRestController {
      * @return List<Map<String, Object>>
      */
     @RequestMapping(value="/company/retrievemany/{userId}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyCompanies(@PathVariable long userId) {
-        return companyService.readMany(userId);
+    public List<Company> retrieveManyCompanies(@PathVariable long userId) {
+        try {
+            return companyService.readMany(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -42,7 +52,12 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company", method = RequestMethod.POST)
     public Company createCompany(@RequestBody Company company) {
-        return companyService.create(company);
+        try {
+            return companyService.create(company);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -52,7 +67,12 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company/{id}", method = RequestMethod.DELETE)
     public void deleteCompany(@PathVariable long id) {
-        companyService.delete(id);
+        try {
+            companyService.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
@@ -61,6 +81,11 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company", method = RequestMethod.PUT)
     public void updateCompany(@RequestBody Company company) {
-        companyService.update(company);
+        try {
+            companyService.update(company);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

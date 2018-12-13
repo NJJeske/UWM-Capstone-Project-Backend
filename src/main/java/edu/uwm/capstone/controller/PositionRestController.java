@@ -41,7 +41,7 @@ public class PositionRestController {
 	* @return List<Map<String, Object>>
 	*/
     @RequestMapping(value = "/position/retrievemany/{userId}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyPositions(@PathVariable long userId) {
+    public List<Position> retrieveManyPositions(@PathVariable long userId) {
         try {
             return positionService.readMany(userId);
         } catch (Exception e) {

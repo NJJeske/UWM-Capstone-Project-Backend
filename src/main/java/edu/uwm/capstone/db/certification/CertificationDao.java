@@ -7,6 +7,7 @@ import java.util.Map;
 import edu.uwm.capstone.model.certification.Certification;
 import edu.uwm.capstone.model.company.Company;
 
+import edu.uwm.capstone.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -70,10 +71,10 @@ public class CertificationDao extends BaseDao<Certification> {
      * @param userId long
      * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> readMany(long userId) {
-        LOG.trace("Reading certifications for user {}", userId);
+    public List<Certification> readMany(long userid) {
+        LOG.trace("Reading certifications for user {}", userid);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyCertifications"), new MapSqlParameterSource("user_id", userId));
+            return this.jdbcTemplate.query(sql("readManyCertifications"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             LOG.trace("Exception: {}", e);
             return null;

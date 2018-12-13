@@ -31,7 +31,7 @@ public class AddressRestController {
 	* @return List<Map<String, Object>>
 	*/
     @RequestMapping(value = "/address/retrievemany/{userId}", method = RequestMethod.GET)
-    public List<Map<String, Object>> retrieveManyAddresses(@PathVariable long userId) {
+    public List<Address> retrieveManyAddresses(@PathVariable long userId) {
         return addressService.readMany(userId);
     }
 
