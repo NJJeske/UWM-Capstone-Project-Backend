@@ -61,6 +61,7 @@ public class ContactDao extends BaseDao<Contact> {
         try {
             return (Contact) this.jdbcTemplate.queryForObject(sql("readContact"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
@@ -75,6 +76,7 @@ public class ContactDao extends BaseDao<Contact> {
         try {
             return this.jdbcTemplate.query(sql("readManyContacts"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

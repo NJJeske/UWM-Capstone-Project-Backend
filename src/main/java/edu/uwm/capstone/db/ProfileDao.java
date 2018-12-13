@@ -59,6 +59,7 @@ public class ProfileDao extends BaseDao<Profile> {
         try {
             return (Profile) this.jdbcTemplate.queryForObject(sql("readProfile"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

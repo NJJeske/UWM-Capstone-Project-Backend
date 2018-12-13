@@ -11,7 +11,7 @@ import edu.uwm.capstone.db.contact.ContactDao;
 public class ContactRestController {
 
     @Autowired
-    private ContactDao service;
+    private ContactDao contactService;
 
     /**
  	* This endpoint is used to retrieve a contact object by
@@ -22,7 +22,7 @@ public class ContactRestController {
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
     public Contact retrieveContact(@PathVariable long id) {
         try {
-            return service.read(id);
+            return contactService.read(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -38,7 +38,7 @@ public class ContactRestController {
     @RequestMapping(value = "/contact/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Contact> retrieveManyContacts(@PathVariable long userId) {
         try {
-            return service.readMany(userId);
+            return contactService.readMany(userId);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -53,7 +53,7 @@ public class ContactRestController {
     @RequestMapping(value = "/contact", method = RequestMethod.POST)
     public Contact createContact(@RequestBody Contact contact) {
         try {
-            return service.create(contact);
+            return contactService.create(contact);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -68,7 +68,7 @@ public class ContactRestController {
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.DELETE)
     public void deleteContact(@PathVariable long id) {
         try {
-            service.delete(id);
+            contactService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -82,7 +82,7 @@ public class ContactRestController {
     @RequestMapping(value = "/contact", method = RequestMethod.PUT)
     public void updateContact(@RequestBody Contact contact) {
         try {
-            service.update(contact);
+            contactService.update(contact);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

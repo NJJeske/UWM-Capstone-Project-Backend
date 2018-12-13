@@ -61,13 +61,14 @@ public class CertificationDao extends BaseDao<Certification> {
         try {
             return (Certification) this.jdbcTemplate.queryForObject(sql("readCertification"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
     
     /**
-     * Retrieve a list of {@link Certification} objects by the {@link User#id} associated with it.
-     * @param userid long
+     * Retrieve a list of {@link Certification} objects by the {@link Certification#id} associated with it.
+     * @param userId long
      * @return List<Map<String, Object>>
      */
     public List<Certification> readMany(long userid) {
@@ -75,6 +76,7 @@ public class CertificationDao extends BaseDao<Certification> {
         try {
             return this.jdbcTemplate.query(sql("readManyCertifications"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

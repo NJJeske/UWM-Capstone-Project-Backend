@@ -59,13 +59,14 @@ public class DocumentDao extends BaseDao<Document> {
         try {
             return (Document) this.jdbcTemplate.queryForObject(sql("readDocument"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
 
     /**
      * Retrieve a list of {@link Document} objects by the {@link Document#id} associated with it.
-     * @param userid long
+     * @param userId long
      * @return List<Map<String, Object>>
      */
     public List<Document> readMany(long userid) {
@@ -73,6 +74,7 @@ public class DocumentDao extends BaseDao<Document> {
         try {
             return this.jdbcTemplate.query(sql("readManyDocuemnts"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

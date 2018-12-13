@@ -15,13 +15,13 @@ import io.swagger.annotations.ApiOperation;
 public class EducationRestController {
 
     @Autowired
-    private EducationDao service;
+    private EducationDao educationService;
 
     // Get
     @RequestMapping(value = "/education/{id}", method = RequestMethod.GET)
     public Education retrieveEducation(@PathVariable long id) {
         try {
-            return service.read(id);
+            return educationService.read(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -32,7 +32,7 @@ public class EducationRestController {
     @RequestMapping(value="/education/retrievemany/{userid}", method = RequestMethod.GET)
     public List<Education> retrieveManyEducations(@PathVariable long userid) {
         try {
-            return service.readMany(userid);
+            return educationService.readMany(userid);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -43,7 +43,7 @@ public class EducationRestController {
     @RequestMapping(value = "/education", method = RequestMethod.POST)
     public Education createEducation(@RequestBody Education education) {
         try {
-            return service.create(education);
+            return educationService.create(education);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -54,7 +54,7 @@ public class EducationRestController {
     @RequestMapping(value = "/education/{id}", method = RequestMethod.DELETE)
     public void deleteEducation(@PathVariable long id) {
         try {
-            service.delete(id);
+            educationService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -65,7 +65,7 @@ public class EducationRestController {
     @RequestMapping(value = "/education", method = RequestMethod.PUT)
     public void updateEducation(@RequestBody Education education) {
         try {
-            service.update(education);
+            educationService.update(education);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

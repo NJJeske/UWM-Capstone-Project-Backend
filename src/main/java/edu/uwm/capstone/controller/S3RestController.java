@@ -23,7 +23,7 @@ public class S3RestController {
     private AmazonS3 s3;
 
     @Autowired
-    private DocumentDao service;
+    private DocumentDao documentService;
 
     @Autowired
     private UserDao user;
@@ -58,7 +58,7 @@ public class S3RestController {
             System.err.println(e.getErrorMessage());
             System.exit(1);
         }
-        service.create(document);
+        documentService.create(document);
     }
 
     /**
@@ -72,7 +72,7 @@ public class S3RestController {
     public void updateDocument(@RequestBody String filePath, @RequestBody Long userId, @PathVariable long id){
         String fileName = Paths.get(filePath).getFileName().toString();
         String email = user.read(userId).getEmail();
-        Document document = service.read(id);
+        Document document = documentService.read(id);
         document.setName(fileName);
         document.setPath(filePath);
         document.setUpdatedDate(LocalDateTime.now());
@@ -81,11 +81,11 @@ public class S3RestController {
             S3Object o = s3.getObject(email, fileName);
             if(o != null) {
                 s3.putObject(email, fileName, new File(filePath));
-                service.update(document);
+                documentService.update(document);
             }
             else{
                 s3.putObject(email, fileName, new File(filePath));
-                service.create(document);
+                documentService.create(document);
             }
 
         } catch (
@@ -104,7 +104,7 @@ public class S3RestController {
     @RequestMapping(value = "document/{id}", method = RequestMethod.GET)
     public Document getFile(@RequestBody Long userId, @PathVariable long id){
         String email = user.read(userId).getEmail();
-        String fileName = service.read(id).getName();
+        String fileName = documentService.read(id).getName();
 
         try {
             S3Object o = s3.getObject(email, fileName);
@@ -124,7 +124,7 @@ public class S3RestController {
             System.err.println(e.getMessage());
             System.exit(1);
         }
-        return service.read(id);
+        return documentService.read(id);
     }
 
     /**
@@ -134,7 +134,7 @@ public class S3RestController {
      */
     @RequestMapping(value = "/document/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Document> retrieveFiles(@PathVariable long userId){
-        return service.readMany(userId);
+        return documentService.readMany(userId);
     }
 
     /**
@@ -145,13 +145,13 @@ public class S3RestController {
     @RequestMapping(value = "/document/{id}", method = RequestMethod.DELETE)
     public void deleteFile(@RequestBody Long userId, @PathVariable long id){
         String email = user.read(userId).getEmail();
-        String fileName = service.read(id).getName();
+        String fileName = documentService.read(id).getName();
             try {
             s3.deleteObject(email, fileName);
         } catch (AmazonServiceException e) {
             System.err.println(e.getErrorMessage());
             System.exit(1);
         }
-        service.delete(id);
+        documentService.delete(id);
     }
 }

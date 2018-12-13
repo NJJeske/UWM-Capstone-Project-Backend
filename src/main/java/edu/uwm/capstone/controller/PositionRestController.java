@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiOperation;
 public class PositionRestController {
 
     @Autowired
-    private PositionDao service;
+    private PositionDao positionService;
 
     /**
  	* This endpoint is used to retrieve a position object by
@@ -27,7 +27,7 @@ public class PositionRestController {
     @RequestMapping(value = "/position/{id}", method = RequestMethod.GET)
     public Position retrievePosition(@PathVariable long id) {
         try {
-            return service.read(id);
+            return positionService.read(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -43,7 +43,7 @@ public class PositionRestController {
     @RequestMapping(value = "/position/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Position> retrieveManyPositions(@PathVariable long userId) {
         try {
-            return service.readMany(userId);
+            return positionService.readMany(userId);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -58,7 +58,7 @@ public class PositionRestController {
     @RequestMapping(value = "/position", method = RequestMethod.POST)
     public Position createPosition(@RequestBody Position position) {
         try {
-            return service.create(position);
+            return positionService.create(position);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -73,7 +73,7 @@ public class PositionRestController {
     @RequestMapping(value = "/position/{id}", method = RequestMethod.DELETE)
     public void deletePosition(@PathVariable long id) {
         try {
-            service.delete(id);
+            positionService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -87,7 +87,7 @@ public class PositionRestController {
     @RequestMapping(value = "/position", method = RequestMethod.PUT)
     public void updatePosition(@RequestBody Position position) {
         try {
-            service.update(position);
+            positionService.update(position);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

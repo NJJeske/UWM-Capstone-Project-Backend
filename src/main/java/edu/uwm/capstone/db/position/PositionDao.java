@@ -59,6 +59,7 @@ public class PositionDao extends BaseDao<Position> {
         try {
             return (Position) this.jdbcTemplate.queryForObject(sql("readPosition"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
@@ -73,6 +74,7 @@ public class PositionDao extends BaseDao<Position> {
         try {
             return this.jdbcTemplate.query(sql("readManyPositions"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

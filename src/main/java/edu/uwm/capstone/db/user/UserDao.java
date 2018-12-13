@@ -56,6 +56,7 @@ public class UserDao extends BaseDao<User> {
         try {
             return (User) this.jdbcTemplate.queryForObject(sql("readUser"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
@@ -70,6 +71,7 @@ public class UserDao extends BaseDao<User> {
         try {
             return (User) this.jdbcTemplate.queryForObject(sql("readUserByEmail"), new MapSqlParameterSource("email", email), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

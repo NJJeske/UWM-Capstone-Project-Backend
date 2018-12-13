@@ -60,13 +60,14 @@ public class EducationDao extends BaseDao<Education> {
         try {
             return (Education) this.jdbcTemplate.queryForObject(sql("readEducation"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
     
     /**
-     * Retrieve a list of {@link Education} objects by the {@link User#id} associated with it.
-     * @param userid long
+     * Retrieve a list of {@link Education} objects by the {@link Education#id} associated with it.
+     * @param userId long
      * @return List<Map<String, Object>>
      */
     public List<Education> readMany(long userid) {
@@ -74,6 +75,7 @@ public class EducationDao extends BaseDao<Education> {
         try {
             return this.jdbcTemplate.query(sql("readManyEducations"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

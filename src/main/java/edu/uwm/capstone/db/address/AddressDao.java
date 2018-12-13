@@ -4,13 +4,13 @@ import edu.uwm.capstone.model.address.Address;
 import edu.uwm.capstone.model.user.User;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +59,7 @@ public class AddressDao extends BaseDao<Address> {
         try {
             return (Address) this.jdbcTemplate.queryForObject(sql("readAddress"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
@@ -73,6 +74,7 @@ public class AddressDao extends BaseDao<Address> {
         try {
             return this.jdbcTemplate.query(sql("readManyAddresses"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

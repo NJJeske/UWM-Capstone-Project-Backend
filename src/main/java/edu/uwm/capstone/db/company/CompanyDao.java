@@ -59,13 +59,14 @@ public class CompanyDao extends BaseDao<Company> {
         try {
             return (Company) this.jdbcTemplate.queryForObject(sql("readCompany"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
     
     /**
-     * Retrieve a list of {@link Company} objects by the {@link User#id} associated with it.
-     * @param userid long
+     * Retrieve a list of {@link Company} objects by the {@link Company#id} associated with it.
+     * @param userId long
      * @return List<Map<String, Object>>
      */
     public List<Company> readMany(long userid) {
@@ -73,6 +74,7 @@ public class CompanyDao extends BaseDao<Company> {
         try {
             return this.jdbcTemplate.query(sql("readManyCompanies"), new MapSqlParameterSource("user_id", userid), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
