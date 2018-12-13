@@ -11,7 +11,7 @@ import edu.uwm.capstone.helper.AuthHelper;
 public class UserRestController {
 	
 	   @Autowired
-	   private UserDao service;
+	   private UserDao userService;
 
 	   /**
 	    * This endpoint is used to retrieve a user object by
@@ -25,7 +25,7 @@ public class UserRestController {
 	    		token = token.replace("Bearer ", "");
 			}
 			String email = AuthHelper.getEmailFromAccessToken(token);
-	        return service.readByEmail(email);
+	        return userService.readByEmail(email);
 	    }
 
 	   /**
@@ -40,7 +40,7 @@ public class UserRestController {
 			String email = AuthHelper.getEmailFromAccessToken(token);
 			User u = new User();
 			u.setEmail(email);
-	        return service.create(u);
+	        return userService.create(u);
 	    }
 	   
 	   /**
@@ -51,7 +51,7 @@ public class UserRestController {
 	    @RequestMapping(value = "/user", method = RequestMethod.DELETE)
 	    public void deleteUser(@RequestBody Map<String, String> body) {
 	    	String email = body.get("email");
-	        service.delete_by_email(email);
+			userService.delete_by_email(email);
 	    }
 	   
 	   /**
@@ -60,6 +60,6 @@ public class UserRestController {
 	    */
 	    @RequestMapping(value = "/user", method = RequestMethod.PUT)
 	    public void updateUser(@RequestBody User user) {
-	        service.update(user);
+			userService.update(user);
 	    }
 }

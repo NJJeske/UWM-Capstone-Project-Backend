@@ -11,7 +11,7 @@ import edu.uwm.capstone.db.company.CompanyDao;
 public class CompanyRestController {
 
     @Autowired
-    private CompanyDao service;
+    private CompanyDao companyService;
 
     /**
      * This endpoint is used to retrieve a company object by
@@ -21,7 +21,7 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company/{id}", method = RequestMethod.GET)
     public Company retrieveCompany(@PathVariable long id) {
-        return service.read(id);
+        return companyService.read(id);
     }
 
     /**
@@ -32,7 +32,7 @@ public class CompanyRestController {
      */
     @RequestMapping(value="/company/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveManyCompanies(@PathVariable long userId) {
-        return service.readMany(userId);
+        return companyService.readMany(userId);
     }
 
     /**
@@ -42,7 +42,7 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company", method = RequestMethod.POST)
     public Company createCompany(@RequestBody Company company) {
-        return service.create(company);
+        return companyService.create(company);
     }
 
     /**
@@ -52,7 +52,7 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company/{id}", method = RequestMethod.DELETE)
     public void deleteCompany(@PathVariable long id) {
-        service.delete(id);
+        companyService.delete(id);
     }
 
     /**
@@ -61,6 +61,6 @@ public class CompanyRestController {
      */
     @RequestMapping(value = "/company", method = RequestMethod.PUT)
     public void updateCompany(@RequestBody Company company) {
-        service.update(company);
+        companyService.update(company);
     }
 }

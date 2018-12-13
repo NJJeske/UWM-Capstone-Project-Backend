@@ -11,7 +11,7 @@ import edu.uwm.capstone.db.project.ProjectDao;
 @RestController
 public class ProjectRestController {
     @Autowired
-    private ProjectDao service;
+    private ProjectDao projectService;
     
     /**
  	* This endpoint is used to retrieve a project object by
@@ -22,7 +22,7 @@ public class ProjectRestController {
     @RequestMapping(value = "/project/{id}", method = RequestMethod.GET)
     public Project retrieveOne(@PathVariable long id) {
         try {
-            return service.read(id);
+            return projectService.read(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -38,7 +38,7 @@ public class ProjectRestController {
     @RequestMapping(value = "/project/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveMany(@PathVariable long userId) {
         try {
-            return service.readMany(userId);
+            return projectService.readMany(userId);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -53,7 +53,7 @@ public class ProjectRestController {
     @RequestMapping(value = "/project", method = RequestMethod.POST)
     public Project createProject(@RequestBody Project project) {
         try {
-            return service.create(project);
+            return projectService.create(project);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -68,7 +68,7 @@ public class ProjectRestController {
     @RequestMapping(value = "/project/{id}", method = RequestMethod.DELETE)
     public void deleteProject(@PathVariable long id) {
         try {
-            service.delete(id);
+            projectService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -82,7 +82,7 @@ public class ProjectRestController {
     @RequestMapping(value = "/project", method = RequestMethod.PUT)
     public void updateProject(@RequestBody Project project) {
         try {
-            service.update(project);
+            projectService.update(project);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
