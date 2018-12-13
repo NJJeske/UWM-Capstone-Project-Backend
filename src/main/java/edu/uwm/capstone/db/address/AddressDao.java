@@ -58,20 +58,22 @@ public class AddressDao extends BaseDao<Address> {
         try {
             return (Address) this.jdbcTemplate.queryForObject(sql("readAddress"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
     
     /**
-     * Retrieve a list of {@link Address} objects by the {@link User#id} associated with it.
-     * @param id long
+     * Retrieve a list of {@link Address} objects by the {@link Address#id} associated with it.
+     * @param userId long
      * @return List<Map<String, Address>>
      */
-    public List<Map<String, Object>> readMany(long userid) {
-        LOG.trace("Reading addresses for user {}", userid);
+    public List<Map<String, Object>> readMany(long userId) {
+        LOG.trace("Reading addresses for user {}", userId);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyAddresses"), new MapSqlParameterSource("user_id", userid));
+            return this.jdbcTemplate.queryForList(sql("readManyAddresses"), new MapSqlParameterSource("user_id", userId));
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

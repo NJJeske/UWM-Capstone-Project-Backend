@@ -59,20 +59,22 @@ public class ProjectDao extends BaseDao<Project> {
         try {
             return (Project) this.jdbcTemplate.queryForObject(sql("readProject"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
     
     /**
-     * Retrieve a list of {@link Project} objects by the {@link User#id} associated with it.
-     * @param userid long
+     * Retrieve a list of {@link Project} objects by the {@link Project#id} associated with it.
+     * @param userId long
      * @return List<Map<String, Project>>
      */
-    public List<Map<String, Object>> readMany(long userid) {
-        LOG.trace("Reading projects for {}", userid);
+    public List<Map<String, Object>> readMany(long userId) {
+        LOG.trace("Reading projects for {}", userId);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyProjects"), new MapSqlParameterSource("user_id", userid));
+            return this.jdbcTemplate.queryForList(sql("readManyProjects"), new MapSqlParameterSource("user_id", userId));
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
