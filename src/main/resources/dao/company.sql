@@ -2,7 +2,11 @@
 INSERT INTO companies (
   user_id,
   name,
-  address,
+  street_1,
+  street_2,
+  city,
+  state,
+  zip_code,
   phone_number,
   website,
   created_date,
@@ -10,7 +14,11 @@ INSERT INTO companies (
 ) VALUES (
   :user_id,
   :name,
-  :address,
+  :street_1,
+  :street_2,
+  :city,
+  :state,
+  :zip_code,
   :phone_number,
   :website,
   :created_date,
@@ -30,7 +38,11 @@ DELETE FROM companies WHERE id = :id;
 UPDATE companies SET
   user_id = :user_id,
   name = :name,
-  address = :address,
+  street_1 = :street_1,
+  street_2 = :street_2,
+  city = :city,
+  state = :state,
+  zip_code = :zip_code,
   phone_number = :phone_number,
   website = :website,
   updated_date = :updated_date

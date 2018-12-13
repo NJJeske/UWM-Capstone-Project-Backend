@@ -81,7 +81,11 @@ public class TestDataUtility {
         // intentionally left blank -- company.setId();
         company.setUserID(randomLong());
         company.setName(randomAlphabetic(randomInt(1, 100)));
-        company.setAddress(randomAlphanumeric(randomInt(1, 100)));
+        company.setStreet1(randomAlphanumeric(randomInt(1, 100)));
+        company.setStreet2(randomAlphanumeric(randomInt(1, 100)));
+        company.setCity(randomAlphanumeric(randomInt(1, 100)));
+        company.setState(randomAlphanumeric(randomInt(1, 100)));
+        company.setZipCode(randomNumeric(randomInt(1, 100)));
         company.setPhoneNumber(randomNumeric(randomInt(1, 100)));
         company.setWebsite(randomAlphanumeric(randomInt(1, 100)));
         // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
@@ -132,7 +136,11 @@ public class TestDataUtility {
         Education education = new Education();
         // intentionally left blank -- education.setId();
         education.setUserID(randomLong());
-        education.setAddressID(randomLong());
+        education.setStreet1(randomAlphanumeric(randomInt(1, 100)));
+        education.setStreet2(randomAlphanumeric(randomInt(1, 100)));
+        education.setCity(randomAlphanumeric(randomInt(1, 100)));
+        education.setState(randomAlphanumeric(randomInt(1, 100)));
+        education.setZipCode(randomNumeric(randomInt(1, 100)));
         education.setSchoolName(randomAlphabetic(randomInt(1, 100)));
         education.setDegree(randomAlphabetic(randomInt(1, 100)));
         education.setFieldOfStudy(randomAlphabetic(randomInt(1, 100)));
