@@ -3,13 +3,13 @@ package edu.uwm.capstone.db.address;
 import edu.uwm.capstone.model.address.Address;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -58,20 +58,22 @@ public class AddressDao extends BaseDao<Address> {
         try {
             return (Address) this.jdbcTemplate.queryForObject(sql("readAddress"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
     
     /**
-     * Retrieve a list of {@link Address} objects by the {@link User#id} associated with it.
-     * @param id long
+     * Retrieve a list of {@link Address} objects by the {@link Address#id} associated with it.
+     * @param userId long
      * @return List<Map<String, Address>>
      */
-    public List<Map<String, Object>> readMany(long userid) {
-        LOG.trace("Reading addresses for user {}", userid);
+    public List<Map<String, Object>> readMany(long userId) {
+        LOG.trace("Reading addresses for user {}", userId);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyAddresses"), new MapSqlParameterSource("user_id", userid));
+            return this.jdbcTemplate.queryForList(sql("readManyAddresses"), new MapSqlParameterSource("user_id", userId));
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

@@ -15,14 +15,14 @@ import io.swagger.annotations.ApiOperation;
 public class CertificationRestController {
 
     @Autowired
-    private CertificationDao service;
+    private CertificationDao certificationService;
 
     // Get
     @RequestMapping(value = "/certification/{id}", method = RequestMethod.GET)
     public Certification retrieveCertification(@PathVariable long id) {
         System.out.println("retrieveCertification");
         try {
-            return service.read(id);
+            return certificationService.read(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -34,7 +34,7 @@ public class CertificationRestController {
     public List<Map<String, Object>> retrieveManyCertifications(@PathVariable long userid) {
         System.out.println("retrieveManyCertifications");
         try {
-            return service.readMany(userid);
+            return certificationService.readMany(userid);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -46,7 +46,7 @@ public class CertificationRestController {
     public Certification createCertification(@RequestBody Certification certification) {
         System.out.println("createCertification: " + certification.toString());
         try {
-            return service.create(certification);
+            return certificationService.create(certification);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -58,7 +58,7 @@ public class CertificationRestController {
     public void deleteEducation(@PathVariable long id) {
         System.out.println("deleteEducation");
         try {
-            service.delete(id);
+            certificationService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -70,7 +70,7 @@ public class CertificationRestController {
     public void updateCertification(@RequestBody Certification certification) {
         System.out.println("updateCertification");
         try {
-            service.update(certification);
+            certificationService.update(certification);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

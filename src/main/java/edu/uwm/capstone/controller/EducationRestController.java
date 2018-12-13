@@ -15,13 +15,13 @@ import io.swagger.annotations.ApiOperation;
 public class EducationRestController {
 
     @Autowired
-    private EducationDao service;
+    private EducationDao educationService;
 
     // Get
     @RequestMapping(value = "/education/{id}", method = RequestMethod.GET)
     public Education retrieveEducation(@PathVariable long id) {
         try {
-            return service.read(id);
+            return educationService.read(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -33,7 +33,7 @@ public class EducationRestController {
     public List<Map<String, Object>> retrieveManyEducations(@PathVariable long userid) {
         System.out.println("retrieveManyEducations with userID:" + userid);
         try {
-            return service.readMany(userid);
+            return educationService.readMany(userid);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -45,7 +45,7 @@ public class EducationRestController {
     public Education createEducation(@RequestBody Education education) {
         System.out.println("createEducation:" + education);
         try {
-            return service.create(education);
+            return educationService.create(education);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -57,7 +57,7 @@ public class EducationRestController {
     public void deleteEducation(@PathVariable long id) {
         System.out.println("deleteEducation with id: " + id);
         try {
-            service.delete(id);
+            educationService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -69,7 +69,7 @@ public class EducationRestController {
     public void updateEducation(@RequestBody Education education) {
         System.out.println("updateEducation: " + education);
         try {
-            service.update(education);
+            educationService.update(education);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

@@ -11,7 +11,7 @@ import edu.uwm.capstone.db.contact.ContactDao;
 public class ContactRestController {
 
     @Autowired
-    private ContactDao service;
+    private ContactDao contactService;
 
     /**
  	* This endpoint is used to retrieve a contact object by
@@ -21,7 +21,7 @@ public class ContactRestController {
 	*/
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
     public Contact retrieveContact(@PathVariable long id) {
-        return service.read(id);
+        return contactService.read(id);
     }
     
     /**
@@ -32,7 +32,7 @@ public class ContactRestController {
 	*/
     @RequestMapping(value = "/contact/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveManyContacts(@PathVariable long userId) {
-        return service.readMany(userId);
+        return contactService.readMany(userId);
     }
 
     /**
@@ -42,7 +42,7 @@ public class ContactRestController {
 	*/
     @RequestMapping(value = "/contact", method = RequestMethod.POST)
     public Contact createContact(@RequestBody Contact contact) {
-        return service.create(contact);
+        return contactService.create(contact);
     }
 
     /**
@@ -52,7 +52,7 @@ public class ContactRestController {
 	*/
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.DELETE)
     public void deleteContact(@PathVariable long id) {
-        service.delete(id);
+        contactService.delete(id);
     }
 
     /**
@@ -61,6 +61,6 @@ public class ContactRestController {
 	*/
     @RequestMapping(value = "/contact", method = RequestMethod.PUT)
     public void updateContact(@RequestBody Contact contact) {
-        service.update(contact);
+        contactService.update(contact);
     }
 }

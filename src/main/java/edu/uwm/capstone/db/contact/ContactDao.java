@@ -60,20 +60,22 @@ public class ContactDao extends BaseDao<Contact> {
         try {
             return (Contact) this.jdbcTemplate.queryForObject(sql("readContact"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
     
     /**
-     * Retrieve a list of {@link Contact} objects by the {@link User#id} associated with it.
-     * @param long userid
+     * Retrieve a list of {@link Contact} objects by the {@link Contact#id} associated with it.
+     * @param userId Long
      * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> readMany(long userid) {
-        LOG.trace("Reading contacts for user {}", userid);
+    public List<Map<String, Object>> readMany(long userId) {
+        LOG.trace("Reading contacts for user {}", userId);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyContacts"), new MapSqlParameterSource("user_id", userid));
+            return this.jdbcTemplate.queryForList(sql("readManyContacts"), new MapSqlParameterSource("user_id", userId));
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }

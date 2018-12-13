@@ -11,7 +11,7 @@ import edu.uwm.capstone.db.address.AddressDao;
 public class AddressRestController {
 
     @Autowired
-    private AddressDao service;
+    private AddressDao addressService;
 
     /**
  	* This endpoint is used to retrieve a address object by
@@ -21,7 +21,7 @@ public class AddressRestController {
 	*/
     @RequestMapping(value = "/address/{id}", method = RequestMethod.GET)
     public Address retrieveAddress(@PathVariable long id) {
-        return service.read(id);
+        return addressService.read(id);
     }
     
     /**
@@ -32,7 +32,7 @@ public class AddressRestController {
 	*/
     @RequestMapping(value = "/address/retrievemany/{userId}", method = RequestMethod.GET)
     public List<Map<String, Object>> retrieveManyAddresses(@PathVariable long userId) {
-        return service.readMany(userId);
+        return addressService.readMany(userId);
     }
 
     /**
@@ -42,7 +42,7 @@ public class AddressRestController {
 	*/
     @RequestMapping(value = "/address", method = RequestMethod.POST)
     public Address createAddress(@RequestBody Address address) {
-        return service.create(address);
+        return addressService.create(address);
     }
 
     /**
@@ -52,7 +52,7 @@ public class AddressRestController {
 	*/
     @RequestMapping(value = "/address/{id}", method = RequestMethod.DELETE)
     public void deleteAddress(@PathVariable long id) {
-        service.delete(id);
+        addressService.delete(id);
     }
 
     /**
@@ -61,6 +61,6 @@ public class AddressRestController {
 	*/
     @RequestMapping(value = "/address", method = RequestMethod.PUT)
     public void updateAddress(@RequestBody Address address) {
-        service.update(address);
+        addressService.update(address);
     }
 }

@@ -59,20 +59,22 @@ public class PositionDao extends BaseDao<Position> {
         try {
             return (Position) this.jdbcTemplate.queryForObject(sql("readPosition"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
     
     /**
-     * Retrieve a list of {@link Position} objects by the {@link User#id} associated with it.
-     * @param long userid
+     * Retrieve a list of {@link Position} objects by the {@link Position#id} associated with it.
+     * @param userId Long
      * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> readMany(long userid) {
-        LOG.trace("Reading positions for user {}", userid);
+    public List<Map<String, Object>> readMany(long userId) {
+        LOG.trace("Reading positions for user {}", userId);
         try {
-            return this.jdbcTemplate.queryForList(sql("readManyPositions"), new MapSqlParameterSource("user_id", userid));
+            return this.jdbcTemplate.queryForList(sql("readManyPositions"), new MapSqlParameterSource("user_id", userId));
         } catch (EmptyResultDataAccessException e) {
+            LOG.trace("Exception: {}", e);
             return null;
         }
     }
