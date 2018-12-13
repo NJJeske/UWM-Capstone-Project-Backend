@@ -1,7 +1,11 @@
 --STATEMENT createEducation
 INSERT INTO educations (
   user_id,
-  address_id,
+  street_1,
+  street_2,
+  city,
+  state,
+  zip_code,
   school_name,
   degree,
   field_of_study,
@@ -10,7 +14,11 @@ INSERT INTO educations (
   created_date
 ) VALUES (
   :user_id,
-  :address_id,
+  :street_1,
+  :street_2,
+  :city,
+  :state,
+  :zip_code,
   :school_name,
   :degree,
   :field_of_study,
@@ -31,7 +39,11 @@ DELETE FROM educations WHERE id = :id;
 --STATEMENT updateEducation
 UPDATE educations SET
   user_id = :user_id,
-  address_id = :address_id,
+  street_1 = :street_1,
+  street_2 = :street_2,
+  city = :city,
+  state = :state,
+  zip_code = :zip_code,
   school_name = :school_name,
   degree = :degree,
   field_of_study = :field_of_study,

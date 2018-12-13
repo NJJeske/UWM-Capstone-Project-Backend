@@ -123,7 +123,11 @@ public class EducationDaoUnitTest {
         assertNotNull(verifyUpdateEducation);
         assertEquals(createEducation.getId(), verifyUpdateEducation.getId());
         assertEquals(updateEducation.getUserID(), verifyUpdateEducation.getUserID());
-        assertEquals(updateEducation.getAddressID(), verifyUpdateEducation.getAddressID());
+        assertEquals(updateEducation.getStreet1(), verifyUpdateEducation.getStreet1());
+        assertEquals(updateEducation.getStreet2(), verifyUpdateEducation.getStreet2());
+        assertEquals(updateEducation.getCity(), verifyUpdateEducation.getCity());
+        assertEquals(updateEducation.getState(), verifyUpdateEducation.getState());
+        assertEquals(updateEducation.getZipCode(), verifyUpdateEducation.getZipCode());
         assertEquals(updateEducation.getSchoolName(), verifyUpdateEducation.getSchoolName());
         assertEquals(updateEducation.getDegree(), verifyUpdateEducation.getDegree());
         assertEquals(updateEducation.getFieldOfStudy(), verifyUpdateEducation.getFieldOfStudy());

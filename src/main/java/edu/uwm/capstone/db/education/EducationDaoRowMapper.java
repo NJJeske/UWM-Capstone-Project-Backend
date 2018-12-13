@@ -14,7 +14,11 @@ public class EducationDaoRowMapper extends BaseRowMapper<Education> {
 
     public enum EducationColumnType {
         USER_ID(),
-        ADDRESS_ID(),
+        STREET_1(),
+        STREET_2(),
+        CITY(),
+        STATE(),
+        ZIP_CODE(),
         SCHOOL_NAME(),
         DEGREE(),
         FIELD_OF_STUDY(),
@@ -42,7 +46,11 @@ public class EducationDaoRowMapper extends BaseRowMapper<Education> {
         Map<String, Object> map = new HashMap<>();
         map.put(ID.getColumnName(), object.getId());
         map.put(USER_ID.getColumnName(), object.getUserID());
-        map.put(ADDRESS_ID.getColumnName(), object.getAddressID());
+        map.put(STREET_1.getColumnName(), object.getStreet1());
+        map.put(STREET_2.getColumnName(), object.getStreet2());
+        map.put(CITY.getColumnName(), object.getCity());
+        map.put(STATE.getColumnName(), object.getState());
+        map.put(ZIP_CODE.getColumnName(), object.getZipCode());
         map.put(SCHOOL_NAME.getColumnName(), object.getSchoolName());
         map.put(DEGREE.getColumnName(), object.getDegree());
         map.put(FIELD_OF_STUDY.getColumnName(), object.getFieldOfStudy());
@@ -58,7 +66,11 @@ public class EducationDaoRowMapper extends BaseRowMapper<Education> {
         Education education = new Education();
         education.setId(rs.getLong(ID.getColumnName()));
         education.setUserID(rs.getLong(USER_ID.getColumnName()));
-        education.setAddressID(rs.getLong(ADDRESS_ID.getColumnName()));
+        education.setStreet1(rs.getString(STREET_1.getColumnName()));
+        education.setStreet2(rs.getString(STREET_2.getColumnName()));
+        education.setCity(rs.getString(CITY.getColumnName()));
+        education.setState(rs.getString(STATE.getColumnName()));
+        education.setZipCode(rs.getString(ZIP_CODE.getColumnName()));
         education.setSchoolName(rs.getString(SCHOOL_NAME.getColumnName()));
         education.setDegree(rs.getString(DEGREE.getColumnName()));
         education.setFieldOfStudy(rs.getString(FIELD_OF_STUDY.getColumnName()));

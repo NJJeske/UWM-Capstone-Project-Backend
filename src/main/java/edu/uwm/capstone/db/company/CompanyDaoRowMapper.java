@@ -15,7 +15,11 @@ public class CompanyDaoRowMapper extends BaseRowMapper<Company> {
     public enum CompanyColumnType {
         USER_ID(),
         NAME(),
-        ADDRESS(),
+        STREET_1(),
+        STREET_2(),
+        CITY(),
+        STATE(),
+        ZIP_CODE(),
         PHONE_NUMBER(),
         WEBSITE(),
         ;
@@ -41,7 +45,11 @@ public class CompanyDaoRowMapper extends BaseRowMapper<Company> {
         map.put(ID.getColumnName(), object.getId());
         map.put(USER_ID.getColumnName(), object.getUserID());
         map.put(NAME.getColumnName(), object.getName());
-        map.put(ADDRESS.getColumnName(), object.getAddress());
+        map.put(STREET_1.getColumnName(), object.getStreet1());
+        map.put(STREET_2.getColumnName(), object.getStreet2());
+        map.put(CITY.getColumnName(), object.getCity());
+        map.put(STATE.getColumnName(), object.getState());
+        map.put(ZIP_CODE.getColumnName(), object.getZipCode());
         map.put(PHONE_NUMBER.getColumnName(), object.getPhoneNumber());
         map.put(WEBSITE.getColumnName(), object.getWebsite());
         map.put(CREATED_DATE.getColumnName(), javaTimeFromDate(object.getCreatedDate()));
@@ -55,7 +63,11 @@ public class CompanyDaoRowMapper extends BaseRowMapper<Company> {
         company.setId(rs.getLong(ID.getColumnName()));
         company.setUserID(rs.getLong(USER_ID.getColumnName()));
         company.setName(rs.getString(NAME.getColumnName()));
-        company.setAddress(rs.getString(ADDRESS.getColumnName()));
+        company.setStreet1(rs.getString(STREET_1.getColumnName()));
+        company.setStreet2(rs.getString(STREET_2.getColumnName()));
+        company.setCity(rs.getString(CITY.getColumnName()));
+        company.setState(rs.getString(STATE.getColumnName()));
+        company.setZipCode(rs.getString(ZIP_CODE.getColumnName()));
         company.setPhoneNumber(rs.getString(PHONE_NUMBER.getColumnName()));
         company.setWebsite(rs.getString(WEBSITE.getColumnName()));
         company.setCreatedDate(dateFromJavaTime(rs.getObject(CREATED_DATE.getColumnName())));

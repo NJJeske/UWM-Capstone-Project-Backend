@@ -8,10 +8,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Company {
     protected Long id;
     protected Long userID;
-    private String name;
-    private String address;
-    private String phoneNumber;
-    private String website;
+    protected String name;
+    protected String street1;
+    protected String street2;
+    protected String city;
+    protected String state;
+    protected String zipCode;
+    protected String phoneNumber;
+    protected String website;
     protected LocalDateTime createdDate;
     protected LocalDateTime updatedDate;
 
@@ -31,9 +35,25 @@ public class Company {
 
     public void setName(String name) { this.name = name;}
 
-    public String getAddress() {return address; }
+    public String getStreet1() { return this.street1; }
 
-    public void setAddress(String address) { this.address = address;}
+    public void setStreet1(String street1) { this.street1 = street1; }
+
+    public String getStreet2() { return this.street2; }
+
+    public void setStreet2(String street2) { this.street2 = street2; }
+
+    public String getCity() { return this.city; }
+
+    public void setCity(String city) { this.city = city; }
+
+    public String getState() { return this.state; }
+
+    public void setState(String state) { this.state = state; }
+
+    public String getZipCode() { return this.zipCode; }
+
+    public void setZipCode(String zipCode) { this.zipCode = zipCode; }
 
     public String getPhoneNumber() {return phoneNumber; }
 

@@ -68,7 +68,11 @@ public class EducationDaoRowMapperUnitTest {
 
         assertEquals(education.getId(), mapObject.get(BaseRowMapper.BaseColumnType.ID.getColumnName()));
         assertEquals(education.getUserID(), mapObject.get(EducationColumnType.USER_ID.getColumnName()));
-        assertEquals(education.getAddressID(), mapObject.get(EducationColumnType.ADDRESS_ID.getColumnName()));
+        assertEquals(education.getStreet1(), mapObject.get(EducationColumnType.STREET_1.getColumnName()));
+        assertEquals(education.getStreet2(), mapObject.get(EducationColumnType.STREET_2.getColumnName()));
+        assertEquals(education.getCity(), mapObject.get(EducationColumnType.CITY.getColumnName()));
+        assertEquals(education.getState(), mapObject.get(EducationColumnType.STATE.getColumnName()));
+        assertEquals(education.getZipCode(), mapObject.get(EducationColumnType.ZIP_CODE.getColumnName()));
         assertEquals(education.getSchoolName(), mapObject.get(EducationColumnType.SCHOOL_NAME.getColumnName()));
         assertEquals(education.getDegree(), mapObject.get(EducationColumnType.DEGREE.getColumnName()));
         assertEquals(education.getFieldOfStudy(), mapObject.get(EducationColumnType.FIELD_OF_STUDY.getColumnName()));
@@ -93,7 +97,11 @@ public class EducationDaoRowMapperUnitTest {
         // define the behavior of the resultSet that is being mocked
         when(resultSet.getLong(BaseRowMapper.BaseColumnType.ID.getColumnName())).thenReturn(education.getId());
         when(resultSet.getLong(EducationColumnType.USER_ID.getColumnName())).thenReturn(education.getUserID());
-        when(resultSet.getLong(EducationColumnType.ADDRESS_ID.getColumnName())).thenReturn(education.getAddressID());
+        when(resultSet.getString(EducationColumnType.STREET_1.getColumnName())).thenReturn(education.getStreet1());
+        when(resultSet.getString(EducationColumnType.STREET_2.getColumnName())).thenReturn(education.getStreet2());
+        when(resultSet.getString(EducationColumnType.CITY.getColumnName())).thenReturn(education.getCity());
+        when(resultSet.getString(EducationColumnType.STATE.getColumnName())).thenReturn(education.getState());
+        when(resultSet.getString(EducationColumnType.ZIP_CODE.getColumnName())).thenReturn(education.getZipCode());
         when(resultSet.getString(EducationColumnType.SCHOOL_NAME.getColumnName())).thenReturn(education.getSchoolName());
         when(resultSet.getString(EducationColumnType.DEGREE.getColumnName())).thenReturn(education.getDegree());
         when(resultSet.getString(EducationColumnType.FIELD_OF_STUDY.getColumnName())).thenReturn(education.getFieldOfStudy());
@@ -108,7 +116,11 @@ public class EducationDaoRowMapperUnitTest {
 
         assertEquals(verifyEducation.getId(), verifyEducation.getId());
         assertEquals(education.getUserID(), verifyEducation.getUserID());
-        assertEquals(education.getAddressID(), verifyEducation.getAddressID());
+        assertEquals(education.getStreet1(), verifyEducation.getStreet1());
+        assertEquals(education.getStreet2(), verifyEducation.getStreet2());
+        assertEquals(education.getCity(), verifyEducation.getCity());
+        assertEquals(education.getState(), verifyEducation.getState());
+        assertEquals(education.getZipCode(), verifyEducation.getZipCode());
         assertEquals(education.getSchoolName(), verifyEducation.getSchoolName());
         assertEquals(education.getDegree(), verifyEducation.getDegree());
         assertEquals(education.getFieldOfStudy(), verifyEducation.getFieldOfStudy());
