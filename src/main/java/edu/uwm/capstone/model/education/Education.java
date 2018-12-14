@@ -1,5 +1,6 @@
 package edu.uwm.capstone.model.education;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -7,20 +8,33 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.time.LocalDateTime;
 
 public class Education {
-
+    @JsonProperty(value = "id")
     protected Long id;
+    @JsonProperty(value = "userID")
     protected Long userID;
+    @JsonProperty(value = "street1")
     protected String street1;
+    @JsonProperty(value = "street2")
     protected String street2;
+    @JsonProperty(value = "city")
     protected String city;
+    @JsonProperty(value = "state")
     protected String state;
+    @JsonProperty(value = "zipCode")
     protected String zipCode;
+    @JsonProperty(value = "schoolName")
     protected String schoolName;
+    @JsonProperty(value = "degree")
     protected String degree;
+    @JsonProperty(value = "fieldOfStudy")
     protected String fieldOfStudy;
+    @JsonProperty(value = "startDate")
     protected LocalDateTime startDate;
+    @JsonProperty(value = "endDate")
     protected LocalDateTime endDate;
+    @JsonProperty(value = "createdDate")
     protected LocalDateTime createdDate;
+    @JsonProperty(value = "updatedDate")
     protected LocalDateTime updatedDate;
 
     public Long getId() {

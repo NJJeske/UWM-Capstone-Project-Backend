@@ -1,6 +1,8 @@
 package edu.uwm.capstone.model.position;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.uwm.capstone.jsoncomponent.LocalDateTimeJsonDeserializer;
@@ -10,25 +12,36 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Position {
+    @JsonProperty(value = "id")
     protected Long id;
+    @JsonProperty(value = "userID")
     protected Long userID;
-    private String name;
+    @JsonProperty(value = "name")
+    protected String name;
+    @JsonProperty(value = "companyID")
     protected Long companyID;
-    private String description;
+    @JsonProperty(value = "description")
+    protected String description;
     @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
     @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
+    @JsonProperty(value = "createdDate")
     protected LocalDateTime createdDate;
     @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
     @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
+    @JsonProperty(value = "updatedDate")
     protected LocalDateTime updatedDate;
     @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
     @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
+    @JsonProperty(value = "startDate")
     protected LocalDateTime startDate;
     @JsonSerialize(using = LocalDateTimeJsonSerializer.class)
     @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
+    @JsonProperty(value = "endDate")
     protected LocalDateTime endDate;
-    private Double startPay;
-    private Double endPay;
+    @JsonProperty(value = "startPay")
+    protected Double startPay;
+    @JsonProperty(value = "endPay")
+    protected Double endPay;
 
 
     public Long getId(){

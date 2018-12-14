@@ -1,5 +1,6 @@
 package edu.uwm.capstone.model.contact;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -7,16 +8,27 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.time.LocalDateTime;
 
 public class Contact {
+    @JsonProperty(value = "id")
     protected Long id;
+    @JsonProperty(value = "userID")
     protected Long userID;
+    @JsonProperty(value = "companyID")
     protected Long companyID;
+    @JsonProperty(value = "position")
     protected String position;
+    @JsonProperty(value = "firstName")
     protected String firstName;
+    @JsonProperty(value = "lastName")
     protected String lastName;
+    @JsonProperty(value = "email")
     protected String email;
+    @JsonProperty(value = "phoneNumber")
     protected String phoneNumber;
+    @JsonProperty(value = "notes")
     protected String notes;
+    @JsonProperty(value = "createdDate")
     protected LocalDateTime createdDate;
+    @JsonProperty(value = "updatedDate")
     protected LocalDateTime updatedDate;
 
     public Long getId() { return this.id; }

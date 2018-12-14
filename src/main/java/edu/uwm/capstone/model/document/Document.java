@@ -1,17 +1,25 @@
 package edu.uwm.capstone.model.document;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Document {
+    @JsonProperty(value = "id")
     protected Long id;
+    @JsonProperty(value = "user_ID")
     protected Long user_ID;
+    @JsonProperty(value = "created_date")
     protected LocalDateTime created_date;
+    @JsonProperty(value = "updated_date")
     protected LocalDateTime updated_date;
-    private String name;
-    private String path;
+    @JsonProperty(value = "name")
+    protected String name;
+    @JsonProperty(value = "path")
+    protected String path;
 
     public Long getId(){ return id; }
 
