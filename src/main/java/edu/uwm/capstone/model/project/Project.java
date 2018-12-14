@@ -2,21 +2,31 @@ package edu.uwm.capstone.model.project;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Project {
-
+    @JsonProperty(value = "id")
     protected Long id;
+    @JsonProperty(value = "userID")
     protected Long userID;
+    @JsonProperty(value = "positionID")
     protected Long positionID;
+    @JsonProperty(value = "educationID")
     protected Long educationID;
+    @JsonProperty(value = "title")
     protected String title;
+    @JsonProperty(value = "description")
     protected String description;
+    @JsonProperty(value = "startDate")
     protected LocalDateTime startDate;
+    @JsonProperty(value = "endDate")
     protected LocalDateTime endDate;
+    @JsonProperty(value = "createdDate")
     protected LocalDateTime createdDate;
+    @JsonProperty(value = "updatedDate")
     protected LocalDateTime updatedDate;
 
     public Long getId() {

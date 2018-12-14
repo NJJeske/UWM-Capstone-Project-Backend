@@ -1,21 +1,33 @@
 package edu.uwm.capstone.model.certification;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Certification {
+    @JsonProperty(value = "id")
     protected Long id;
+    @JsonProperty(value = "userID")
     protected Long userID;
+    @JsonProperty(value = "createdDate")
     protected LocalDateTime createDate;
+    @JsonProperty(value = "updatedDate")
     protected LocalDateTime updatedDate;
-    private String name;
-    private String authority;
-    private String licenseNumber;
-    private LocalDateTime acquiredDate;
-    private LocalDateTime expiredDate;
-    private String website;
+    @JsonProperty(value = "name")
+    protected String name;
+    @JsonProperty(value = "authority")
+    protected String authority;
+    @JsonProperty(value = "licenseNumber")
+    protected String licenseNumber;
+    @JsonProperty(value = "acquiredDate")
+    protected LocalDateTime acquiredDate;
+    @JsonProperty(value = "expiredDate")
+    protected LocalDateTime expiredDate;
+    @JsonProperty(value = "website")
+    protected String website;
 
     public Long getId(){ return id; }
 
